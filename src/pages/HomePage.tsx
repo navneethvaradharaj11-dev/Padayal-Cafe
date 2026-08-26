@@ -161,53 +161,91 @@ export function HomePage() {
 
   return (
     <div className="overflow-hidden">
-      {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center">
-        <div className="absolute inset-0">
-          <img
-            src="https://images.pexels.com/photos/260922/pexels-photo-260922.jpeg?auto=compress&cs=tinysrgb&w=1920"
-            alt="Padayal Restaurant"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-earth-900/80 via-earth-900/60 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-cream-100 via-transparent to-transparent" />
-        </div>
+      {/* Mobile App Hero Section (Matching Screen Spec) */}
+      <section className="relative">
+        {/* Curved Top Brand Header */}
+        <div className="bg-padayal-primary rounded-b-[44px] px-6 pt-6 pb-14 text-white space-y-5 shadow-md relative overflow-hidden">
+          {/* Subtle curved background overlay graphic */}
+          <div className="absolute top-0 right-0 w-48 h-48 bg-white/10 rounded-full blur-2xl -translate-y-10 translate-x-10 pointer-events-none" />
 
-        <div className="container-custom relative z-10">
-          <div className="max-w-2xl">
-            <div className="animate-fade-in">
-              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-forest-700/80 backdrop-blur-sm text-cream-100 text-sm font-medium mb-6">
-                <Leaf className="w-4 h-4" />
-                No Oil. No Boil. Pure Health.
-              </span>
+          {/* Top Bar: Brand Icon + Title + Language Toggle */}
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2.5">
+              <div className="w-10 h-10 rounded-2xl bg-white/15 backdrop-blur-md flex items-center justify-center border border-white/20">
+                <Leaf className="w-6 h-6 text-white fill-current" />
+              </div>
+              <div>
+                <h1 className="font-pranic text-xl font-bold tracking-tight leading-none text-white">
+                  Padayal
+                </h1>
+                <span className="text-[10px] font-semibold tracking-wider text-white/80 uppercase">
+                  No Oil No Boil
+                </span>
+              </div>
             </div>
 
-            <h1 className="heading-xl text-white mb-6 animate-slide-up">
-              Taste Wellness in
-              <span className="text-forest-400"> Every Bite</span>
-            </h1>
+            <button 
+              type="button" 
+              onClick={() => alert('Language options: English / தமிழ்')}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/20 text-xs font-semibold text-white hover:bg-white/25 transition-colors"
+            >
+              <span>🌐</span> English
+            </button>
+          </div>
 
-            <p className="text-xl text-cream-200 mb-8 animate-slide-up animate-delay-100">
-              Experience the revolutionary way of cooking that preserves
-              nature's goodness. Our unique steam and pressure cooking methods
-              deliver exceptional taste without a drop of oil.
-            </p>
+          {/* Hero Main Slogan */}
+          <div className="pt-2">
+            <h2 className="font-pranic text-3xl font-extrabold leading-tight text-white">
+              Your daily health,<br />never missed.
+            </h2>
 
-            <div className="flex flex-wrap gap-4 animate-slide-up animate-delay-200">
-              <Link to="/menu" className="btn-primary text-lg">
-                Explore Menu
-                <ArrowRight className="w-5 h-5 ml-2 inline" />
-              </Link>
-              <Link to="/reservation" className="btn-outline border-cream-200 text-cream-100 hover:bg-cream-100/10">
-                Book a Table
-              </Link>
+            {/* Pill Badges */}
+            <div className="flex flex-wrap gap-2 mt-4">
+              <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-white/15 backdrop-blur-md border border-white/20 text-xs font-medium text-white">
+                🌱 100% Raw
+              </span>
+              <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-white/15 backdrop-blur-md border border-white/20 text-xs font-medium text-white">
+                ✓ Zero Oil
+              </span>
+              <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-white/15 backdrop-blur-md border border-white/20 text-xs font-medium text-white">
+                ⚡ Live Enzymes
+              </span>
             </div>
           </div>
         </div>
 
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-float">
-          <div className="w-6 h-10 rounded-full border-2 border-forest-400 flex items-start justify-center p-2">
-            <div className="w-1.5 h-2.5 bg-forest-400 rounded-full animate-bounce" />
+        {/* Overlapping White Floating Container Card */}
+        <div className="px-4 -mt-8 relative z-10">
+          <div className="bg-padayal-surface rounded-3xl p-5 shadow-organic-lg border border-padayal-bg space-y-4">
+            
+            <div className="flex items-center justify-between">
+              <div>
+                <span className="text-[11px] font-bold text-padayal-cta uppercase tracking-wider block">Welcome to Padayal</span>
+                <h3 className="font-pranic text-lg font-bold text-padayal-text">Pranic Raw-Vegan Dining</h3>
+              </div>
+              <span className="px-2.5 py-1 rounded-full bg-padayal-secondary-light text-padayal-primary text-xs font-bold">
+                Coimbatore
+              </span>
+            </div>
+
+            <p className="text-xs text-padayal-muted leading-relaxed">
+              Experience South India's famous fire-free culinary concept. Fresh sprouts, tender coconut elixirs, and nutrient-dense raw dishes prepared without oil or heat.
+            </p>
+
+            <div className="grid grid-cols-2 gap-3 pt-1">
+              <Link
+                to="/menu"
+                className="btn-primary text-xs py-3 justify-center text-center shadow-md"
+              >
+                Explore Menu <ArrowRight className="w-4 h-4 ml-1 inline" />
+              </Link>
+              <Link
+                to="/reservation"
+                className="btn-secondary text-xs py-3 justify-center text-center"
+              >
+                Book a Table
+              </Link>
+            </div>
           </div>
         </div>
       </section>

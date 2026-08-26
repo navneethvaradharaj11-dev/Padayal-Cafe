@@ -30,27 +30,19 @@ export function Header() {
   }, [location]);
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? 'bg-white/95 backdrop-blur-md shadow-lg shadow-earth-900/5'
-          : 'bg-transparent'
-      }`}
-    >
-      <nav className="container-custom">
-        <div className="flex items-center justify-between h-20">
+    <header className="sticky top-0 left-0 right-0 z-40 bg-padayal-surface/95 backdrop-blur-md border-b border-padayal-bg shadow-sm px-4 py-2 shrink-0">
+      <nav className="w-full">
+        <div className="flex items-center justify-between h-12">
           <Link to="/" className="flex items-center gap-2 group">
             <div className="relative">
-              <Leaf className="w-8 h-8 text-padayal-primary group-hover:scale-110 transition-transform" />
-              <Utensils className="w-4 h-4 text-padayal-bg absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+              <Leaf className="w-7 h-7 text-padayal-primary group-hover:scale-110 transition-transform" />
+              <Utensils className="w-3.5 h-3.5 text-padayal-bg absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
             </div>
             <div>
-              <span className="font-pranic text-2xl font-bold text-padayal-primary tracking-tight">
+              <span className="font-pranic text-xl font-bold text-padayal-primary tracking-tight leading-none block">
                 Padayal
               </span>
-              <span className={`block font-handwritten text-sm font-semibold tracking-wider ${
-                isScrolled ? 'text-padayal-cta' : 'text-padayal-cta'
-              }`}>
+              <span className="font-handwritten text-xs font-semibold text-padayal-cta tracking-wider block">
                 No Oil No Boil
               </span>
             </div>
