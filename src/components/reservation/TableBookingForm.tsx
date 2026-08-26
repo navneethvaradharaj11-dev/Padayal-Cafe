@@ -54,36 +54,36 @@ export function TableBookingForm() {
   };
 
   return (
-    <div className="bg-padayal-surface rounded-3xl p-6 sm:p-8 shadow-organic border border-padayal-bg max-w-2xl mx-auto">
+    <div className="bg-padayal-surface rounded-2xl p-4 shadow-organic border border-padayal-bg max-w-md mx-auto">
       {confirmedBooking ? (
-        <div className="text-center py-8 space-y-6 animate-scale-in">
-          <div className="w-16 h-16 rounded-full bg-padayal-secondary-light text-padayal-primary flex items-center justify-center mx-auto shadow-sm">
-            <CheckCircle2 className="w-10 h-10 stroke-[2.5]" />
+        <div className="text-center py-4 space-y-4 animate-scale-in">
+          <div className="w-12 h-12 rounded-full bg-padayal-secondary-light text-padayal-primary flex items-center justify-center mx-auto shadow-sm">
+            <CheckCircle2 className="w-8 h-8 stroke-[2.5]" />
           </div>
 
           <div>
-            <span className="px-3 py-1 rounded-full bg-padayal-cta/15 text-padayal-cta font-bold text-xs">
+            <span className="px-2.5 py-0.5 rounded-full bg-padayal-cta/15 text-padayal-cta font-bold text-xs">
               Booking Confirmed
             </span>
-            <h2 className="font-pranic text-3xl font-bold text-padayal-text mt-2">
+            <h2 className="font-pranic text-xl font-bold text-padayal-text mt-1.5">
               We Can't Wait to Host You!
             </h2>
-            <p className="text-sm text-padayal-muted mt-1">
-              Your table reference code is <span className="font-extrabold text-padayal-primary">{confirmedBooking.bookingRef}</span>
+            <p className="text-xs text-padayal-muted mt-0.5">
+              Your reference code is <span className="font-extrabold text-padayal-primary">{confirmedBooking.bookingRef}</span>
             </p>
           </div>
 
           {/* Summary Card */}
-          <div className="bg-padayal-bg/60 p-5 rounded-2xl text-left space-y-3 border border-padayal-bg max-w-md mx-auto text-sm">
-            <div className="flex justify-between border-b border-padayal-bg pb-2">
+          <div className="bg-padayal-bg/60 p-4 rounded-xl text-left space-y-2 border border-padayal-bg text-xs">
+            <div className="flex justify-between border-b border-padayal-bg pb-1.5">
               <span className="text-padayal-muted">Guest Name</span>
               <span className="font-bold text-padayal-text">{confirmedBooking.guestName}</span>
             </div>
-            <div className="flex justify-between border-b border-padayal-bg pb-2">
+            <div className="flex justify-between border-b border-padayal-bg pb-1.5">
               <span className="text-padayal-muted">Date & Time</span>
               <span className="font-bold text-padayal-text">{confirmedBooking.date} at {confirmedBooking.timeSlot}</span>
             </div>
-            <div className="flex justify-between border-b border-padayal-bg pb-2">
+            <div className="flex justify-between border-b border-padayal-bg pb-1.5">
               <span className="text-padayal-muted">Party Size</span>
               <span className="font-bold text-padayal-text">{confirmedBooking.guestCount} Guests</span>
             </div>
@@ -96,19 +96,19 @@ export function TableBookingForm() {
           <button
             type="button"
             onClick={() => setConfirmedBooking(null)}
-            className="btn-primary text-sm px-6 py-3"
+            className="btn-primary text-xs px-5 py-2.5"
           >
             Book Another Table
           </button>
         </div>
       ) : (
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="text-center max-w-md mx-auto mb-6">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-padayal-secondary-light text-padayal-primary text-xs font-semibold">
-              <Sparkles className="w-3.5 h-3.5" /> Instant Table Reservation
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="text-center max-w-xs mx-auto mb-4">
+            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-padayal-secondary-light text-padayal-primary text-[10px] font-semibold">
+              <Sparkles className="w-3 h-3" /> Instant Table Reservation
             </span>
-            <h2 className="font-pranic text-2xl sm:text-3xl font-bold text-padayal-text mt-2">
-              Reserve Your Pranic Dining Experience
+            <h2 className="font-pranic text-xl font-bold text-padayal-text mt-1">
+              Reserve Your Table
             </h2>
           </div>
 

@@ -53,7 +53,7 @@ export function OrderStatusTimeline({ order }: OrderStatusTimelineProps) {
   const currentStageIndex = STAGES.findIndex((s) => s.status === order.status);
 
   return (
-    <div className="bg-padayal-surface rounded-3xl p-6 shadow-organic border border-padayal-bg space-y-6">
+    <div className="bg-padayal-surface rounded-2xl p-4 shadow-organic border border-padayal-bg space-y-4 max-w-md mx-auto">
       
       {/* Order Header info */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-padayal-bg">

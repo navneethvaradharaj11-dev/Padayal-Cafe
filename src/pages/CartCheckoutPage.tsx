@@ -50,26 +50,23 @@ export function CartCheckoutPage() {
   };
 
   return (
-    <div className="min-h-screen py-12 bg-padayal-bg">
-      <div className="container-custom max-w-4xl">
-        <Link to="/menu" className="inline-flex items-center gap-1.5 text-xs font-bold text-padayal-primary mb-6 hover:underline">
-          <ArrowLeft className="w-4 h-4" /> Back to Menu
+    <div className="min-h-screen py-4 px-4 bg-padayal-bg">
+      <div className="max-w-md mx-auto">
+        <Link to="/menu" className="inline-flex items-center gap-1.5 text-xs font-bold text-padayal-primary mb-3 hover:underline">
+          <ArrowLeft className="w-3.5 h-3.5" /> Back to Menu
         </Link>
 
-        <h1 className="font-pranic text-3xl sm:text-4xl font-bold text-padayal-text mb-8">
-          Checkout & Order Confirmation
+        <h1 className="font-pranic text-2xl font-bold text-padayal-text mb-4">
+          Checkout Confirmation
         </h1>
 
-        <form onSubmit={handlePlaceOrder} className="grid lg:grid-cols-12 gap-8">
+        <form onSubmit={handlePlaceOrder} className="space-y-4">
           
-          {/* Left 7 cols: Customer info & Payment method */}
-          <div className="lg:col-span-7 space-y-6">
-            
-            {/* Customer Details Card */}
-            <div className="bg-padayal-surface rounded-3xl p-6 shadow-organic border border-padayal-bg space-y-4">
-              <h3 className="font-display text-sm font-bold text-padayal-text uppercase tracking-wider">
-                1. Customer Details
-              </h3>
+          {/* Customer Details Card */}
+          <div className="bg-padayal-surface rounded-2xl p-4 shadow-organic border border-padayal-bg space-y-3">
+            <h3 className="font-display text-xs font-bold text-padayal-text uppercase tracking-wider">
+              1. Customer Details
+            </h3>
 
               <div className="grid sm:grid-cols-2 gap-4">
                 <div>
@@ -150,14 +147,11 @@ export function CartCheckoutPage() {
               </div>
             </div>
 
-          </div>
-
-          {/* Right 5 cols: Order Summary */}
-          <div className="lg:col-span-5">
-            <div className="bg-padayal-surface rounded-3xl p-6 shadow-organic border border-padayal-bg space-y-4 sticky top-24">
-              <h3 className="font-display text-sm font-bold text-padayal-text uppercase tracking-wider border-b border-padayal-bg pb-3">
-                Order Summary ({cartItems.length} items)
-              </h3>
+          {/* Order Summary */}
+          <div className="bg-padayal-surface rounded-2xl p-4 shadow-organic border border-padayal-bg space-y-3">
+            <h3 className="font-display text-xs font-bold text-padayal-text uppercase tracking-wider border-b border-padayal-bg pb-2">
+              3. Order Summary ({cartItems.length} items)
+            </h3>
 
               <div className="space-y-3 max-h-60 overflow-y-auto pr-1">
                 {cartItems.map((ci) => (
@@ -214,7 +208,6 @@ export function CartCheckoutPage() {
                   </>
                 )}
               </button>
-            </div>
           </div>
 
         </form>
