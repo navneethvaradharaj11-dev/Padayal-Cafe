@@ -1,8 +1,12 @@
 import { Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './hooks/useAuth';
+import { CartProvider } from './context/CartContext';
+import { OrderProvider } from './context/OrderContext';
 import { Layout } from './components/layout/Layout';
 import { AdminGuard } from './components/admin/AdminGuard';
 import { AdminLayout } from './components/admin/AdminLayout';
+import { ItemCustomizerModal } from './components/common/ItemCustomizerModal';
+import { CartDrawer } from './components/cart/CartDrawer';
 
 // Public Pages
 import { HomePage } from './pages/HomePage';
@@ -13,6 +17,8 @@ import { GalleryPage } from './pages/GalleryPage';
 import { ReviewsPage } from './pages/ReviewsPage';
 import { ContactPage } from './pages/ContactPage';
 import { ReservationPage } from './pages/ReservationPage';
+import { CartCheckoutPage } from './pages/CartCheckoutPage';
+import { OrderStatusPage } from './pages/OrderStatusPage';
 
 // Admin Pages
 import { AdminLoginPage } from './pages/admin/AdminLoginPage';
@@ -27,40 +33,50 @@ import { GalleryManagementPage } from './pages/admin/GalleryManagementPage';
 function App() {
   return (
     <AuthProvider>
-      <Routes>
-        {/* Public Routes */}
-        <Route path="/" element={<Layout />}>
-          <Route index element={<HomePage />} />
-          <Route path="menu" element={<MenuPage />} />
-          <Route path="about" element={<AboutPage />} />
-          <Route path="wellness" element={<WellnessPage />} />
-          <Route path="gallery" element={<GalleryPage />} />
-          <Route path="reviews" element={<ReviewsPage />} />
-          <Route path="contact" element={<ContactPage />} />
-          <Route path="reservation" element={<ReservationPage />} />
-        </Route>
+      <CartProvider>
+        <OrderProvider>
+          <Routes>
+            {/* Public Routes */}
+            <Route path="/" element={<Layout />}>
+              <Route index element={<HomePage />} />
+              <Route path="menu" element={<MenuPage />} />
+              <Route path="checkout" element={<CartCheckoutPage />} />
+              <Route path="tracking" element={<OrderStatusPage />} />
+              <Route path="reservation" element={<ReservationPage />} />
+              <Route path="about" element={<AboutPage />} />
+              <Route path="wellness" element={<WellnessPage />} />
+              <Route path="gallery" element={<GalleryPage />} />
+              <Route path="reviews" element={<ReviewsPage />} />
+              <Route path="contact" element={<ContactPage />} />
+            </Route>
 
-        {/* Admin Login */}
-        <Route path="/admin/login" element={<AdminLoginPage />} />
+            {/* Admin Login */}
+            <Route path="/admin/login" element={<AdminLoginPage />} />
 
-        {/* Admin Routes */}
-        <Route
-          path="/admin"
-          element={
-            <AdminGuard>
-              <AdminLayout />
-            </AdminGuard>
-          }
-        >
-          <Route index element={<AdminDashboard />} />
-          <Route path="menu" element={<MenuManagementPage />} />
-          <Route path="reservations" element={<ReservationManagementPage />} />
-          <Route path="reviews" element={<ReviewManagementPage />} />
-          <Route path="articles" element={<ArticleManagementPage />} />
-          <Route path="contacts" element={<ContactManagementPage />} />
-          <Route path="gallery" element={<GalleryManagementPage />} />
-        </Route>
-      </Routes>
+            {/* Admin Routes */}
+            <Route
+              path="/admin"
+              element={
+                <AdminGuard>
+                  <AdminLayout />
+                </AdminGuard>
+              }
+            >
+              <Route index element={<AdminDashboard />} />
+              <Route path="menu" element={<MenuManagementPage />} />
+              <Route path="reservations" element={<ReservationManagementPage />} />
+              <Route path="reviews" element={<ReviewManagementPage />} />
+              <Route path="articles" element={<ArticleManagementPage />} />
+              <Route path="contacts" element={<ContactManagementPage />} />
+              <Route path="gallery" element={<GalleryManagementPage />} />
+            </Route>
+          </Routes>
+
+          {/* Global Drawers & Modals */}
+          <CartDrawer />
+          <ItemCustomizerModal />
+        </OrderProvider>
+      </CartProvider>
     </AuthProvider>
   );
 }
