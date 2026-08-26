@@ -29,6 +29,99 @@ const FEATURES = [
   },
 ];
 
+const SAMPLE_DISHES: MenuItem[] = [
+  {
+    id: '1',
+    name: 'Pranic Sprouted Mung Salad',
+    category: 'salads',
+    description: 'Fresh sprouted green gram infused with raw coconut milk dressing, curry leaves, and sun-dried Himalayan pink salt. 100% Fire-Free.',
+    price: 240,
+    calories: 180,
+    preparation_time: 10,
+    protein: 12,
+    image_url: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80',
+    is_available: true,
+    is_featured: true,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  },
+  {
+    id: '2',
+    name: 'Raw Coconut & Lemongrass Elixir',
+    category: 'beverages',
+    description: 'Pressed tender coconut water blended with organic lemongrass, ginger juice, and natural palm nectar.',
+    price: 160,
+    calories: 90,
+    preparation_time: 5,
+    protein: 2,
+    image_url: 'https://images.unsplash.com/photo-1546173159-315724a31696?auto=format&fit=crop&w=800&q=80',
+    is_available: true,
+    is_featured: true,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  },
+  {
+    id: '3',
+    name: 'Harvest Cucumber & Microgreen Bowl',
+    category: 'salads',
+    description: 'Crisp native cucumbers, organic microgreens, pomegranate seeds, and lemon-coriander raw dressing.',
+    price: 220,
+    calories: 140,
+    preparation_time: 10,
+    protein: 6,
+    image_url: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=800&q=80',
+    is_available: true,
+    is_featured: true,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  },
+  {
+    id: '4',
+    name: 'Raw Dates & Nut Energy Delights',
+    category: 'desserts',
+    description: 'Handcrafted raw truffles made of crushed Medjool dates, almonds, cardamom, and coconut flakes. No added sugar.',
+    price: 190,
+    calories: 210,
+    preparation_time: 5,
+    protein: 8,
+    image_url: 'https://images.unsplash.com/photo-1606312619070-d48b4c652a52?auto=format&fit=crop&w=800&q=80',
+    is_available: true,
+    is_featured: true,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  },
+];
+
+const SAMPLE_REVIEWS: Review[] = [
+  {
+    id: '1',
+    name: 'Dr. Anand Raman',
+    rating: 5,
+    comment: 'Padayal is a revolution in healthy dining. The live enzyme foods leave you energized rather than bloated. Absolutely mind-blowing raw South Indian flavors!',
+    is_featured: true,
+    is_approved: true,
+    created_at: new Date().toISOString(),
+  },
+  {
+    id: '2',
+    name: 'Priya Sundaram',
+    rating: 5,
+    comment: 'I never imagined oil-free and fire-free food could taste so vibrant and rich! The coconut sprout salad and lemongrass elixir are daily essentials now.',
+    is_featured: true,
+    is_approved: true,
+    created_at: new Date().toISOString(),
+  },
+  {
+    id: '3',
+    name: 'Karthik V.',
+    rating: 5,
+    comment: 'Cleanest food experience in Tamil Nadu. The pranic raw concept is executed with top-tier culinary finesse. Highly recommended!',
+    is_featured: true,
+    is_approved: true,
+    created_at: new Date().toISOString(),
+  },
+];
+
 export function HomePage() {
   const [featuredDishes, setFeaturedDishes] = useState<MenuItem[]>([]);
   const [testimonials, setTestimonials] = useState<Review[]>([]);
@@ -52,10 +145,12 @@ export function HomePage() {
             .limit(3),
         ]);
 
-        setFeaturedDishes(dishesRes.data || []);
-        setTestimonials(reviewsRes.data || []);
+        setFeaturedDishes(dishesRes.data && dishesRes.data.length > 0 ? dishesRes.data : SAMPLE_DISHES);
+        setTestimonials(reviewsRes.data && reviewsRes.data.length > 0 ? reviewsRes.data : SAMPLE_REVIEWS);
       } catch (error) {
         console.error('Error fetching data:', error);
+        setFeaturedDishes(SAMPLE_DISHES);
+        setTestimonials(SAMPLE_REVIEWS);
       } finally {
         setLoading(false);
       }

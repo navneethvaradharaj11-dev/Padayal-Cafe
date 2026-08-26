@@ -6,6 +6,111 @@ import { MenuItemSkeleton } from '../components/ui/Skeleton';
 
 const CATEGORIES: MenuCategory[] = ['starters', 'mains', 'soups', 'salads', 'desserts', 'beverages', 'specials'];
 
+const MOCK_MENU: MenuItem[] = [
+  {
+    id: 'm1',
+    name: 'Pranic Sprouted Mung Salad',
+    category: 'salads',
+    description: 'Fresh sprouted green gram infused with raw coconut milk dressing, curry leaves, and sun-dried Himalayan pink salt. 100% Fire-Free.',
+    price: 240,
+    calories: 180,
+    preparation_time: 10,
+    protein: 12,
+    image_url: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80',
+    is_available: true,
+    is_featured: true,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+    health_benefits: ['High Enzyme', 'Zero Oil', 'Easy Digestion'],
+    ingredients: ['Sprouted Green Gram', 'Raw Coconut Milk', 'Curry Leaves', 'Lemon', 'Himalayan Salt'],
+  },
+  {
+    id: 'm2',
+    name: 'Harvest Cucumber & Microgreen Bowl',
+    category: 'salads',
+    description: 'Crisp native cucumbers, organic microgreens, pomegranate seeds, and lemon-coriander raw dressing.',
+    price: 220,
+    calories: 140,
+    preparation_time: 10,
+    protein: 6,
+    image_url: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=800&q=80',
+    is_available: true,
+    is_featured: true,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+    health_benefits: ['Hydrating', 'Detoxifying'],
+    ingredients: ['Native Cucumber', 'Microgreens', 'Pomegranate', 'Lemon Juice'],
+  },
+  {
+    id: 'm3',
+    name: 'Raw Coconut & Lemongrass Elixir',
+    category: 'beverages',
+    description: 'Pressed tender coconut water blended with organic lemongrass, ginger juice, and natural palm nectar.',
+    price: 160,
+    calories: 90,
+    preparation_time: 5,
+    protein: 2,
+    image_url: 'https://images.unsplash.com/photo-1546173159-315724a31696?auto=format&fit=crop&w=800&q=80',
+    is_available: true,
+    is_featured: true,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+    health_benefits: ['Electrolyte Balance', 'Immunity Boost'],
+    ingredients: ['Tender Coconut Water', 'Lemongrass', 'Fresh Ginger', 'Palm Nectar'],
+  },
+  {
+    id: 'm4',
+    name: 'Raw Dates & Nut Energy Delights',
+    category: 'desserts',
+    description: 'Handcrafted raw truffles made of crushed Medjool dates, almonds, cardamom, and coconut flakes. No added sugar.',
+    price: 190,
+    calories: 210,
+    preparation_time: 5,
+    protein: 8,
+    image_url: 'https://images.unsplash.com/photo-1606312619070-d48b4c652a52?auto=format&fit=crop&w=800&q=80',
+    is_available: true,
+    is_featured: true,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+    health_benefits: ['Natural Energy', 'Zero Sugar'],
+    ingredients: ['Medjool Dates', 'Almonds', 'Cardamom', 'Raw Coconut Flakes'],
+  },
+  {
+    id: 'm5',
+    name: 'Herbal Mint & Basil Cold Press',
+    category: 'beverages',
+    description: 'Fresh holy basil (Tulsi), mint leaves, raw honey, and green apple cold pressed to perfection.',
+    price: 150,
+    calories: 85,
+    preparation_time: 5,
+    protein: 1,
+    image_url: 'https://images.unsplash.com/photo-1556881286-fc6915169721?auto=format&fit=crop&w=800&q=80',
+    is_available: true,
+    is_featured: false,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+    health_benefits: ['Respiratory Care', 'Anti-inflammatory'],
+    ingredients: ['Tulsi', 'Mint', 'Green Apple', 'Raw Honey'],
+  },
+  {
+    id: 'm6',
+    name: 'Pranic Banana & Flaxseed Smoothie Bowl',
+    category: 'specials',
+    description: 'Creamy raw banana puree topped with soaked chia seeds, golden flaxseeds, and sun-dried figs.',
+    price: 260,
+    calories: 230,
+    preparation_time: 8,
+    protein: 9,
+    image_url: 'https://images.unsplash.com/photo-1590301157890-4810ed352733?auto=format&fit=crop&w=800&q=80',
+    is_available: true,
+    is_featured: true,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+    health_benefits: ['Omega-3 Rich', 'Gut Health'],
+    ingredients: ['Hill Banana', 'Chia Seeds', 'Flaxseeds', 'Dried Figs'],
+  }
+];
+
 export function MenuPage() {
   const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
   const [loading, setLoading] = useState(true);
@@ -22,10 +127,14 @@ export function MenuPage() {
           .order('category')
           .order('name');
 
-        if (error) throw error;
-        setMenuItems(data || []);
+        if (error || !data || data.length === 0) {
+          setMenuItems(MOCK_MENU);
+        } else {
+          setMenuItems(data);
+        }
       } catch (error) {
         console.error('Error fetching menu:', error);
+        setMenuItems(MOCK_MENU);
       } finally {
         setLoading(false);
       }
