@@ -161,91 +161,49 @@ export function HomePage() {
 
   return (
     <div className="overflow-hidden">
-      {/* Mobile App Hero Section (Matching Screen Spec) */}
-      <section className="relative">
-        {/* Curved Top Brand Header */}
-        <div className="bg-padayal-primary rounded-b-[44px] px-6 pt-6 pb-14 text-white space-y-5 shadow-md relative overflow-hidden">
-          {/* Subtle curved background overlay graphic */}
-          <div className="absolute top-0 right-0 w-48 h-48 bg-white/10 rounded-full blur-2xl -translate-y-10 translate-x-10 pointer-events-none" />
+      {/* Hero Section */}
+      <section className="relative bg-padayal-primary text-white py-12 sm:py-20 rounded-b-[40px] shadow-md overflow-hidden">
+        {/* Decorative background radial overlay */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl -translate-y-20 translate-x-20 pointer-events-none" />
 
-          {/* Top Bar: Brand Icon + Title + Language Toggle */}
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2.5">
-              <div className="w-10 h-10 rounded-2xl bg-white/15 backdrop-blur-md flex items-center justify-center border border-white/20">
-                <Leaf className="w-6 h-6 text-white fill-current" />
-              </div>
-              <div>
-                <h1 className="font-pranic text-xl font-bold tracking-tight leading-none text-white">
-                  Padayal
-                </h1>
-                <span className="text-[10px] font-semibold tracking-wider text-white/80 uppercase">
-                  No Oil No Boil
-                </span>
-              </div>
-            </div>
-
-            <button 
-              type="button" 
-              onClick={() => alert('Language options: English / தமிழ்')}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/20 text-xs font-semibold text-white hover:bg-white/25 transition-colors"
-            >
-              <span>🌐</span> English
-            </button>
-          </div>
-
-          {/* Hero Main Slogan */}
-          <div className="pt-2">
-            <h2 className="font-pranic text-3xl font-extrabold leading-tight text-white">
-              Your daily health,<br />never missed.
-            </h2>
-
-            {/* Pill Badges */}
-            <div className="flex flex-wrap gap-2 mt-4">
-              <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-white/15 backdrop-blur-md border border-white/20 text-xs font-medium text-white">
-                🌱 100% Raw
+        <div className="container-custom relative z-10">
+          <div className="max-w-2xl space-y-6">
+            
+            <div className="flex flex-wrap gap-2">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/15 backdrop-blur-md border border-white/20 text-xs font-semibold text-white">
+                🌱 100% Raw-Vegan
               </span>
-              <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-white/15 backdrop-blur-md border border-white/20 text-xs font-medium text-white">
-                ✓ Zero Oil
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/15 backdrop-blur-md border border-white/20 text-xs font-semibold text-white">
+                ✓ Zero Oil & Fire-Free
               </span>
-              <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-white/15 backdrop-blur-md border border-white/20 text-xs font-medium text-white">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/15 backdrop-blur-md border border-white/20 text-xs font-semibold text-white">
                 ⚡ Live Enzymes
               </span>
             </div>
-          </div>
-        </div>
 
-        {/* Overlapping White Floating Container Card */}
-        <div className="px-4 -mt-8 relative z-10">
-          <div className="bg-padayal-surface rounded-3xl p-5 shadow-organic-lg border border-padayal-bg space-y-4">
-            
-            <div className="flex items-center justify-between">
-              <div>
-                <span className="text-[11px] font-bold text-padayal-cta uppercase tracking-wider block">Welcome to Padayal</span>
-                <h3 className="font-pranic text-lg font-bold text-padayal-text">Pranic Raw-Vegan Dining</h3>
-              </div>
-              <span className="px-2.5 py-1 rounded-full bg-padayal-secondary-light text-padayal-primary text-xs font-bold">
-                Coimbatore
-              </span>
-            </div>
+            <h1 className="font-pranic text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight text-white">
+              Taste Natural Pranic Energy in Every Bite.
+            </h1>
 
-            <p className="text-xs text-padayal-muted leading-relaxed">
-              Experience South India's famous fire-free culinary concept. Fresh sprouts, tender coconut elixirs, and nutrient-dense raw dishes prepared without oil or heat.
+            <p className="font-sans text-sm sm:text-base text-white/90 max-w-xl leading-relaxed">
+              Padayal is South India's pioneer in "No Oil, No Boil" live food dining. Experience live enzymes, rich organic flavors, and raw vitality crafted without fire or artificial heat.
             </p>
 
-            <div className="grid grid-cols-2 gap-3 pt-1">
+            <div className="flex flex-wrap gap-3 pt-2">
               <Link
                 to="/menu"
-                className="btn-primary text-xs py-3 justify-center text-center shadow-md"
+                className="btn-cta text-sm py-3 px-6 shadow-lg inline-flex items-center justify-center gap-2"
               >
-                Explore Menu <ArrowRight className="w-4 h-4 ml-1 inline" />
+                Explore Gourmet Menu <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
                 to="/reservation"
-                className="btn-secondary text-xs py-3 justify-center text-center"
+                className="px-6 py-3 rounded-xl bg-white/15 hover:bg-white/25 text-white font-bold text-sm border border-white/30 transition-colors inline-flex items-center justify-center"
               >
                 Book a Table
               </Link>
             </div>
+
           </div>
         </div>
       </section>
