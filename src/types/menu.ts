@@ -1,6 +1,6 @@
 export type MenuCategory = 'all' | 'starters' | 'mains' | 'soups' | 'salads' | 'desserts' | 'beverages' | 'specials';
 
-export type DietaryPreference = 'no-oil' | 'fire-free' | 'raw-vegan' | 'gluten-free' | 'chef-special';
+export type DietaryPreference = 'no-oil' | 'fire-free' | 'plant-based' | 'gluten-free' | 'chef-special';
 
 export interface PortionOption {
   id: string;

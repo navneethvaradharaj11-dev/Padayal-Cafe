@@ -54,7 +54,7 @@ export default {
       fontFamily: {
         sans: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif'],
         display: ['Outfit', 'Playfair Display', 'system-ui', 'sans-serif'],
-        pranic: ['Fraunces', 'Merriweather', 'Georgia', 'serif'],
+        editorial: ['Fraunces', 'Merriweather', 'Georgia', 'serif'],
         handwritten: ['Caveat', 'cursive'],
         serif: ['Merriweather', 'Georgia', 'serif'],
       },

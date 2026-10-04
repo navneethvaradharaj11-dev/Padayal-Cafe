@@ -1,4 +1,4 @@
-# 🌿 Padayal - Pranic Raw-Vegan Web & Mobile Application
+# 🌿 Padayal - Natural Food Web & Mobile Application
 
 [![Vercel Deployment](https://img.shields.io/badge/Vercel-Deployed-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://padayal-cafe.vercel.app)
 [![GitHub Repository](https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/navneethvaradharaj11-dev/Padayal-Cafe)
@@ -7,7 +7,7 @@
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![Vite](https://img.shields.io/badge/Vite-5.4-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
 
-A modern, mobile-first, production-ready Restaurant Web & Mobile Application for **Padayal** — South India's renowned **"No Oil, No Boil"** live food dining concept. Crafted with React, TypeScript, Tailwind CSS, and persistent context providers.
+A modern, mobile-first, production-ready Restaurant Web & Mobile Application for **Padayal** — South India's renowned **"No Oil, No Boil"** natural food dining concept. Crafted with React, TypeScript, Tailwind CSS, and persistent context providers.
 
 ---
 
@@ -18,9 +18,9 @@ A modern, mobile-first, production-ready Restaurant Web & Mobile Application for
 
 ---
 
-## 🎨 Pranic Raw-Vegan Color Palette & Design System
+## 🎨 Natural Food Color Palette & Design System
 
-The visual theme strictly follows an organic, earth-toned **Pranic Raw-Vegan** aesthetic:
+The visual theme strictly follows an organic, earth-toned **Natural Food** aesthetic:
 
 | Token | Semantic Color Name | Hex Code | Purpose |
 | :--- | :--- | :--- | :--- |
@@ -34,7 +34,7 @@ The visual theme strictly follows an organic, earth-toned **Pranic Raw-Vegan** a
 ### 🖋️ Typography Hierarchy
 - **Sans Base**: `Plus Jakarta Sans`
 - **Display Headings**: `Outfit`
-- **Pranic Titles**: `Fraunces`
+- **Editorial Titles**: `Fraunces`
 - **Handwritten Accent**: `Caveat`
 
 ---
@@ -42,8 +42,8 @@ The visual theme strictly follows an organic, earth-toned **Pranic Raw-Vegan** a
 ## 🔥 Key Modules & Features
 
 ### 1. 🥗 Interactive Gourmet Menu Catalog
-- **Category Filter Tabs**: Horizontal scrollable categories (*All Catalog, Raw Salads, Pranic Mains, Cold Press & Elixirs, Raw Desserts, Herbal Soups, Chef Specials*).
-- **Dietary Preference Pills**: Filter by `🌿 No Oil`, `🔥 Fire-Free`, `🥑 Raw Vegan`, `🌾 Gluten-Free`, `⭐ Chef Special`.
+- **Category Filter Tabs**: Horizontal scrollable categories (*All Catalog, Raw Salads, Mains, Cold Press & Elixirs, Desserts, Herbal Soups, Chef Specials*).
+- **Dietary Preference Pills**: Filter by `🌿 No Oil`, `🔥 Fire-Free`, `🥥 Plant-Based`, `🌾 Gluten-Free`, `⭐ Chef Special`.
 - **Search Engine**: Real-time instant search bar for dish names, descriptions, and raw ingredients.
 
 ### 2. 🛠️ Item Customization Modal
@@ -56,8 +56,8 @@ The visual theme strictly follows an organic, earth-toned **Pranic Raw-Vegan** a
 - **Order Type Selector**: Toggle between **Dine-In (Table #)**, **Takeaway**, and **Delivery (Address Input)**.
 - **Promo Code Validation**: Supports instant promo validation for:
   - `PADAYAL10` — 10% OFF
-  - `PRANIC20` — 20% OFF
-  - `FIRSTRAW` — Flat ₹75 OFF
+  - `NATURAL20` — 20% OFF
+  - `WELCOME50` — Flat ₹50 OFF
 - **Staff Tip Selector**: Interactive tip buttons (0%, 10%, 15%, 20%).
 - **Bill Breakdown**: Transparent breakdown for Subtotal, Promo Savings, Delivery Fee, 5% GST, Staff Tip, and Grand Total.
 - **Checkout Flow**: Checkout page supporting UPI (GPay/PhonePe), Apple Pay, Card, and Cash.
@@ -68,7 +68,7 @@ The visual theme strictly follows an organic, earth-toned **Pranic Raw-Vegan** a
 - **Quick Action Buttons**: View digital receipt summary & direct restaurant call.
 
 ### 5. 📅 Instant Table Reservation System
-- **Booking Form**: Select Date, Party Size (1 to 10+ guests), Time Slot, and Seating Environment (*Indoor Pranic Hall, Garden Patio, Sky Rooftop*).
+- **Booking Form**: Select Date, Party Size (1 to 10+ guests), Time Slot, and Seating Environment (*Indoor Dining Hall, Garden Patio, Sky Rooftop*).
 - **Confirmation Reference**: Generates unique booking reference code (e.g. `#RES-9402`).
 
 ### 6. 📱 Mobile-First App Container Layout

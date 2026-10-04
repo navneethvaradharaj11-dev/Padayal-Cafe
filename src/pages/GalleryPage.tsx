@@ -9,7 +9,7 @@ const FALLBACK_GALLERY: GalleryImage[] = [
     id: 'g-1',
     title: 'Traditional Plantain Leaf Feast',
     description: 'Authentic South Indian natural lunch spread served on fresh banana leaf with live sprouts, kootu, and raw coconut rasam.',
-    image_url: 'https://images.unsplash.com/photo-1610057099431-d73a1c9d2f2f?auto=format&fit=crop&w=800&q=80',
+    image_url: '/images/food/raja-virundhu.jpg',
     category: 'Meals & Feasts',
     is_active: true,
     sort_order: 1,
@@ -18,8 +18,8 @@ const FALLBACK_GALLERY: GalleryImage[] = [
   {
     id: 'g-2',
     title: 'Live Navadhanya Sprouted Pulses',
-    description: 'Active sprouted green gram, cowpeas, and native pulses rich in living enzymes.',
-    image_url: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80',
+    description: 'Active sprouted green gram, cowpeas, and native pulses prepared using traditional soaking and sprouting methods.',
+    image_url: '/images/food/sprouts-salad.jpg',
     category: 'Sprouts & Salads',
     is_active: true,
     sort_order: 2,
@@ -29,7 +29,7 @@ const FALLBACK_GALLERY: GalleryImage[] = [
     id: 'g-3',
     title: 'Cold-Pressed Tender Coconut Elixirs',
     description: 'Harvested fresh from native groves and blended with wild herbs and palm nectar.',
-    image_url: 'https://images.unsplash.com/photo-1546173159-315724a31696?auto=format&fit=crop&w=800&q=80',
+    image_url: '/images/food/coconut-elixir.jpg',
     category: 'Herbal Elixirs',
     is_active: true,
     sort_order: 3,
@@ -39,7 +39,7 @@ const FALLBACK_GALLERY: GalleryImage[] = [
     id: 'g-4',
     title: 'Seasoned Red Aval Delicacy',
     description: 'Traditional flattened red rice tossed with fresh scraped coconut, curry leaves, and black pepper.',
-    image_url: 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=800&q=80',
+    image_url: '/images/food/spiced-aval-tiffin.jpg',
     category: 'Traditional Tiffin',
     is_active: true,
     sort_order: 4,
@@ -49,7 +49,7 @@ const FALLBACK_GALLERY: GalleryImage[] = [
     id: 'g-5',
     title: 'Tender Coconut Pulp Payasam',
     description: 'Natural sweet pudding made with tender coconut meat, cardamom, and country palm jaggery.',
-    image_url: 'https://images.unsplash.com/photo-1606312619070-d48b4c652a52?auto=format&fit=crop&w=800&q=80',
+    image_url: '/images/food/tender-coconut-payasam.jpg',
     category: 'Natural Sweets',
     is_active: true,
     sort_order: 5,
@@ -59,7 +59,7 @@ const FALLBACK_GALLERY: GalleryImage[] = [
     id: 'g-6',
     title: 'Eco-Friendly Dining Ambience',
     description: 'Serene dining space celebrating natural bamboo textures and calm South Indian hospitality.',
-    image_url: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80',
+    image_url: '/images/hero-banner.jpg',
     category: 'Ambiance',
     is_active: true,
     sort_order: 6,
@@ -120,7 +120,7 @@ export function GalleryPage() {
       <section className="relative py-16 sm:py-24 bg-[#183620] text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-3">
           <ImageIcon className="w-10 h-10 text-padayal-secondary mx-auto" />
-          <h1 className="font-pranic text-3xl sm:text-5xl font-black text-white tracking-tight">
+          <h1 className="font-editorial text-3xl sm:text-5xl font-black text-white tracking-tight">
             Visual Gallery of Padayal
           </h1>
           <p className="text-xs sm:text-sm text-cream-300 max-w-xl mx-auto leading-relaxed">
@@ -178,7 +178,7 @@ export function GalleryPage() {
                   )}
                 </div>
                 <div className="p-4 space-y-1">
-                  <h3 className="font-pranic text-base font-bold text-padayal-text group-hover:text-padayal-primary transition-colors">
+                  <h3 className="font-editorial text-base font-bold text-padayal-text group-hover:text-padayal-primary transition-colors">
                     {image.title}
                   </h3>
                   {image.description && (
@@ -242,7 +242,7 @@ export function GalleryPage() {
               className="max-h-[70vh] w-auto object-contain rounded-2xl shadow-2xl"
             />
             <div className="text-white text-center mt-4 space-y-1 max-w-lg">
-              <h3 className="font-pranic text-xl font-bold">{selectedImage.title}</h3>
+              <h3 className="font-editorial text-xl font-bold">{selectedImage.title}</h3>
               {selectedImage.description && (
                 <p className="text-xs sm:text-sm text-cream-300">{selectedImage.description}</p>
               )}

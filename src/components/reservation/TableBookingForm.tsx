@@ -97,7 +97,7 @@ export function TableBookingForm() {
             <span className="px-3 py-1 rounded-full bg-padayal-cta/15 text-padayal-cta font-bold text-xs uppercase tracking-wider">
               Table Reserved Successfully
             </span>
-            <h2 className="font-pranic text-2xl font-bold text-padayal-text mt-2">
+            <h2 className="font-editorial text-2xl font-bold text-padayal-text mt-2">
               Vanakkam! We Look Forward to Serving You
             </h2>
             <p className="text-xs sm:text-sm text-padayal-muted mt-1">
@@ -153,7 +153,7 @@ export function TableBookingForm() {
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-padayal-secondary-light text-padayal-primary text-xs font-bold">
               <Sparkles className="w-3.5 h-3.5" /> Instant Table Reservation
             </span>
-            <h2 className="font-pranic text-2xl font-extrabold text-padayal-text mt-2">
+            <h2 className="font-editorial text-2xl font-extrabold text-padayal-text mt-2">
               Reserve Your Table
             </h2>
             <p className="text-xs text-padayal-muted mt-1">

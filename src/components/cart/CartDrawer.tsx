@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { X, Trash2, Plus, Minus, Tag, Utensils, ShoppingBag, MapPin } from 'lucide-react';
+import placeholderImage from '../../assets/placeholder.svg';
 import { useCart } from '../../context/CartContext';
 import { TipSelector } from './TipSelector';
 import { formatCurrency } from '../../utils/formatCurrency';
@@ -60,7 +61,7 @@ export function CartDrawer() {
             <div className="flex items-center gap-2.5">
               <ShoppingBag className="w-5 h-5 text-padayal-cta" />
               <div>
-                <h2 className="font-pranic text-xl font-bold text-padayal-text">Your Order Cart</h2>
+                <h2 className="font-editorial text-xl font-bold text-padayal-text">Your Order Cart</h2>
                 <span className="text-[11px] text-padayal-muted font-medium">
                   {cartItems.length} {cartItems.length === 1 ? 'item' : 'items'} selected
                 </span>
@@ -142,7 +143,7 @@ export function CartDrawer() {
                 <div className="w-16 h-16 rounded-full bg-padayal-bg flex items-center justify-center mx-auto text-padayal-muted">
                   <ShoppingBag className="w-8 h-8 stroke-[1.5]" />
                 </div>
-                <h3 className="font-pranic text-lg font-bold text-padayal-text">Your cart is empty</h3>
+                <h3 className="font-editorial text-lg font-bold text-padayal-text">Your cart is empty</h3>
                 <p className="text-xs text-padayal-muted max-w-xs mx-auto">
                   Explore our live South Indian natural meals, herbal soups, and cold-pressed elixirs.
                 </p>
@@ -158,7 +159,7 @@ export function CartDrawer() {
               cartItems.map((ci) => (
                 <div key={ci.cartItemId} className="flex gap-3 p-3 rounded-2xl bg-padayal-bg/40 border border-padayal-bg">
                   <img
-                    src={ci.item.imageUrl || 'https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=400&q=80'}
+                    src={ci.item.imageUrl || placeholderImage}
                     alt={ci.item.name}
                     className="w-16 h-16 rounded-xl object-cover shrink-0"
                   />

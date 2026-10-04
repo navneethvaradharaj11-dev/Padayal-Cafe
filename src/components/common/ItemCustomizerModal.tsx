@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import placeholderImage from '../../assets/placeholder.svg';
 import { X, Plus, Minus, Check } from 'lucide-react';
 import { useCart } from '../../context/CartContext';
 import { PortionOption, AddOnOption } from '../../types/menu';
@@ -80,7 +81,7 @@ export function ItemCustomizerModal() {
         {/* Header Image & Close */}
         <div className="relative h-44 sm:h-52 bg-padayal-bg overflow-hidden shrink-0">
           <img
-            src={customizingItem.imageUrl || 'https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80'}
+            src={customizingItem.imageUrl || placeholderImage}
             alt={customizingItem.name}
             className="w-full h-full object-cover"
           />
@@ -106,7 +107,7 @@ export function ItemCustomizerModal() {
                 </span>
               )}
             </div>
-            <h2 className="font-pranic text-xl sm:text-2xl font-bold tracking-tight text-white leading-tight">
+            <h2 className="font-editorial text-xl sm:text-2xl font-bold tracking-tight text-white leading-tight">
               {customizingItem.name}
             </h2>
           </div>

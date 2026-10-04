@@ -6,7 +6,7 @@ const CORE_VALUES = [
   {
     icon: Leaf,
     title: '100% Raw & Unboiled',
-    description: 'We honour the vital prana in natural produce by serving it uncooked and unboiled, preserving all vitamins and live enzymes intact.',
+    description: 'We honour the natural goodness in fresh produce by serving it uncooked and unboiled, following the traditional belief in preserving the vitality of whole ingredients.',
   },
   {
     icon: Heart,
@@ -23,13 +23,13 @@ const CORE_VALUES = [
 const PHILOSOPHY_PILLARS = [
   {
     step: '01',
-    title: 'Food as Natural Medicine (உணவே மருந்து)',
-    desc: 'Ancient Tamil Siddha and nature-cure traditions taught that natural, unheated food has innate healing intelligence. When food is not destroyed by high heat or rancid oils, it nourishes and rejuvenates every cell.',
+    title: 'Natural Food Philosophy (உணவே மருந்து)',
+    desc: 'Inspired by Tamil culinary wisdom, Padayal explores a No Oil, No Boil approach to food, celebrating natural ingredients in their unadulterated state without reliance on conventional cooking oils.',
   },
   {
     step: '02',
-    title: 'Sprouting & Bio-Availability',
-    desc: 'Sprouting pulses and grains multiplies their enzymatic activity, Vitamin C, and bio-available plant protein while breaking down anti-nutrients for easy, light digestion.',
+    title: 'Sprouting & Whole Grains',
+    desc: 'Sprouting native pulses and soaking heritage grains are central to Padayal recipes, creating crisp textures and wholesome traditional preparations.',
   },
   {
     step: '03',
@@ -53,7 +53,7 @@ export function AboutPage() {
           <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-white/10 backdrop-blur-md text-cream-200 text-xs font-semibold">
             <Leaf className="w-3.5 h-3.5 text-padayal-secondary" /> Padayal Coimbatore Story
           </span>
-          <h1 className="font-pranic text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight">
+          <h1 className="font-editorial text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight">
             The South Indian Natural Food Movement
           </h1>
           <p className="text-sm sm:text-lg text-cream-300 max-w-2xl mx-auto leading-relaxed">
@@ -70,17 +70,17 @@ export function AboutPage() {
             <span className="text-xs font-bold text-padayal-primary uppercase tracking-wider">
               Our Roots in Coimbatore
             </span>
-            <h2 className="font-pranic text-3xl sm:text-4xl font-extrabold text-padayal-text leading-tight">
+            <h2 className="font-editorial text-3xl sm:text-4xl font-extrabold text-padayal-text leading-tight">
               A Revolution in South Indian Dining
             </h2>
             <p className="text-sm sm:text-base text-padayal-muted leading-relaxed">
-              Padayal was born out of a profound realisation: modern cooking has become overly reliant on deep-frying, extreme boiling, and refined additives that strip away the healing essence of food.
+              Padayal was founded in Coimbatore to explore alternative ways of preparing food without reliance on conventional cooking oils, deep frying, or refined additives.
             </p>
             <p className="text-sm sm:text-base text-padayal-muted leading-relaxed">
-              Inspired by the pioneering No Oil No Boil movement in Tamil Nadu, our kitchen in Coimbatore prepares complete traditional South Indian spreads — from spicy rasam to hearty meals and tiffin — entirely without turning on a fire or pouring a drop of cooking oil.
+              Developed through Chef Padayal Sivakumar's culinary journey and association with natural-farming practitioners at Vanagam Ecological Foundation, our kitchen prepares traditional South Indian recipes — from spiced rasam and sambar to meals and puttu — using soaking, sprouting, and fresh stone-ground emulsions.
             </p>
             <p className="text-sm sm:text-base text-padayal-muted leading-relaxed">
-              Our guests do not just eat; they experience a noticeable surge in physical vitality, mental clarity, and comfortable digestion that only live enzymes can provide.
+              Padayal's approach focuses on natural ingredients, alternative food preparation, and celebrated South Indian culinary traditions.
             </p>
 
             <div className="pt-2 flex items-center gap-4 text-xs font-bold text-padayal-text">
@@ -90,11 +90,11 @@ export function AboutPage() {
               </div>
               <div className="flex items-center gap-1.5">
                 <CheckCircle2 className="w-4 h-4 text-padayal-primary" />
-                <span>Zero Frying</span>
+                <span>Zero Cooking Oil</span>
               </div>
               <div className="flex items-center gap-1.5">
                 <CheckCircle2 className="w-4 h-4 text-padayal-primary" />
-                <span>100% Unboiled</span>
+                <span>Natural Ingredients</span>
               </div>
             </div>
           </div>
@@ -107,7 +107,7 @@ export function AboutPage() {
                 className="w-48 h-auto object-contain"
               />
               <div className="border-t border-padayal-bg pt-3 w-full">
-                <span className="font-pranic text-lg font-bold text-padayal-text block">
+                <span className="font-editorial text-lg font-bold text-padayal-text block">
                   அடுப்பில்லா எண்ணெயில்லா உணவகம்
                 </span>
                 <span className="text-xs text-padayal-muted block mt-1">
@@ -128,7 +128,7 @@ export function AboutPage() {
             <span className="text-xs font-bold text-padayal-cta uppercase tracking-wider">
               Guiding Principles
             </span>
-            <h2 className="font-pranic text-3xl sm:text-4xl font-extrabold text-padayal-text">
+            <h2 className="font-editorial text-3xl sm:text-4xl font-extrabold text-padayal-text">
               What Sets Padayal Apart
             </h2>
           </div>
@@ -144,7 +144,7 @@ export function AboutPage() {
                   <div className="w-12 h-12 rounded-xl bg-padayal-secondary-light text-padayal-primary flex items-center justify-center">
                     <Icon className="w-6 h-6" />
                   </div>
-                  <h3 className="font-pranic text-lg font-bold text-padayal-text">{val.title}</h3>
+                  <h3 className="font-editorial text-lg font-bold text-padayal-text">{val.title}</h3>
                   <p className="text-xs sm:text-sm text-padayal-muted leading-relaxed">
                     {val.description}
                   </p>
@@ -156,17 +156,17 @@ export function AboutPage() {
         </div>
       </section>
 
-      {/* The 4 Science Pillars of No Oil No Boil */}
+      {/* The 4 Pillars of No Oil No Boil */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20 space-y-12">
         <div className="text-center max-w-3xl mx-auto space-y-2">
           <span className="text-xs font-bold text-padayal-primary uppercase tracking-wider">
-            Ancient Wisdom & Modern Biology
+            Culinary Philosophy
           </span>
-          <h2 className="font-pranic text-3xl sm:text-4xl font-extrabold text-padayal-text">
-            The Science of Uncooked South Indian Food
+          <h2 className="font-editorial text-3xl sm:text-4xl font-extrabold text-padayal-text">
+            The Principles of No Oil, No Boil
           </h2>
           <p className="text-xs sm:text-sm text-padayal-muted leading-relaxed">
-            Why removing fire and oil transforms your dining experience from fatigue to vitality.
+            Padayal's approach focuses on natural ingredients, alternative food preparation, and South Indian culinary traditions.
           </p>
         </div>
 
@@ -179,7 +179,7 @@ export function AboutPage() {
               <span className="font-mono text-xs font-extrabold text-padayal-cta tracking-wider">
                 PILLAR {pil.step}
               </span>
-              <h3 className="font-pranic text-xl font-bold text-padayal-text">{pil.title}</h3>
+              <h3 className="font-editorial text-xl font-bold text-padayal-text">{pil.title}</h3>
               <p className="text-xs sm:text-sm text-padayal-muted leading-relaxed">{pil.desc}</p>
             </div>
           ))}
@@ -193,9 +193,9 @@ export function AboutPage() {
             <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center text-cream-200">
               <Target className="w-6 h-6" />
             </div>
-            <h3 className="font-pranic text-2xl font-bold text-white">Our Mission</h3>
+            <h3 className="font-editorial text-2xl font-bold text-white">Our Mission</h3>
             <p className="text-xs sm:text-sm text-cream-200 leading-relaxed">
-              To make authentic, unheated South Indian food accessible, deeply delicious, and celebrated as an everyday healthy dining habit across Tamil Nadu and beyond.
+              To present authentic South Indian culinary heritage prepared through the No Oil, No Boil philosophy, offering a natural and wholesome dining choice in Coimbatore.
             </p>
           </div>
 
@@ -203,9 +203,9 @@ export function AboutPage() {
             <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center text-cream-200">
               <Eye className="w-6 h-6" />
             </div>
-            <h3 className="font-pranic text-2xl font-bold text-white">Our Vision</h3>
+            <h3 className="font-editorial text-2xl font-bold text-white">Our Vision</h3>
             <p className="text-xs sm:text-sm text-cream-200 leading-relaxed">
-              A dining culture that respects the living intelligence of food — proving that you never have to sacrifice traditional South Indian taste to achieve radiant well-being.
+              To encourage appreciation for natural ingredients, regional grains, and traditional food preparation methods while maintaining the rich flavours of South Indian dining.
             </p>
           </div>
         </div>
@@ -215,7 +215,7 @@ export function AboutPage() {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16">
         <div className="bg-padayal-surface p-8 sm:p-12 rounded-3xl border border-padayal-bg text-center space-y-4 shadow-organic">
           <MapPin className="w-10 h-10 text-padayal-primary mx-auto" />
-          <h2 className="font-pranic text-2xl sm:text-3xl font-bold text-padayal-text">
+          <h2 className="font-editorial text-2xl sm:text-3xl font-bold text-padayal-text">
             Experience Padayal at Coimbatore
           </h2>
           <p className="text-xs sm:text-sm text-padayal-muted max-w-xl mx-auto">

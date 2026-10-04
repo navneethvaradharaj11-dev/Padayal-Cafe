@@ -22,27 +22,28 @@ import { MenuItem, Review } from '../types/database';
 import { MenuItemSkeleton } from '../components/ui/Skeleton';
 import { RESTAURANT_INFO } from '../config/restaurant';
 import { formatCurrency } from '../utils/formatCurrency';
+import placeholderImage from '../assets/placeholder.svg';
 
 const CONCEPT_PILLARS = [
   {
     icon: Leaf,
     title: 'Zero Cooking Oil',
-    description: 'No refined oils, hydrogenated fats, or frying. Natural healthy fats come solely from fresh grated coconut and native seeds.',
+    description: 'Food is prepared without refined cooking oils, hydrogenated fats, or frying. Natural fats are derived from fresh coconut and seeds.',
   },
   {
     icon: Sparkles,
-    title: 'Zero Boiling / Fire-Free',
-    description: 'Food is prepared uncooked and unboiled, preserving 100% of delicate live vitamins, enzymes, and natural pranic energy.',
+    title: 'No Oil, No Boil Philosophy',
+    description: 'Padayal explores alternative food preparation such as soaking, sprouting, and blending without conventional stove cooking or boiling.',
   },
   {
     icon: Droplets,
-    title: 'Cold-Pressed Extracts',
-    description: 'Fresh tender coconut milk, native herb cold-infusions, and unheated vegetable extracts blended immediately before serving.',
+    title: 'Cold-Pressed Coconut & Extracts',
+    description: 'Fresh coconut milk, tender coconut water, and native herb extracts prepared fresh as natural accompaniments.',
   },
   {
     icon: Heart,
-    title: 'Light & Energizing',
-    description: 'Leaves the body light, refreshed, and energized rather than fatigued. Gentle on cardiovascular health and digestion.',
+    title: 'South Indian Food Traditions',
+    description: 'Celebrating traditional grains like Thooyamalli and red aval, native greens, and plantain leaf service in Coimbatore.',
   },
 ];
 
@@ -51,28 +52,28 @@ const SIGNATURE_CATEGORIES = [
     title: 'Traditional Plantain Leaf Virundhu',
     tamil: 'இயற்கை இலை விருந்து',
     desc: 'The complete Coimbatore unboiled thali: Thooyamalli aval, sprouted moong kootu, raw coconut rasam, vegetable pachadi, and herbal thuvaiyal.',
-    image: 'https://images.unsplash.com/photo-1610057099431-d73a1c9d2f2f?auto=format&fit=crop&w=800&q=80',
+    image: '/images/food/raja-virundhu.jpg',
     link: '/menu',
   },
   {
     title: 'Heritage Aval & Unboiled Tiffin',
     tamil: 'அவல் & இயற்கை சிற்றுண்டி',
     desc: 'Traditional flattened red rice tossed with Pollachi grated coconut, ginger, curry leaves, and black pepper, plus raw vazhaipoo vadai.',
-    image: 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=800&q=80',
+    image: '/images/food/spiced-aval-tiffin.jpg',
     link: '/menu',
   },
   {
     title: 'Navadhanya Sprouts & Pachadi',
-    tamil: 'முளைகட்டிய பயறு & பச்சடி',
+    tamil: 'முள்‌ைகட்டிய பயறு & பச்சடி',
     desc: 'Nine native sprouted pulses and grains tossed with fresh coconut, pomegranate arils, and cold-pressed ash gourd (venpoosani) relish.',
-    image: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80',
+    image: '/images/food/sprouts-salad.jpg',
     link: '/menu',
   },
   {
     title: 'Tender Coconut & Native Elixirs',
     tamil: 'இளநீர் & மூலிகை சாறுகள்',
     desc: 'Fresh Pollachi tender coconut water cold-blended with native lemongrass, wild ginger, holy basil (tulsi), and natural palm nectar.',
-    image: 'https://images.unsplash.com/photo-1546173159-315724a31696?auto=format&fit=crop&w=800&q=80',
+    image: '/images/food/coconut-elixir.jpg',
     link: '/menu',
   },
 ];
@@ -87,9 +88,9 @@ const SAMPLE_DISHES: MenuItem[] = [
     calories: 360,
     preparation_time: 12,
     protein: 14.5,
-    image_url: 'https://images.unsplash.com/photo-1610057099431-d73a1c9d2f2f?auto=format&fit=crop&w=800&q=80',
+    image_url: '/images/food/raja-virundhu.jpg',
     ingredients: ['Thooyamalli Red Aval', 'Sprouted Moong', 'Fresh Coconut Milk', 'Curry Leaves', 'Ginger', 'Himalayan Rock Salt'],
-    health_benefits: ['100% Fire-Free', 'High Plant Protein', 'Live Enzymes'],
+    health_benefits: ['No Cooking Oil', 'Regional Grains', 'Plantain Leaf Thali'],
     is_available: true,
     is_featured: true,
     created_at: new Date().toISOString(),
@@ -104,9 +105,9 @@ const SAMPLE_DISHES: MenuItem[] = [
     calories: 220,
     preparation_time: 8,
     protein: 16.0,
-    image_url: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80',
+    image_url: '/images/food/sprouts-salad.jpg',
     ingredients: ['Sprouted Green Gram', 'Cowpeas', 'Fresh Scraped Coconut', 'Pomegranate', 'Lemon Juice'],
-    health_benefits: ['Zero Oil', 'Live Enzymes', 'Cardio Friendly'],
+    health_benefits: ['Zero Cooking Oil', 'Sprouted Pulses', 'Natural Produce'],
     is_available: true,
     is_featured: true,
     created_at: new Date().toISOString(),
@@ -121,9 +122,9 @@ const SAMPLE_DISHES: MenuItem[] = [
     calories: 85,
     preparation_time: 5,
     protein: 1.5,
-    image_url: 'https://images.unsplash.com/photo-1546173159-315724a31696?auto=format&fit=crop&w=800&q=80',
+    image_url: '/images/food/coconut-elixir.jpg',
     ingredients: ['Tender Coconut Water', 'Native Lemongrass', 'Wild Ginger', 'Natural Palm Nectar'],
-    health_benefits: ['Natural Electrolytes', 'Pure Hydration', 'No Refined Sugar'],
+    health_benefits: ['Pollachi Coconut', 'Pure Hydration', 'No Refined Sugar'],
     is_available: true,
     is_featured: true,
     created_at: new Date().toISOString(),
@@ -138,9 +139,9 @@ const SAMPLE_DISHES: MenuItem[] = [
     calories: 190,
     preparation_time: 6,
     protein: 4.2,
-    image_url: 'https://images.unsplash.com/photo-1606312619070-d48b4c652a52?auto=format&fit=crop&w=800&q=80',
+    image_url: '/images/food/tender-coconut-payasam.jpg',
     ingredients: ['Young Coconut Pulp', 'Palm Jaggery', 'Green Cardamom', 'Crushed Almonds'],
-    health_benefits: ['Zero Refined Sugar', 'Plant Based', 'Cooling Prana'],
+    health_benefits: ['Zero Refined Sugar', 'Plant Based Sweet', 'Fresh Coconut'],
     is_available: true,
     is_featured: true,
     created_at: new Date().toISOString(),
@@ -151,30 +152,30 @@ const SAMPLE_DISHES: MenuItem[] = [
 const SAMPLE_REVIEWS: Review[] = [
   {
     id: 'rev-1',
-    name: 'Senthil Kumar (RS Puram, Coimbatore)',
-    email: 'senthil@gmail.com',
+    name: 'Senthil K. (Coimbatore)',
+    email: 'senthil@padayal.feedback',
     rating: 5,
-    comment: 'The plantain leaf meal here is unlike anything else. You eat a full traditional spread without feeling heavy or sluggish. The tender coconut rasam is unforgettable!',
+    comment: 'The plantain leaf lunch spread is very unique. The combination of red aval, sprouted gram, and fresh tender coconut rasam is distinctively South Indian and very refreshing.',
     is_featured: true,
     is_approved: true,
     created_at: new Date().toISOString(),
   },
   {
     id: 'rev-2',
-    name: 'Meenakshi Sundaram',
-    email: 'meenakshi@gmail.com',
+    name: 'Meenakshi S.',
+    email: 'meenakshi@padayal.feedback',
     rating: 5,
-    comment: 'A true pioneer of South Indian natural food culture. Dr. Sivakumar’s vision of zero oil and zero heat is executed with such authentic taste. Highly recommended for family dining.',
+    comment: 'Chef Sivakumar’s concept of zero oil cooking is executed with traditional flavours. A thoughtful place for family lunch in Coimbatore.',
     is_featured: true,
     is_approved: true,
     created_at: new Date().toISOString(),
   },
   {
     id: 'rev-3',
-    name: 'Dr. R. Vigneshwaran',
-    email: 'vignesh@gmail.com',
+    name: 'Vigneshwaran R.',
+    email: 'vignesh@padayal.feedback',
     rating: 5,
-    comment: 'As a physician, I admire the commitment to live enzyme nutrition. No frying, no artificial preservatives, and pure natural ingredients. Coimbatore’s proud culinary gem.',
+    comment: 'A genuinely different dining experience. No heavy frying or cooking oil, just natural ingredients and warm traditional service.',
     is_featured: true,
     is_approved: true,
     created_at: new Date().toISOString(),
@@ -223,10 +224,10 @@ export function HomePage() {
       {/* 1. HERO SECTION: Authentic South Indian Food Imagery & Clear Positioning */}
       <section className="relative overflow-hidden bg-gradient-to-b from-[#112415] via-[#1B4329] to-[#112415] text-white">
         {/* Background authentic textures */}
-        <div className="absolute inset-0 opacity-15 mix-blend-overlay pointer-events-none">
+        <div className="absolute inset-0 opacity-20 mix-blend-overlay pointer-events-none">
           <img
-            src="https://images.unsplash.com/photo-1610057099431-d73a1c9d2f2f?auto=format&fit=crop&w=2000&q=80"
-            alt="Traditional South Indian Meal background"
+            src="/images/hero-banner.jpg"
+            alt="Padayal Kitchen Ambiance"
             className="w-full h-full object-cover"
           />
         </div>
@@ -245,26 +246,26 @@ export function HomePage() {
               </div>
 
               <div className="space-y-3">
-                <h1 className="font-pranic text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.15] text-white">
-                  Pure Natural Food.<br />
+                <h1 className="font-editorial text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.15] text-white">
+                  Natural Food Culture.<br />
                   <span className="text-[#F5E6C8] font-serif italic">No Oil. No Boil.</span><br />
                   Traditional South Indian Flavours.
                 </h1>
                 <p className="text-sm sm:text-base lg:text-lg text-cream-200 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-sans">
-                  Experience South India’s pioneer in raw, live-enzyme culinary tradition. Wholesome meals served fresh on natural plantain leaves, prepared without cooking oil or artificial heat.
+                  Padayal explores a No Oil, No Boil approach to food preparation, celebrating traditional South Indian flavours and natural ingredients. Wholesome meals served fresh on natural plantain leaves in Coimbatore.
                 </p>
               </div>
 
               {/* Verified Value Badges */}
               <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2 pt-1">
                 <span className="px-3 py-1.5 rounded-xl bg-white/10 border border-white/15 text-xs font-semibold text-cream-100 flex items-center gap-1.5">
-                  🌿 100% Plant Based
+                  🌿 Natural Plant Ingredients
                 </span>
                 <span className="px-3 py-1.5 rounded-xl bg-white/10 border border-white/15 text-xs font-semibold text-cream-100 flex items-center gap-1.5">
-                  ✓ Zero Refined Oil
+                  ✓ Zero Refined Cooking Oil
                 </span>
                 <span className="px-3 py-1.5 rounded-xl bg-white/10 border border-white/15 text-xs font-semibold text-cream-100 flex items-center gap-1.5">
-                  ⚡ Live Enzymes Intact
+                  🥣 Alternative Preparation
                 </span>
                 <span className="px-3 py-1.5 rounded-xl bg-white/10 border border-white/15 text-xs font-semibold text-cream-100 flex items-center gap-1.5">
                   🍃 Plantain Leaf Dining
@@ -292,7 +293,7 @@ export function HomePage() {
               {/* Location micro indicator */}
               <div className="pt-2 text-xs text-cream-300 flex items-center justify-center lg:justify-start gap-2">
                 <MapPin className="w-4 h-4 text-padayal-secondary" />
-                <span>Open All Days 7:30 AM - 9:30 PM • Vadavalli Road, Coimbatore</span>
+                <span>Open All Days 7:30 AM - 9:30 PM • Kamaraj Road, Singanallur, Coimbatore</span>
               </div>
 
             </div>
@@ -302,11 +303,11 @@ export function HomePage() {
               <div className="relative mx-auto max-w-md lg:max-w-none">
                 
                 {/* Main Food Photo */}
-                <div className="aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border-4 border-white/20 bg-forest-900">
+                <div className="aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border-4 border-white/20 bg-forest-900 group">
                   <img
-                    src="https://images.unsplash.com/photo-1610057099431-d73a1c9d2f2f?auto=format&fit=crop&w=1000&q=80"
-                    alt="Traditional South Indian Meal on Plantain Leaf"
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                    src="/images/food/raja-virundhu.jpg"
+                    alt="Padayal Traditional Plantain Leaf Feast"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
 
@@ -316,7 +317,7 @@ export function HomePage() {
                     <CheckCircle2 className="w-4 h-4 text-padayal-primary" />
                     <span>Real Traditional Food</span>
                   </div>
-                  <p className="font-pranic font-bold text-base text-padayal-text">
+                  <p className="font-editorial font-bold text-base text-padayal-text">
                     Served on Fresh Plantain Leaf
                   </p>
                   <p className="text-xs text-padayal-muted leading-tight">
@@ -327,7 +328,7 @@ export function HomePage() {
                 {/* Floating badge top right */}
                 <div className="absolute -top-4 -right-4 bg-white p-1 rounded-2xl shadow-xl border border-padayal-bg flex items-center gap-2 pr-3">
                   <img src="/logo.png" alt="Padayal Emblem" className="w-8 h-8 object-contain" />
-                  <span className="text-[11px] font-bold text-padayal-primary">100% Unboiled</span>
+                  <span className="text-[11px] font-bold text-padayal-primary">No Oil, No Boil</span>
                 </div>
 
               </div>
@@ -343,7 +344,7 @@ export function HomePage() {
           <span className="inline-block px-3.5 py-1 rounded-full bg-padayal-secondary-light text-padayal-primary text-xs font-bold uppercase tracking-wider">
             Our Food Philosophy
           </span>
-          <h2 className="font-pranic text-3xl sm:text-4xl font-extrabold text-padayal-text">
+          <h2 className="font-editorial text-3xl sm:text-4xl font-extrabold text-padayal-text">
             Natural Living Through Traditional Food Culture
           </h2>
           <p className="text-sm sm:text-base text-padayal-muted leading-relaxed">
@@ -362,7 +363,7 @@ export function HomePage() {
                 <div className="w-12 h-12 rounded-xl bg-padayal-secondary-light text-padayal-primary flex items-center justify-center">
                   <Icon className="w-6 h-6" />
                 </div>
-                <h3 className="font-pranic text-lg font-bold text-padayal-text">
+                <h3 className="font-editorial text-lg font-bold text-padayal-text">
                   {pillar.title}
                 </h3>
                 <p className="text-xs sm:text-sm text-padayal-muted leading-relaxed">
@@ -381,17 +382,20 @@ export function HomePage() {
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
             <div className="space-y-2">
               <span className="text-xs font-bold text-padayal-cta uppercase tracking-wider">
-                Crafted Daily
+                Traditional Kitchen
               </span>
-              <h2 className="font-pranic text-3xl sm:text-4xl font-extrabold text-padayal-text">
-                Explore Signature Offerings
+              <h2 className="font-editorial text-3xl sm:text-4xl font-extrabold text-padayal-text">
+                Discover Padayal
               </h2>
+              <p className="text-xs sm:text-sm text-padayal-muted max-w-xl">
+                Traditional South Indian flavours, explored through the No Oil, No Boil philosophy.
+              </p>
             </div>
             <Link
               to="/menu"
               className="inline-flex items-center gap-1.5 text-sm font-bold text-padayal-primary hover:text-padayal-primary-hover transition-colors"
             >
-              <span>See Full Menu</span>
+              <span>Explore Complete Menu</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
@@ -415,7 +419,7 @@ export function HomePage() {
                   </span>
                 </div>
                 <div className="p-4 space-y-1.5">
-                  <h3 className="font-pranic text-base font-bold text-padayal-text group-hover:text-padayal-primary transition-colors">
+                  <h3 className="font-editorial text-base font-bold text-padayal-text group-hover:text-padayal-primary transition-colors">
                     {cat.title}
                   </h3>
                   <p className="text-xs text-padayal-muted leading-relaxed line-clamp-2">
@@ -439,7 +443,7 @@ export function HomePage() {
             <span className="text-xs font-bold text-padayal-primary uppercase tracking-wider">
               Guest Favourites
             </span>
-            <h2 className="font-pranic text-3xl sm:text-4xl font-extrabold text-padayal-text">
+            <h2 className="font-editorial text-3xl sm:text-4xl font-extrabold text-padayal-text">
               Popular Dishes at Padayal
             </h2>
           </div>
@@ -467,7 +471,7 @@ export function HomePage() {
                 <div>
                   <div className="aspect-[4/3] overflow-hidden bg-padayal-bg relative">
                     <img
-                      src={dish.image_url || 'https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=600&q=80'}
+                      src={dish.image_url || placeholderImage}
                       alt={dish.name}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
@@ -476,7 +480,7 @@ export function HomePage() {
                     </span>
                   </div>
                   <div className="p-4 space-y-2">
-                    <h3 className="font-pranic text-base font-bold text-padayal-text group-hover:text-padayal-primary transition-colors line-clamp-1">
+                    <h3 className="font-editorial text-base font-bold text-padayal-text group-hover:text-padayal-primary transition-colors line-clamp-1">
                       {dish.name}
                     </h3>
                     <p className="text-xs text-padayal-muted line-clamp-2 leading-relaxed">
@@ -521,33 +525,33 @@ export function HomePage() {
                 <span>About Padayal</span>
               </div>
               
-              <h2 className="font-pranic text-3xl sm:text-5xl font-extrabold text-padayal-text leading-tight">
+              <h2 className="font-editorial text-3xl sm:text-5xl font-extrabold text-padayal-text leading-tight">
                 "More Than Food.<br />
                 <span className="text-padayal-cta italic">A Different Way of Eating."</span>
               </h2>
 
               <p className="text-sm sm:text-base text-padayal-muted leading-relaxed">
-                Padayal is Coimbatore’s pioneer of natural, fireless South Indian dining. Born from ancient Tamil nature-cure wisdom, our kitchen prepares authentic spreads without turning on a flame or pouring a drop of refined oil.
+                Padayal is based in Coimbatore, built around the distinctive "No Oil, No Boil" philosophy. The restaurant explores traditional South Indian food culture through alternative preparation techniques like soaking, sprouting, stone grinding, and coconut-milk emulsions without conventional cooking oils.
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
                 <div className="bg-padayal-bg p-5 rounded-2xl border border-padayal-bg space-y-2">
                   <div className="flex items-center gap-2 text-padayal-primary font-bold text-sm">
                     <Leaf className="w-4 h-4 text-padayal-primary" />
-                    <span>Pure No Oil, No Boil</span>
+                    <span>No Oil, No Boil Philosophy</span>
                   </div>
                   <p className="text-xs text-padayal-muted leading-relaxed">
-                    By keeping foods uncooked, delicate vitamins and live enzymes remain undisturbed — giving you clean nutrition that feels light and energizing.
+                    Food is prepared without conventional cooking oil or deep frying, relying on natural textures from coconut, sprouted grains, and seeds.
                   </p>
                 </div>
 
                 <div className="bg-padayal-bg p-5 rounded-2xl border border-padayal-bg space-y-2">
                   <div className="flex items-center gap-2 text-padayal-primary font-bold text-sm">
                     <ShieldCheck className="w-4 h-4 text-padayal-primary" />
-                    <span>Tamil Heritage & Prana</span>
+                    <span>Traditional South Indian Heritage</span>
                   </div>
                   <p className="text-xs text-padayal-muted leading-relaxed">
-                    We draw from traditional Tamil heritage: Thooyamalli red aval, stone-crushed chutneys, sprouted pulses, and freshly pressed coconut milk.
+                    Centred on South Indian culinary traditions: heritage rice varieties, stone-ground chutneys, seasoned aval, and plantain leaf service.
                   </p>
                 </div>
               </div>
@@ -573,7 +577,7 @@ export function HomePage() {
                   />
                 </div>
                 <div>
-                  <h3 className="font-pranic text-2xl font-bold text-padayal-text">
+                  <h3 className="font-editorial text-2xl font-bold text-padayal-text">
                     படையல்
                   </h3>
                   <p className="text-xs font-bold text-padayal-cta uppercase tracking-wider mt-1">
@@ -592,15 +596,15 @@ export function HomePage() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
               
               <div className="lg:col-span-4 flex flex-col items-center">
-                <div className="w-48 sm:w-56 aspect-square rounded-3xl bg-white p-4 shadow-xl border-4 border-[#224b2d] flex items-center justify-center overflow-hidden">
+                <div className="w-48 sm:w-56 aspect-square rounded-3xl bg-white p-1.5 shadow-xl border-4 border-[#224b2d] flex items-center justify-center overflow-hidden">
                   <img
-                    src="/logo.png"
-                    alt="Chef Padayal Sivakumar Emblem"
-                    className="w-full h-full object-contain"
+                    src="/images/founder.png"
+                    alt={RESTAURANT_INFO.founder.name}
+                    className="w-full h-full object-cover rounded-2xl"
                   />
                 </div>
                 <div className="text-center mt-4">
-                  <h4 className="font-pranic text-xl font-bold text-white">
+                  <h4 className="font-editorial text-xl font-bold text-white">
                     {RESTAURANT_INFO.founder.name}
                   </h4>
                   <p className="text-xs text-padayal-secondary font-semibold">
@@ -615,8 +619,8 @@ export function HomePage() {
                   <span>The Story Behind Padayal</span>
                 </div>
 
-                <h3 className="font-pranic text-2xl sm:text-4xl font-extrabold text-white leading-tight">
-                  Pioneering Fireless Culinary Art in Coimbatore
+                <h3 className="font-editorial text-2xl sm:text-4xl font-extrabold text-white leading-tight">
+                  Exploring No Oil, No Boil Culinary Traditions in Coimbatore
                 </h3>
 
                 <p className="text-xs sm:text-sm text-cream-200 leading-relaxed">
@@ -660,25 +664,25 @@ export function HomePage() {
               <span className="px-3 py-1 rounded-full bg-white/15 text-cream-200 text-xs font-bold uppercase tracking-wider">
                 Signature Coimbatore Experience
               </span>
-              <h2 className="font-pranic text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-tight">
+              <h2 className="font-editorial text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-tight">
                 Traditional Plantain Leaf Feast (இயற்கை விருந்து)
               </h2>
               <p className="text-cream-200 text-sm sm:text-base leading-relaxed">
-                Sit down to a lavish traditional lunch spread served on fresh green banana leaves. Enjoy unboiled red aval, sprouted gram kootu, native coconut milk rasam, seasonal vegetable pachadi, cold-extracted herbal soup, and palm sugar payasam.
+                Experience a traditional South Indian lunch spread served on fresh green plantain leaves. Enjoy seasoned red aval, sprouted gram kootu, raw coconut milk rasam, seasonal vegetable pachadi, cold-extracted herbal soup, and palm jaggery payasam.
               </p>
               
               <ul className="space-y-2 text-xs sm:text-sm text-cream-100 pt-2">
                 <li className="flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-padayal-secondary shrink-0" />
-                  <span>Unlimited servings of fresh accompaniments during lunch hours (12:00 PM - 3:30 PM)</span>
+                  <span>Served during lunch hours (12:00 PM - 3:30 PM) on natural plantain leaves</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-padayal-secondary shrink-0" />
-                  <span>Prepared fresh on order using local produce from Coimbatore farms</span>
+                  <span>Prepared using fresh ingredients and regional produce from Coimbatore</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-padayal-secondary shrink-0" />
-                  <span>Zero cholesterol, zero refined sugar, 100% natural seasoning</span>
+                  <span>Prepared without cooking oil, refined sugar, or artificial additives</span>
                 </li>
               </ul>
 
@@ -701,7 +705,7 @@ export function HomePage() {
             <div className="lg:col-span-5">
               <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl border-4 border-white/10">
                 <img
-                  src="https://images.unsplash.com/photo-1610057099431-d73a1c9d2f2f?auto=format&fit=crop&w=800&q=80"
+                  src="/images/food/raja-virundhu.jpg"
                   alt="Padayal Plantain Leaf Dining"
                   className="w-full h-full object-cover"
                 />
@@ -718,7 +722,7 @@ export function HomePage() {
           <span className="text-xs font-bold text-padayal-primary uppercase tracking-wider">
             Guest Testimonials
           </span>
-          <h2 className="font-pranic text-3xl sm:text-4xl font-extrabold text-padayal-text">
+          <h2 className="font-editorial text-3xl sm:text-4xl font-extrabold text-padayal-text">
             What Our Diners Say
           </h2>
           <p className="text-xs sm:text-sm text-padayal-muted">
@@ -773,11 +777,11 @@ export function HomePage() {
                 <span className="text-xs font-bold text-padayal-primary uppercase tracking-wider">
                   Visit Us in Coimbatore
                 </span>
-                <h2 className="font-pranic text-3xl font-extrabold text-padayal-text mt-1">
+                <h2 className="font-editorial text-3xl font-extrabold text-padayal-text mt-1">
                   Location & Operating Hours
                 </h2>
                 <p className="text-xs sm:text-sm text-padayal-muted mt-2 leading-relaxed">
-                  Join us at our peaceful restaurant setting on Vadavalli Road. Experience warm South Indian hospitality in an eco-friendly setting.
+                  Join us at our peaceful restaurant setting on Kamaraj Road, Singanallur. Experience warm South Indian hospitality in an eco-friendly setting.
                 </p>
               </div>
 
@@ -841,7 +845,7 @@ export function HomePage() {
       {/* 8. FINAL TABLE RESERVATION BANNER */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
         <div className="bg-gradient-to-r from-padayal-cta to-[#804B2D] text-white rounded-3xl p-8 sm:p-12 text-center space-y-4 shadow-xl">
-          <h2 className="font-pranic text-2xl sm:text-4xl font-black text-white">
+          <h2 className="font-editorial text-2xl sm:text-4xl font-black text-white">
             Ready to Taste South India’s Purest Natural Food?
           </h2>
           <p className="text-cream-200 text-xs sm:text-base max-w-xl mx-auto leading-relaxed">

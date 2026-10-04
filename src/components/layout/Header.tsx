@@ -79,7 +79,7 @@ export function Header() {
             </div>
             <div className="flex flex-col">
               <div className="flex items-baseline gap-1.5">
-                <span className="font-pranic text-2xl sm:text-3xl font-extrabold text-padayal-text tracking-tight leading-none">
+                <span className="font-editorial text-2xl sm:text-3xl font-extrabold text-padayal-text tracking-tight leading-none">
                   Padayal
                 </span>
                 <span className="text-xs font-bold text-padayal-primary font-sans hidden sm:inline">

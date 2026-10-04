@@ -3,8 +3,10 @@ import { Search, ChefHat, Flame, Clock, Plus, Sparkles } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { useCart } from '../context/CartContext';
 import { MenuItem as AppMenuItem, MenuCategory, DietaryPreference } from '../types/menu';
+import placeholderImage from '../assets/placeholder.svg';
 import { MenuItem as DbMenuItem } from '../types/database';
 import { formatCurrency } from '../utils/formatCurrency';
+
 import { MenuItemSkeleton } from '../components/ui/Skeleton';
 
 const CATEGORY_TABS: { id: MenuCategory; label: string; tamil: string }[] = [
@@ -21,7 +23,7 @@ const DIETARY_PILLS: { id: DietaryPreference | 'all'; label: string }[] = [
   { id: 'all', label: 'All Items' },
   { id: 'no-oil', label: '🌿 No Oil' },
   { id: 'fire-free', label: '🔥 Fire-Free' },
-  { id: 'raw-vegan', label: '🥥 Plant Based' },
+  { id: 'plant-based', label: '🥥 Plant Based' },
   { id: 'gluten-free', label: '🌾 Gluten-Free' },
   { id: 'chef-special', label: '⭐ Signature' },
 ];
@@ -36,11 +38,11 @@ const AUTHENTIC_MENU_ITEMS: AppMenuItem[] = [
     calories: 360,
     preparationTime: 10,
     protein: 14,
-    imageUrl: 'https://images.unsplash.com/photo-1610057099431-d73a1c9d2f2f?auto=format&fit=crop&w=800&q=80',
+    imageUrl: '/images/food/raja-virundhu.jpg',
     isAvailable: true,
     isFeatured: true,
-    dietaryTags: ['no-oil', 'fire-free', 'raw-vegan', 'chef-special'],
-    healthBenefits: ['Full Pranic Nutrition', 'Zero Cholesterol', 'Easy Digestion'],
+    dietaryTags: ['no-oil', 'fire-free', 'plant-based', 'chef-special'],
+    healthBenefits: ['No Cooking Oil', 'Whole Grains', 'Traditional Thali'],
     ingredients: ['Red Aval', 'Sprouted Moong', 'Tender Coconut Milk', 'Curry Leaves', 'Lemon', 'Himalayan Salt'],
   },
   {
@@ -52,11 +54,11 @@ const AUTHENTIC_MENU_ITEMS: AppMenuItem[] = [
     calories: 220,
     preparationTime: 6,
     protein: 6,
-    imageUrl: 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=800&q=80',
+    imageUrl: '/images/food/spiced-aval-tiffin.jpg',
     isAvailable: true,
     isFeatured: true,
-    dietaryTags: ['no-oil', 'fire-free', 'raw-vegan'],
-    healthBenefits: ['Iron Rich', 'Light on Stomach'],
+    dietaryTags: ['no-oil', 'fire-free', 'plant-based'],
+    healthBenefits: ['Red Rice Aval', 'Fresh Coconut'],
     ingredients: ['Red Rice Aval', 'Grated Coconut', 'Native Ginger', 'Curry Leaves', 'Coriander'],
   },
   {
@@ -68,11 +70,11 @@ const AUTHENTIC_MENU_ITEMS: AppMenuItem[] = [
     calories: 210,
     preparationTime: 8,
     protein: 16,
-    imageUrl: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80',
+    imageUrl: '/images/food/sprouts-salad.jpg',
     isAvailable: true,
     isFeatured: true,
-    dietaryTags: ['no-oil', 'fire-free', 'raw-vegan', 'gluten-free'],
-    healthBenefits: ['High Plant Protein', 'Live Enzymes', 'Cardio Friendly'],
+    dietaryTags: ['no-oil', 'fire-free', 'plant-based', 'gluten-free'],
+    healthBenefits: ['Sprouted Pulses', 'Fresh Produce'],
     ingredients: ['Sprouted Green Gram', 'Cowpeas', 'Native Carrot', 'Pomegranate', 'Lemon'],
   },
   {
@@ -84,11 +86,11 @@ const AUTHENTIC_MENU_ITEMS: AppMenuItem[] = [
     calories: 85,
     preparationTime: 4,
     protein: 2,
-    imageUrl: 'https://images.unsplash.com/photo-1546173159-315724a31696?auto=format&fit=crop&w=800&q=80',
+    imageUrl: '/images/food/coconut-elixir.jpg',
     isAvailable: true,
     isFeatured: true,
-    dietaryTags: ['no-oil', 'fire-free', 'raw-vegan', 'chef-special'],
-    healthBenefits: ['Natural Electrolytes', 'Immunity Boost'],
+    dietaryTags: ['no-oil', 'fire-free', 'plant-based', 'chef-special'],
+    healthBenefits: ['Pollachi Coconut', 'No Refined Sugar'],
     ingredients: ['Tender Coconut Water', 'Lemongrass', 'Ginger Juice', 'Palm Nectar'],
   },
   {
@@ -100,11 +102,11 @@ const AUTHENTIC_MENU_ITEMS: AppMenuItem[] = [
     calories: 95,
     preparationTime: 6,
     protein: 4,
-    imageUrl: 'https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=800&q=80',
+    imageUrl: '/images/food/mudakathan-soup.jpg',
     isAvailable: true,
     isFeatured: false,
-    dietaryTags: ['no-oil', 'fire-free', 'raw-vegan', 'gluten-free'],
-    healthBenefits: ['Joint Health', 'Digestive Fire'],
+    dietaryTags: ['no-oil', 'fire-free', 'plant-based', 'gluten-free'],
+    healthBenefits: ['Native Herbs', 'Sprouted Fenugreek'],
     ingredients: ['Mudakathan Leaves', 'Fenugreek Sprouts', 'Cumin', 'Black Pepper', 'Coconut Cream'],
   },
   {
@@ -116,11 +118,11 @@ const AUTHENTIC_MENU_ITEMS: AppMenuItem[] = [
     calories: 190,
     preparationTime: 5,
     protein: 4,
-    imageUrl: 'https://images.unsplash.com/photo-1606312619070-d48b4c652a52?auto=format&fit=crop&w=800&q=80',
+    imageUrl: '/images/food/tender-coconut-payasam.jpg',
     isAvailable: true,
     isFeatured: true,
-    dietaryTags: ['no-oil', 'fire-free', 'raw-vegan', 'gluten-free'],
-    healthBenefits: ['Zero Refined Sugar', 'Plant Based', 'Cooling Prana'],
+    dietaryTags: ['no-oil', 'fire-free', 'plant-based', 'gluten-free'],
+    healthBenefits: ['Zero Refined Sugar', 'Plant Based Sweet'],
     ingredients: ['Tender Coconut Meat', 'Palm Jaggery', 'Green Cardamom', 'Crushed Almonds'],
   },
   {
@@ -132,11 +134,11 @@ const AUTHENTIC_MENU_ITEMS: AppMenuItem[] = [
     calories: 65,
     preparationTime: 4,
     protein: 1,
-    imageUrl: 'https://images.unsplash.com/photo-1556881286-fc6915169721?auto=format&fit=crop&w=800&q=80',
+    imageUrl: '/images/food/tulsi-mint-shot.jpg',
     isAvailable: true,
     isFeatured: false,
-    dietaryTags: ['no-oil', 'fire-free', 'raw-vegan', 'gluten-free'],
-    healthBenefits: ['Vitamin C Rich', 'Respiratory Support'],
+    dietaryTags: ['no-oil', 'fire-free', 'plant-based', 'gluten-free'],
+    healthBenefits: ['Wild Amla & Tulsi', 'Pure Herbs'],
     ingredients: ['Wild Amla', 'Tulsi', 'Fresh Mint', 'Forest Raw Honey'],
   },
   {
@@ -148,11 +150,11 @@ const AUTHENTIC_MENU_ITEMS: AppMenuItem[] = [
     calories: 110,
     preparationTime: 5,
     protein: 3,
-    imageUrl: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=800&q=80',
+    imageUrl: '/images/food/cucumber-pachadi.jpg',
     isAvailable: true,
     isFeatured: false,
-    dietaryTags: ['no-oil', 'fire-free', 'raw-vegan', 'gluten-free'],
-    healthBenefits: ['Hydrating & Detoxifying', 'High Fibre'],
+    dietaryTags: ['no-oil', 'fire-free', 'plant-based', 'gluten-free'],
+    healthBenefits: ['Hydrating & Refreshing', 'High Fibre'],
     ingredients: ['Country Cucumber', 'Pomegranate', 'Coconut Extract', 'Curry Leaves', 'Lemon'],
   },
 ];
@@ -182,11 +184,11 @@ export function MenuPage() {
             calories: d.calories ?? undefined,
             preparationTime: d.preparation_time ?? undefined,
             protein: d.protein ?? undefined,
-            imageUrl: d.image_url || 'https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80',
+            imageUrl: d.image_url || placeholderImage,
             isAvailable: d.is_available ?? true,
             isFeatured: d.is_featured ?? false,
-            dietaryTags: ['no-oil', 'fire-free', 'raw-vegan'],
-            healthBenefits: d.health_benefits || ['Live Enzymes', 'Zero Oil'],
+            dietaryTags: ['no-oil', 'fire-free', 'plant-based'],
+            healthBenefits: d.health_benefits || ['No Cooking Oil', 'Natural Ingredients'],
             ingredients: d.ingredients || [],
           }));
           setItems(mapped);
@@ -228,7 +230,7 @@ export function MenuPage() {
           <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-white/10 backdrop-blur-md text-cream-200 text-xs font-semibold">
             <Sparkles className="w-3.5 h-3.5" /> 100% Unboiled & Zero-Oil South Indian Menu
           </span>
-          <h1 className="font-pranic text-3xl sm:text-5xl font-black tracking-tight text-white">
+          <h1 className="font-editorial text-3xl sm:text-5xl font-black tracking-tight text-white">
             Natural Food Dining Menu
           </h1>
           <p className="text-xs sm:text-sm text-cream-300 max-w-xl mx-auto leading-relaxed">
@@ -309,7 +311,7 @@ export function MenuPage() {
         ) : filteredItems.length === 0 ? (
           <div className="bg-padayal-surface rounded-3xl p-12 text-center shadow-organic border border-padayal-bg max-w-md mx-auto my-12 space-y-3">
             <ChefHat className="w-12 h-12 mx-auto text-padayal-muted opacity-40" />
-            <h3 className="font-pranic text-xl font-bold text-padayal-text">No dishes found</h3>
+            <h3 className="font-editorial text-xl font-bold text-padayal-text">No dishes found</h3>
             <p className="text-xs sm:text-sm text-padayal-muted">
               We couldn't find any items matching "{searchQuery}". Try searching for aval, sprouts, coconut elixir, or payasam.
             </p>
@@ -363,7 +365,7 @@ export function MenuPage() {
                     </div>
 
                     {/* Title & Description */}
-                    <h3 className="font-pranic text-base sm:text-lg font-bold text-padayal-text group-hover:text-padayal-primary transition-colors line-clamp-1 leading-snug">
+                    <h3 className="font-editorial text-base sm:text-lg font-bold text-padayal-text group-hover:text-padayal-primary transition-colors line-clamp-1 leading-snug">
                       {item.name}
                     </h3>
                     <p className="text-xs text-padayal-muted line-clamp-2 leading-relaxed">

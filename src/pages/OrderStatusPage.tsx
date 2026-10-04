@@ -28,7 +28,7 @@ export function OrderStatusPage() {
           <span className="px-3.5 py-1 rounded-full bg-padayal-secondary-light text-padayal-primary text-xs font-bold uppercase tracking-wider">
             Live Order Tracking
           </span>
-          <h1 className="font-pranic text-3xl sm:text-4xl font-extrabold text-padayal-text">
+          <h1 className="font-editorial text-3xl sm:text-4xl font-extrabold text-padayal-text">
             Track Your Fresh Meal
           </h1>
           <p className="text-xs sm:text-sm text-padayal-muted">
@@ -107,7 +107,7 @@ export function OrderStatusPage() {
             <div className="w-16 h-16 rounded-full bg-padayal-bg text-padayal-muted flex items-center justify-center mx-auto">
               <ShoppingBag className="w-8 h-8 stroke-[1.5]" />
             </div>
-            <h3 className="font-pranic text-xl font-bold text-padayal-text">No Active Orders Found</h3>
+            <h3 className="font-editorial text-xl font-bold text-padayal-text">No Active Orders Found</h3>
             <p className="text-xs sm:text-sm text-padayal-muted">
               You don't have any pending orders under this reference. Browse our fresh South Indian menu to place your first order!
             </p>

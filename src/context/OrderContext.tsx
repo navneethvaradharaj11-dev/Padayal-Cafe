@@ -134,6 +134,7 @@ export function OrderProvider({ children }: { children: ReactNode }) {
   );
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function useOrder() {
   const context = useContext(OrderContext);
   if (!context) {

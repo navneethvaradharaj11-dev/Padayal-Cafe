@@ -15,7 +15,7 @@ export function Footer() {
               <Leaf className="w-5 h-5" />
             </div>
             <div>
-              <p className="font-pranic font-bold text-white text-base">
+              <p className="font-editorial font-bold text-white text-base">
                 {RESTAURANT_INFO.tamilTagline}
               </p>
               <p className="text-xs text-cream-300">
@@ -43,7 +43,7 @@ export function Footer() {
                 <img src="/logo.png" alt="Padayal Logo" className="w-full h-full object-contain" />
               </div>
               <div>
-                <span className="font-pranic text-2xl font-bold text-white tracking-tight leading-none block">
+                <span className="font-editorial text-2xl font-bold text-white tracking-tight leading-none block">
                   {RESTAURANT_INFO.name}
                 </span>
                 <span className="text-xs text-cream-300 font-medium">

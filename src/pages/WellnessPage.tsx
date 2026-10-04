@@ -1,20 +1,21 @@
 import { useState } from 'react';
+import placeholderImage from '../assets/placeholder.svg';
 import { BookOpen, ArrowRight, Calendar, User, Tag, X } from 'lucide-react';
 import { Article } from '../types/database';
 
 const AUTHENTIC_ARTICLES: Article[] = [
   {
     id: 'art-1',
-    title: 'The Science of Live Enzymes: Why No Oil No Boil Keeps You Energized',
-    slug: 'science-of-live-enzymes',
-    excerpt: 'When foods are subjected to extreme heat or cooking oil above 48°C, delicate natural enzymes break down. Learn how uncooked South Indian dining preserves biological vitality.',
-    content: `In ancient Siddha and traditional nature-cure philosophy, food is celebrated as living energy (Prana). 
+    title: 'The Principles of No Oil No Boil: Celebrating South Indian Natural Dining',
+    slug: 'principles-of-no-oil-no-boil',
+    excerpt: 'Explore how traditional unboiled food preparation methods honour the natural flavour, texture, and wholesome vitality of fresh native ingredients.',
+    content: `In traditional nature-cure and South Indian food philosophy, wholesome nutrition begins with respecting ingredients in their natural state.
     
-When vegetables, coconut milk, and sprouted grains are eaten raw or uncooked, the active plant enzymes remain fully intact. These enzymes assist your stomach in digesting food smoothly, drastically lowering the metabolic load on your liver and pancreas.
+When fresh vegetables, cold-extracted coconut milk, and native sprouted pulses are prepared without high-heat boiling or refined cooking oils, their natural moisture, essential nutrients, and subtle flavours remain intact. Traditional techniques such as soaking, hand-pounding, and stone grinding gently prepare the ingredients while honouring time-tested kitchen wisdom.
 
-Instead of experiencing post-meal tiredness, bloating, or acid reflux, diners at Padayal consistently report a surge of light, clean energy within 30 minutes of eating. Natural food is not just a diet—it is pure cellular rejuvenation.`,
-    category: 'Nutrition Science',
-    image_url: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80',
+Rather than the heavy feeling that often follows oil-rich cooking, unboiled natural meals leave you feeling refreshed and sustained. Padayal celebrates this traditional food philosophy through daily handcrafted feasts served on fresh plantain leaves.`,
+    category: 'Food Philosophy',
+    image_url: '/images/wellness/food-philosophy.jpg',
     author: 'Padayal Natural Health Research',
     is_published: true,
     published_at: '2026-08-15T09:00:00Z',
@@ -27,10 +28,10 @@ Instead of experiencing post-meal tiredness, bloating, or acid reflux, diners at
     slug: 'mudakathan-native-greens',
     excerpt: 'The balloon vine (Mudakathan Keerai) has been celebrated for centuries in Kongu Nadu for natural joint lubrication and soothing systemic inflammation.',
     content: `Mudakathan (Cardiospermum halicacabum) is a wild climbing herb revered across Tamil Nadu. Traditional kitchens traditionally prepared it in rasams or dosais. 
-
+    
 At Padayal, we extract its pure juice through cold-pressing and blend it with fresh sprouted fenugreek, cumin, and tender coconut water. This keeps its potent anti-inflammatory bio-flavonoids undamaged by flame heat, delivering rapid relief for stiff joints and sluggish digestion.`,
     category: 'Native Herbs',
-    image_url: 'https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=800&q=80',
+    image_url: '/images/wellness/mudakathan-greens.jpg',
     author: 'Traditional Food Circle',
     is_published: true,
     published_at: '2026-08-20T09:00:00Z',
@@ -46,7 +47,7 @@ At Padayal, we extract its pure juice through cold-pressing and blend it with fr
 
 Rich in dietary fibre, natural iron, and complex carbohydrates, red aval digests gradually, preventing the mid-day blood sugar spikes associated with white polished rice. Combined with healthy plant fats from fresh grated coconut, it forms the perfect nourishing staple.`,
     category: 'Traditional Staples',
-    image_url: 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=800&q=80',
+    image_url: '/images/wellness/red-aval-heritage.jpg',
     author: 'Padayal Culinary Team',
     is_published: true,
     published_at: '2026-08-28T09:00:00Z',
@@ -71,11 +72,11 @@ export function WellnessPage() {
       <section className="relative py-16 sm:py-24 bg-[#183620] text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-3">
           <BookOpen className="w-10 h-10 text-padayal-secondary mx-auto" />
-          <h1 className="font-pranic text-3xl sm:text-5xl font-black text-white tracking-tight">
+          <h1 className="font-editorial text-3xl sm:text-5xl font-black text-white tracking-tight">
             Wellness Hub & Food Wisdom
           </h1>
           <p className="text-xs sm:text-sm text-cream-300 max-w-xl mx-auto leading-relaxed">
-            Discover the healing principles of No Oil No Boil dining, live enzymes, native herbs, and South Indian natural living.
+            Discover the traditional principles of No Oil No Boil dining, natural ingredients, native herbs, and South Indian food philosophy.
           </p>
         </div>
       </section>
@@ -115,7 +116,7 @@ export function WellnessPage() {
               <div>
                 <div className="aspect-video overflow-hidden bg-forest-900 relative">
                   <img
-                    src={article.image_url || 'https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=600&q=80'}
+                    src={article.image_url || placeholderImage}
                     alt={article.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
@@ -127,7 +128,7 @@ export function WellnessPage() {
                 </div>
 
                 <div className="p-5 space-y-2.5">
-                  <h3 className="font-pranic text-lg font-bold text-padayal-text group-hover:text-padayal-primary transition-colors line-clamp-2 leading-snug">
+                  <h3 className="font-editorial text-lg font-bold text-padayal-text group-hover:text-padayal-primary transition-colors line-clamp-2 leading-snug">
                     {article.title}
                   </h3>
                   <p className="text-xs text-padayal-muted line-clamp-3 leading-relaxed">
@@ -172,7 +173,7 @@ export function WellnessPage() {
               <span className="px-3 py-1 rounded-full bg-padayal-secondary-light text-padayal-primary text-xs font-bold">
                 {activeArticle.category}
               </span>
-              <h2 className="font-pranic text-2xl sm:text-3xl font-extrabold text-padayal-text leading-tight">
+              <h2 className="font-editorial text-2xl sm:text-3xl font-extrabold text-padayal-text leading-tight">
                 {activeArticle.title}
               </h2>
               <div className="flex items-center gap-4 text-xs text-padayal-muted pb-4 border-b border-padayal-bg">
@@ -187,7 +188,7 @@ export function WellnessPage() {
 
               <div className="aspect-video rounded-2xl overflow-hidden bg-forest-900 my-4">
                 <img
-                  src={activeArticle.image_url || 'https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80'}
+                  src={activeArticle.image_url || placeholderImage}
                   alt={activeArticle.title}
                   className="w-full h-full object-cover"
                 />

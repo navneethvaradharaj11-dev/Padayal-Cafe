@@ -39,7 +39,7 @@ export function CartCheckoutPage() {
         <div className="w-20 h-20 rounded-full bg-padayal-bg flex items-center justify-center mb-4 text-padayal-muted">
           <ShoppingBag className="w-10 h-10 stroke-[1.5]" />
         </div>
-        <h2 className="font-pranic text-2xl font-bold text-padayal-text mb-2">Your Cart is Empty</h2>
+        <h2 className="font-editorial text-2xl font-bold text-padayal-text mb-2">Your Cart is Empty</h2>
         <p className="text-sm text-padayal-muted mb-6">
           Add fresh No Oil No Boil meals, soups, or herbal elixirs before proceeding to checkout.
         </p>
@@ -115,7 +115,7 @@ export function CartCheckoutPage() {
         </div>
 
         <div className="mb-8">
-          <h1 className="font-pranic text-2xl sm:text-4xl font-extrabold text-padayal-text">
+          <h1 className="font-editorial text-2xl sm:text-4xl font-extrabold text-padayal-text">
             Complete Your Order
           </h1>
           <p className="text-xs sm:text-sm text-padayal-muted mt-1">
@@ -211,7 +211,7 @@ export function CartCheckoutPage() {
                     <input
                       type="text"
                       required
-                      placeholder="Door No., Apartment/Street, Area (e.g. Vadavalli, RS Puram, Gandhipuram)"
+                      placeholder="Door No., Apartment/Street, Area (e.g. Singanallur, Peelamedu, RS Puram, Gandhipuram)"
                       value={deliveryAddress}
                       onChange={(e) => setDeliveryAddress(e.target.value)}
                       className="w-full px-4 py-2.5 rounded-xl border border-padayal-bg bg-padayal-bg/50 focus:bg-white text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-padayal-primary"

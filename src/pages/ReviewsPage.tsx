@@ -20,7 +20,7 @@ const FALLBACK_REVIEWS: Review[] = [
     name: 'Dr. R. Vigneshwaran',
     email: 'vignesh@gmail.com',
     rating: 5,
-    comment: 'A true pioneer of South Indian natural food culture. No cooking oil and zero heat keeps the live enzymes intact. Outstanding natural dining concept in Coimbatore.',
+    comment: 'A true pioneer of South Indian natural food culture. The no-oil, no-boil culinary methods celebrate pure ingredients and traditional flavours. Outstanding natural dining concept in Coimbatore.',
     is_approved: true,
     is_featured: true,
     created_at: new Date(Date.now() - 86400000 * 5).toISOString(),
@@ -113,7 +113,7 @@ export function ReviewsPage() {
       <section className="relative py-16 sm:py-24 bg-[#183620] text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-3">
           <MessageSquare className="w-10 h-10 text-padayal-secondary mx-auto" />
-          <h1 className="font-pranic text-3xl sm:text-5xl font-black text-white tracking-tight">
+          <h1 className="font-editorial text-3xl sm:text-5xl font-black text-white tracking-tight">
             Guest Experiences & Reviews
           </h1>
           <p className="text-xs sm:text-sm text-cream-300 max-w-xl mx-auto leading-relaxed">
@@ -171,7 +171,7 @@ export function ReviewsPage() {
               <X className="w-5 h-5" />
             </button>
 
-            <h2 className="font-pranic text-2xl font-bold text-padayal-text mb-1">Share Your Experience</h2>
+            <h2 className="font-editorial text-2xl font-bold text-padayal-text mb-1">Share Your Experience</h2>
             <p className="text-xs text-padayal-muted mb-4">Your feedback helps fellow diners discover natural living.</p>
 
             {success ? (
@@ -179,7 +179,7 @@ export function ReviewsPage() {
                 <div className="w-14 h-14 rounded-full bg-padayal-secondary-light text-padayal-primary flex items-center justify-center mx-auto shadow-sm">
                   <CheckCircle className="w-8 h-8" />
                 </div>
-                <h3 className="font-pranic text-xl font-bold text-padayal-text">Thank You!</h3>
+                <h3 className="font-editorial text-xl font-bold text-padayal-text">Thank You!</h3>
                 <p className="text-xs text-padayal-muted">
                   Your review has been submitted for verification. Vanakkam!
                 </p>

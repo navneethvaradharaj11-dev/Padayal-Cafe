@@ -12,7 +12,7 @@ export function ReservationPage() {
           <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-padayal-secondary-light text-padayal-primary text-xs font-bold uppercase tracking-wider">
             <Leaf className="w-3.5 h-3.5" /> Padayal Coimbatore
           </span>
-          <h1 className="font-pranic text-3xl sm:text-5xl font-extrabold text-padayal-text tracking-tight">
+          <h1 className="font-editorial text-3xl sm:text-5xl font-extrabold text-padayal-text tracking-tight">
             Reserve Your Traditional Dining Experience
           </h1>
           <p className="text-xs sm:text-sm text-padayal-muted leading-relaxed">

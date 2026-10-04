@@ -59,7 +59,7 @@ export function ContactPage() {
       <section className="relative py-16 sm:py-24 bg-[#183620] text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-3">
           <MessageCircle className="w-10 h-10 text-padayal-secondary mx-auto" />
-          <h1 className="font-pranic text-3xl sm:text-5xl font-black text-white tracking-tight">
+          <h1 className="font-editorial text-3xl sm:text-5xl font-black text-white tracking-tight">
             Connect With Padayal
           </h1>
           <p className="text-xs sm:text-sm text-cream-300 max-w-xl mx-auto leading-relaxed">
@@ -74,7 +74,7 @@ export function ContactPage() {
           
           {/* Left Column: Contact Form */}
           <div className="lg:col-span-7 bg-padayal-surface rounded-3xl p-6 sm:p-8 shadow-organic border border-padayal-bg">
-            <h2 className="font-pranic text-2xl font-bold text-padayal-text mb-1">
+            <h2 className="font-editorial text-2xl font-bold text-padayal-text mb-1">
               Send Us an Enquiry
             </h2>
             <p className="text-xs text-padayal-muted mb-6">
@@ -92,7 +92,7 @@ export function ContactPage() {
                 <div className="w-14 h-14 rounded-full bg-padayal-primary text-white flex items-center justify-center mx-auto shadow-sm">
                   <CheckCircle className="w-8 h-8" />
                 </div>
-                <h3 className="font-pranic text-xl font-bold text-padayal-text">Message Received!</h3>
+                <h3 className="font-editorial text-xl font-bold text-padayal-text">Message Received!</h3>
                 <p className="text-xs sm:text-sm text-padayal-muted max-w-md mx-auto">
                   Vanakkam! Thank you for reaching out to Padayal Coimbatore. Our team will get back to you shortly.
                 </p>
@@ -146,7 +146,7 @@ export function ContactPage() {
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       className="w-full px-4 py-2.5 text-xs sm:text-sm rounded-xl border border-padayal-bg bg-padayal-bg/50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-padayal-primary"
-                      placeholder="+91 94882 00000"
+                      placeholder="+91 82202 26662"
                     />
                   </div>
 
