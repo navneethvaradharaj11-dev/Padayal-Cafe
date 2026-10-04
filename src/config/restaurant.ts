@@ -40,11 +40,22 @@ export interface OperatingHours {
   allDay: string;
 }
 
+export interface FounderInfo {
+  name: string;
+  tamilName: string;
+  title: string;
+  bio: string;
+  inspiration: string;
+  recipesCount: string;
+  image: string;
+}
+
 export interface RestaurantConfig {
   name: string;
   tamilName: string;
   tagline: string;
   tamilTagline: string;
+  founder: FounderInfo;
   founderCredit: string;
   conceptShort: string;
   conceptFull: string;
@@ -76,7 +87,16 @@ export const RESTAURANT_INFO: RestaurantConfig = {
   tamilName: 'படையல்',
   tagline: 'No Oil, No Boil — South Indian Natural Food',
   tamilTagline: 'எண்ணெய் இல்லா, அடுப்பில்லா இயற்கை உணவு',
-  founderCredit: 'Inspired by the pioneering No Oil No Boil movement in Coimbatore',
+  founder: {
+    name: 'Padayal Sivakumar (R. Sivakumar)',
+    tamilName: 'படையல் சிவகுமார்',
+    title: 'Pioneer & Natural Food Innovator',
+    bio: 'Guided by the wisdom of organic farming mentor G. Nammalvar and traditional nature-cure principles, Chef Padayal Sivakumar spent years developing the "No Oil, No Boil" culinary method. He reimagined over 2,500 authentic South Indian recipes using soaking, sprouted grains, stone-ground nut pastes, and fresh coconut milk — proving that traditional taste flourishes purely without fire or cooking oil.',
+    inspiration: 'Nammalvar Ecological Movement & Traditional Tamil Food Heritage',
+    recipesCount: '2,500+ Unboiled Recipes Created',
+    image: '/logo.png',
+  },
+  founderCredit: 'Founded by Chef Padayal Sivakumar in Coimbatore',
   conceptShort: 'Uncooked, unboiled South Indian traditional dining celebrating live enzymes, cold-pressed coconut extracts, native herbs, and natural vitality.',
   conceptFull: 'Padayal is Coimbatore’s renowned pioneer of natural dining. We serve authentic South Indian meals, tiffin, soups, and traditional sweets made completely without cooking oil, refined sugar, or artificial heat — preserving nature’s vital prana and pure flavours as intended.',
   location: {

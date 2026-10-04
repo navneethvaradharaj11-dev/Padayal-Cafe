@@ -13,6 +13,9 @@ import {
   Phone,
   CheckCircle2,
   ChevronRight,
+  Award,
+  ShieldCheck,
+  BookOpen,
 } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { MenuItem, Review } from '../types/database';
@@ -45,31 +48,31 @@ const CONCEPT_PILLARS = [
 
 const SIGNATURE_CATEGORIES = [
   {
-    title: 'Traditional Plantain Leaf Meals',
+    title: 'Traditional Plantain Leaf Virundhu',
     tamil: 'இயற்கை இலை விருந்து',
-    desc: 'Full South Indian feast with uncooked rice/aval, vegetable kootu, raw rasam, and chutneys.',
-    image: 'https://images.unsplash.com/photo-1610057099431-d73a1c9d2f2f?auto=format&fit=crop&w=600&q=80',
+    desc: 'The complete Coimbatore unboiled thali: Thooyamalli aval, sprouted moong kootu, raw coconut rasam, vegetable pachadi, and herbal thuvaiyal.',
+    image: 'https://images.unsplash.com/photo-1610057099431-d73a1c9d2f2f?auto=format&fit=crop&w=800&q=80',
     link: '/menu',
   },
   {
-    title: 'Raw Tiffin & Aval Delicacies',
+    title: 'Heritage Aval & Unboiled Tiffin',
     tamil: 'அவல் & இயற்கை சிற்றுண்டி',
-    desc: 'Spiced flattened red rice, coconut-curry leaf tossed aval, and fresh herbal pachadi.',
-    image: 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=600&q=80',
+    desc: 'Traditional flattened red rice tossed with Pollachi grated coconut, ginger, curry leaves, and black pepper, plus raw vazhaipoo vadai.',
+    image: 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=800&q=80',
     link: '/menu',
   },
   {
-    title: 'Live Sprouts & Native Salads',
+    title: 'Navadhanya Sprouts & Pachadi',
     tamil: 'முளைகட்டிய பயறு & பச்சடி',
-    desc: 'Sprouted green gram, native navadhanya, tender cucumber, and pomegranate relish.',
-    image: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=600&q=80',
+    desc: 'Nine native sprouted pulses and grains tossed with fresh coconut, pomegranate arils, and cold-pressed ash gourd (venpoosani) relish.',
+    image: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80',
     link: '/menu',
   },
   {
-    title: 'Tender Coconut Herbal Elixirs',
+    title: 'Tender Coconut & Native Elixirs',
     tamil: 'இளநீர் & மூலிகை சாறுகள்',
-    desc: 'Mudakathan, mint, tulsi, and wild amla cold pressed with pure coconut water.',
-    image: 'https://images.unsplash.com/photo-1546173159-315724a31696?auto=format&fit=crop&w=600&q=80',
+    desc: 'Fresh Pollachi tender coconut water cold-blended with native lemongrass, wild ginger, holy basil (tulsi), and natural palm nectar.',
+    image: 'https://images.unsplash.com/photo-1546173159-315724a31696?auto=format&fit=crop&w=800&q=80',
     link: '/menu',
   },
 ];
@@ -77,15 +80,15 @@ const SIGNATURE_CATEGORIES = [
 const SAMPLE_DISHES: MenuItem[] = [
   {
     id: 'padayal-raja-virundhu',
-    name: 'Padayal Traditional Raja Virundhu',
+    name: 'Padayal Traditional Raja Virundhu (Plantain Leaf Feast)',
     category: 'mains',
-    description: 'Complete South Indian plantain leaf feast featuring seasoned red aval, sprouted gram kootu, raw coconut milk rasam, cucumber pachadi, and palm jaggery payasam.',
+    description: 'Authentic fire-free South Indian thali: Thooyamalli red aval sadham, sprouted moong kootu, raw coconut milk rasam, venpoosani pachadi, curry leaf thuvaiyal, and palm jaggery payasam.',
     price: 240,
     calories: 360,
     preparation_time: 12,
     protein: 14.5,
     image_url: 'https://images.unsplash.com/photo-1610057099431-d73a1c9d2f2f?auto=format&fit=crop&w=800&q=80',
-    ingredients: ['Red Aval', 'Sprouted Green Gram', 'Fresh Coconut Milk', 'Curry Leaves', 'Ginger', 'Himalayan Salt'],
+    ingredients: ['Thooyamalli Red Aval', 'Sprouted Moong', 'Fresh Coconut Milk', 'Curry Leaves', 'Ginger', 'Himalayan Rock Salt'],
     health_benefits: ['100% Fire-Free', 'High Plant Protein', 'Live Enzymes'],
     is_available: true,
     is_featured: true,
@@ -94,16 +97,16 @@ const SAMPLE_DISHES: MenuItem[] = [
   },
   {
     id: 'sprouted-navadhanya-salad',
-    name: 'Sprouted Navadhanya Live Protein Bowl',
+    name: 'Navadhanya Sprouted Pulses Live Protein Bowl',
     category: 'salads',
-    description: 'Nine sprouted native pulses and grains tossed with fresh grated coconut, pomegranate pearls, native coriander, and cold-pressed lemon-ginger dressing.',
+    description: 'Nine sprouted native grains and pulses tossed with freshly grated coconut, sweet pomegranate pearls, country coriander, and lime-ginger dressing.',
     price: 180,
     calories: 220,
     preparation_time: 8,
     protein: 16.0,
     image_url: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80',
-    ingredients: ['Sprouted Moong', 'Sprouted Cowpea', 'Grated Coconut', 'Pomegranate', 'Lemon Juice'],
-    health_benefits: ['Zero Oil', 'Immunity Boost', 'Digestive Health'],
+    ingredients: ['Sprouted Green Gram', 'Cowpeas', 'Fresh Scraped Coconut', 'Pomegranate', 'Lemon Juice'],
+    health_benefits: ['Zero Oil', 'Live Enzymes', 'Cardio Friendly'],
     is_available: true,
     is_featured: true,
     created_at: new Date().toISOString(),
@@ -111,16 +114,16 @@ const SAMPLE_DISHES: MenuItem[] = [
   },
   {
     id: 'coconut-elixir-lemongrass',
-    name: 'Tender Coconut & Lemongrass Herbal Elixir',
+    name: 'Pollachi Tender Coconut & Lemongrass Elixir',
     category: 'beverages',
-    description: 'Freshly harvested Pollachi tender coconut water blended with native lemongrass, crushed ginger, and natural palm honey.',
+    description: 'Naturally sweet water of fresh Pollachi tender coconut cold-infused with organic native lemongrass, wild ginger extract, and unrefined palm nectar.',
     price: 130,
     calories: 85,
     preparation_time: 5,
     protein: 1.5,
     image_url: 'https://images.unsplash.com/photo-1546173159-315724a31696?auto=format&fit=crop&w=800&q=80',
     ingredients: ['Tender Coconut Water', 'Native Lemongrass', 'Wild Ginger', 'Natural Palm Nectar'],
-    health_benefits: ['Hydration & Electrolytes', 'Natural Detox', 'No Added Sugar'],
+    health_benefits: ['Natural Electrolytes', 'Pure Hydration', 'No Refined Sugar'],
     is_available: true,
     is_featured: true,
     created_at: new Date().toISOString(),
@@ -128,16 +131,16 @@ const SAMPLE_DISHES: MenuItem[] = [
   },
   {
     id: 'palm-nectar-payasam',
-    name: 'Tender Coconut & Palm Nectar Payasam',
+    name: 'Elaneer (Tender Coconut) & Palm Jaggery Payasam',
     category: 'desserts',
-    description: 'Velvety raw pudding of tender coconut pulp, crushed dry fruits, cardamom powder, and unrefined palm jaggery syrup. 100% dairy-free.',
+    description: 'Velvety unboiled traditional sweet prepared with young coconut pulp, ground cashew cream, crushed cardamom, and unrefined palm jaggery syrup.',
     price: 160,
     calories: 190,
     preparation_time: 6,
     protein: 4.2,
     image_url: 'https://images.unsplash.com/photo-1606312619070-d48b4c652a52?auto=format&fit=crop&w=800&q=80',
-    ingredients: ['Tender Coconut Pulp', 'Palm Jaggery', 'Green Cardamom', 'Crushed Almonds'],
-    health_benefits: ['No Refined Sugar', 'Plant Based', 'Heart Healthy'],
+    ingredients: ['Young Coconut Pulp', 'Palm Jaggery', 'Green Cardamom', 'Crushed Almonds'],
+    health_benefits: ['Zero Refined Sugar', 'Plant Based', 'Cooling Prana'],
     is_available: true,
     is_featured: true,
     created_at: new Date().toISOString(),
@@ -507,7 +510,148 @@ export function HomePage() {
         )}
       </section>
 
-      {/* 5. FEATURED EXPERIENCE: The Plantain Leaf Feast */}
+      {/* 5. ABOUT PADAYAL: Philosophy & Living Traditions */}
+      <section className="bg-padayal-surface py-16 sm:py-24 border-y border-padayal-bg">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+          
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div className="lg:col-span-7 space-y-6">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-padayal-secondary-light text-padayal-primary text-xs font-bold uppercase tracking-wider">
+                <BookOpen className="w-3.5 h-3.5" />
+                <span>About Padayal</span>
+              </div>
+              
+              <h2 className="font-pranic text-3xl sm:text-5xl font-extrabold text-padayal-text leading-tight">
+                "More Than Food.<br />
+                <span className="text-padayal-cta italic">A Different Way of Eating."</span>
+              </h2>
+
+              <p className="text-sm sm:text-base text-padayal-muted leading-relaxed">
+                Padayal is Coimbatore’s pioneer of natural, fireless South Indian dining. Born from ancient Tamil nature-cure wisdom, our kitchen prepares authentic spreads without turning on a flame or pouring a drop of refined oil.
+              </p>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                <div className="bg-padayal-bg p-5 rounded-2xl border border-padayal-bg space-y-2">
+                  <div className="flex items-center gap-2 text-padayal-primary font-bold text-sm">
+                    <Leaf className="w-4 h-4 text-padayal-primary" />
+                    <span>Pure No Oil, No Boil</span>
+                  </div>
+                  <p className="text-xs text-padayal-muted leading-relaxed">
+                    By keeping foods uncooked, delicate vitamins and live enzymes remain undisturbed — giving you clean nutrition that feels light and energizing.
+                  </p>
+                </div>
+
+                <div className="bg-padayal-bg p-5 rounded-2xl border border-padayal-bg space-y-2">
+                  <div className="flex items-center gap-2 text-padayal-primary font-bold text-sm">
+                    <ShieldCheck className="w-4 h-4 text-padayal-primary" />
+                    <span>Tamil Heritage & Prana</span>
+                  </div>
+                  <p className="text-xs text-padayal-muted leading-relaxed">
+                    We draw from traditional Tamil heritage: Thooyamalli red aval, stone-crushed chutneys, sprouted pulses, and freshly pressed coconut milk.
+                  </p>
+                </div>
+              </div>
+
+              <div className="pt-2">
+                <Link
+                  to="/about"
+                  className="inline-flex items-center gap-2 text-sm font-bold text-padayal-primary hover:text-padayal-primary-hover transition-colors"
+                >
+                  <span>Read our complete philosophy</span>
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+            </div>
+
+            <div className="lg:col-span-5 flex flex-col items-center">
+              <div className="w-full max-w-md bg-white rounded-3xl p-8 border-4 border-padayal-bg shadow-xl text-center space-y-5">
+                <div className="w-32 h-32 mx-auto rounded-2xl bg-padayal-bg/60 p-3 flex items-center justify-center border border-padayal-bg">
+                  <img
+                    src="/logo.png"
+                    alt="Padayal No Oil No Boil Logo"
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                <div>
+                  <h3 className="font-pranic text-2xl font-bold text-padayal-text">
+                    படையல்
+                  </h3>
+                  <p className="text-xs font-bold text-padayal-cta uppercase tracking-wider mt-1">
+                    அடுப்பில்லா எண்ணெயில்லா உணவகம்
+                  </p>
+                </div>
+                <p className="text-xs text-padayal-muted leading-relaxed border-t border-padayal-bg pt-4">
+                  Serving wholesome traditional food culture in Coimbatore with plantain-leaf hospitality and natural living principles.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Founder Section */}
+          <div className="bg-[#112415] text-white rounded-3xl p-8 sm:p-12 lg:p-16 shadow-2xl relative overflow-hidden">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+              
+              <div className="lg:col-span-4 flex flex-col items-center">
+                <div className="w-48 sm:w-56 aspect-square rounded-3xl bg-white p-4 shadow-xl border-4 border-[#224b2d] flex items-center justify-center overflow-hidden">
+                  <img
+                    src="/logo.png"
+                    alt="Chef Padayal Sivakumar Emblem"
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                <div className="text-center mt-4">
+                  <h4 className="font-pranic text-xl font-bold text-white">
+                    {RESTAURANT_INFO.founder.name}
+                  </h4>
+                  <p className="text-xs text-padayal-secondary font-semibold">
+                    {RESTAURANT_INFO.founder.tamilName} • {RESTAURANT_INFO.founder.title}
+                  </p>
+                </div>
+              </div>
+
+              <div className="lg:col-span-8 space-y-5">
+                <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 text-padayal-secondary text-xs font-bold uppercase tracking-wider">
+                  <Award className="w-3.5 h-3.5" />
+                  <span>The Story Behind Padayal</span>
+                </div>
+
+                <h3 className="font-pranic text-2xl sm:text-4xl font-extrabold text-white leading-tight">
+                  Pioneering Fireless Culinary Art in Coimbatore
+                </h3>
+
+                <p className="text-xs sm:text-sm text-cream-200 leading-relaxed">
+                  {RESTAURANT_INFO.founder.bio}
+                </p>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 text-xs">
+                  <div className="bg-white/10 p-4 rounded-xl border border-white/10 space-y-1">
+                    <span className="text-padayal-secondary font-bold block">Mentorship & Inspiration</span>
+                    <p className="text-cream-300">{RESTAURANT_INFO.founder.inspiration}</p>
+                  </div>
+                  <div className="bg-white/10 p-4 rounded-xl border border-white/10 space-y-1">
+                    <span className="text-padayal-secondary font-bold block">Culinary Innovation</span>
+                    <p className="text-cream-300">{RESTAURANT_INFO.founder.recipesCount}</p>
+                  </div>
+                </div>
+
+                <div className="pt-2">
+                  <Link
+                    to="/about"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-padayal-cta text-white text-xs sm:text-sm font-bold shadow-md hover:bg-padayal-cta-hover transition-colors"
+                  >
+                    <span>Read Full Founder Story</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* 6. FEATURED EXPERIENCE: The Plantain Leaf Feast */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-[#1B4329] text-white rounded-3xl p-8 sm:p-12 lg:p-16 shadow-2xl relative overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
