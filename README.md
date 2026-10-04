@@ -1,161 +1,156 @@
-# 🌿 Padayal - Natural Food Web & Mobile Application
+# Padayal Cafe
 
-[![Vercel Deployment](https://img.shields.io/badge/Vercel-Deployed-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://padayal-cafe.vercel.app)
-[![GitHub Repository](https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/navneethvaradharaj11-dev/Padayal-Cafe)
-[![React](https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
-[![Vite](https://img.shields.io/badge/Vite-5.4-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
+<p align="center">
+  <img src="public/logo.png" alt="Padayal logo" width="260" />
+</p>
 
-A modern, mobile-first, production-ready Restaurant Web & Mobile Application for **Padayal** — South India's renowned **"No Oil, No Boil"** natural food dining concept. Crafted with React, TypeScript, Tailwind CSS, and persistent context providers.
+<p align="center">
+  <strong>Padayal • No Oil • No Boil • Restaurant</strong>
+</p>
 
----
+A modern restaurant and dining experience built with React, TypeScript, and Tailwind CSS for Padayal, a South Indian natural-food concept focused on traditional ingredients, no refined oil, and wholesome plant-based meals.
 
-## 🌟 Live Demo & Links
+## Overview
 
-- 🚀 **Live Production Application**: [https://padayal-cafe.vercel.app](https://padayal-cafe.vercel.app)
-- 📦 **GitHub Repository**: [https://github.com/navneethvaradharaj11-dev/Padayal-Cafe](https://github.com/navneethvaradharaj11-dev/Padayal-Cafe)
+Padayal is a mobile-first restaurant web application designed to showcase the brand, menu, dining experience, reservations, and order flow for a natural-food restaurant in Coimbatore. The app includes a catalog of menu items, promotional offers, order tracking, table booking, and a polished customer-facing experience built around an organic, earthy visual style.
 
----
+The project is a Vite + React application and uses local state persistence for cart and order data, with fallback behavior for Supabase-backed features when database configuration is not present.
 
-## 🎨 Natural Food Color Palette & Design System
+## Features
 
-The visual theme strictly follows an organic, earth-toned **Natural Food** aesthetic:
+- Interactive menu browsing with category filtering and item details
+- Customization flow for add-ons, portion size, and price updates
+- Cart and checkout experience with promo code validation and order breakdown
+- Order tracking and status updates for dine-in, takeaway, and delivery
+- Table reservation flow with booking details and confirmation reference
+- Mobile-first UI for restaurant browsing on phones and tablets
+- Brand storytelling for the Padayal philosophy, ingredients, and heritage
+- Admin dashboard patterns for menu, reservations, contacts, and gallery management via Supabase
 
-| Token | Semantic Color Name | Hex Code | Purpose |
-| :--- | :--- | :--- | :--- |
-| **Primary** | Leafy Banana Green | `#2B7A4B` | Headers, Brand Logo, Primary Buttons |
-| **Action / CTA** | Heritage Terracotta Brown | `#965A38` | Order CTA Buttons, Highlights |
-| **Secondary Accent** | Muted Sage / Lemongrass | `#8A9A5B` | Badges, Tags, Active Indicators |
-| **Background** | Raw Coconut Milk | `#FAF8F5` | Neutral Body Canvas |
-| **Surface Container** | Pure Crisp White | `#FFFFFF` | Cards, Modals, Drawers |
-| **Typography Base** | Deep Forest Shadows | `#112415` | Titles & High Contrast Body Text |
+## Tech Stack
 
-### 🖋️ Typography Hierarchy
-- **Sans Base**: `Plus Jakarta Sans`
-- **Display Headings**: `Outfit`
-- **Editorial Titles**: `Fraunces`
-- **Handwritten Accent**: `Caveat`
+- React 18
+- TypeScript
+- Vite
+- Tailwind CSS
+- React Router DOM
+- Supabase JS client
+- Lucide React icons
 
----
+## Project Structure
 
-## 🔥 Key Modules & Features
-
-### 1. 🥗 Interactive Gourmet Menu Catalog
-- **Category Filter Tabs**: Horizontal scrollable categories (*All Catalog, Raw Salads, Mains, Cold Press & Elixirs, Desserts, Herbal Soups, Chef Specials*).
-- **Dietary Preference Pills**: Filter by `🌿 No Oil`, `🔥 Fire-Free`, `🥥 Plant-Based`, `🌾 Gluten-Free`, `⭐ Chef Special`.
-- **Search Engine**: Real-time instant search bar for dish names, descriptions, and raw ingredients.
-
-### 2. 🛠️ Item Customization Modal
-- **Portion Size Selector**: Regular / Sharing Bowl with price modifiers.
-- **Fresh Add-ons**: Multi-select raw ingredients (*Raw Coconut Dip, Organic Sprouted Gram, Pomegranate Crunch*).
-- **Chef Notes**: Special preparation instructions and allergy notes.
-- **Dynamic Price Calculator**: Calculates total item cost live based on portion size, add-ons, and quantity.
-
-### 3. 🛒 Order System & Slide-Over Cart Drawer
-- **Order Type Selector**: Toggle between **Dine-In (Table #)**, **Takeaway**, and **Delivery (Address Input)**.
-- **Promo Code Validation**: Supports instant promo validation for:
-  - `PADAYAL10` — 10% OFF
-  - `NATURAL20` — 20% OFF
-  - `WELCOME50` — Flat ₹50 OFF
-- **Staff Tip Selector**: Interactive tip buttons (0%, 10%, 15%, 20%).
-- **Bill Breakdown**: Transparent breakdown for Subtotal, Promo Savings, Delivery Fee, 5% GST, Staff Tip, and Grand Total.
-- **Checkout Flow**: Checkout page supporting UPI (GPay/PhonePe), Apple Pay, Card, and Cash.
-
-### 4. ⏱️ Live Kitchen Order Tracker
-- **4-Stage Progress Timeline**: Visual progress tracking (*Confirmed ➔ In Kitchen ➔ Ready / On Way ➔ Served / Delivered*).
-- **Real-Time Countdown Timer**: Live preparation countdown clock.
-- **Quick Action Buttons**: View digital receipt summary & direct restaurant call.
-
-### 5. 📅 Instant Table Reservation System
-- **Booking Form**: Select Date, Party Size (1 to 10+ guests), Time Slot, and Seating Environment (*Indoor Dining Hall, Garden Patio, Sky Rooftop*).
-- **Confirmation Reference**: Generates unique booking reference code (e.g. `#RES-9402`).
-
-### 6. 📱 Mobile-First App Container Layout
-- **Smartphone Container Layout**: Centered mobile app width card container layout with soft organic background canvas.
-- **Sticky Bottom Navigation**: Quick tab switching (*Home, Menu, Live Tracking, Reservation, Cart Drawer*).
-- **State Persistence**: Cart items and placed order state back up to `localStorage` automatically.
-
----
-
-## 📂 Folder Structure
-
-```
-padayal-restaurant-app-development/
+```text
+Padayal-Cafe/
+├── public/
+│   ├── images/
+│   ├── icons/
+│   ├── logo.png
+│   ├── manifest.json
+│   └── favicon.svg
 ├── src/
 │   ├── components/
-│   │   ├── cart/            # CartDrawer & TipSelector
-│   │   ├── common/          # BottomNav & ItemCustomizerModal
-│   │   ├── layout/          # Header, Footer, Layout wrapper
-│   │   ├── reservation/     # TableBookingForm
-│   │   ├── tracking/        # OrderStatusTimeline
-│   │   └── ui/              # Skeletons & reusable UI elements
-│   ├── config/              # Restaurant info & promo code rules
-│   ├── context/             # CartContext & OrderContext
-│   ├── lib/                 # Supabase client with safe fallback
-│   ├── pages/               # Application views (HomePage, MenuPage, CartCheckoutPage, etc.)
-│   ├── types/               # TypeScript interfaces (menu, cart, order, reservation)
-│   ├── utils/               # Currency formatting & total calculation utilities
-│   ├── App.tsx              # React Router setup & Context Wrappers
-│   ├── index.css            # Base Tailwind styles & custom fonts
-│   └── main.tsx             # Entry point
-├── index.html               # Google Fonts preconnect & HTML entry
-├── tailwind.config.js       # Semantic color tokens & typography setup
-├── vite.config.ts           # Vite build configuration
-└── package.json             # Project dependencies & scripts
+│   ├── config/
+│   ├── context/
+│   ├── hooks/
+│   ├── lib/
+│   ├── pages/
+│   ├── types/
+│   ├── utils/
+│   ├── App.tsx
+│   ├── index.css
+│   └── main.tsx
+├── index.html
+├── package.json
+├── tailwind.config.js
+├── vite.config.ts
+├── tsconfig.json
+├── tsconfig.app.json
+├── tsconfig.node.json
+├── eslint.config.js
+├── postcss.config.js
+├── .gitignore
+└── README.md
 ```
 
----
+## Prerequisites
 
-## 🛠️ Local Development Setup
+- Node.js 18+
+- npm 9+
 
-### Prerequisites
-- Node.js >= 18.0.0
-- npm >= 9.0.0
+## Installation
 
-### Step-by-Step Installation
-
-1. **Clone the Repository**:
-   ```bash
-   git clone https://github.com/navneethvaradharaj11-dev/Padayal-Cafe.git
-   cd Padayal-Cafe
-   ```
-
-2. **Install Dependencies**:
-   ```bash
-   npm install
-   ```
-
-3. **Start Development Server**:
-   ```bash
-   npm run dev
-   ```
-   The local application will be available at `http://localhost:5173`.
-
-4. **Production Build & Verification**:
-   ```bash
-   npm run build
-   ```
-   Output bundle generated in the `dist/` directory.
-
----
-
-## 🚀 Deployment
-
-### Deploying to Vercel
 ```bash
-npx vercel --prod
+git clone https://github.com/navneethvaradharaj11-dev/Padayal-Cafe.git
+cd Padayal-Cafe
+npm install
 ```
 
-### Git Commit & Push
+## Environment Variables
+
+The app uses Supabase through `src/lib/supabase.ts` and falls back to placeholder values when environment variables are not configured.
+
+Create a `.env` file in the project root if you want to enable live Supabase-backed features:
+
 ```bash
-git add .
-git commit -m "feat: update documentation and mobile app features"
-git push origin main
+VITE_SUPABASE_URL=https://your-project.supabase.co
+VITE_SUPABASE_ANON_KEY=your-anon-key
 ```
 
----
+Without these values, the app still runs in a local/demo state with graceful fallbacks.
 
-## 📄 License
+## Running the App
 
-This project is open source and available under the [MIT License](LICENSE).
+### Development
+
+```bash
+npm run dev
+```
+
+The local development server typically runs at:
+
+```text
+http://localhost:5173
+```
+
+### Production Build
+
+```bash
+npm run build
+```
+
+### Preview Production Build
+
+```bash
+npm run preview
+```
+
+### Type Check
+
+```bash
+npm run typecheck
+```
+
+### Lint
+
+```bash
+npm run lint
+```
+
+## Deployment
+
+The repository includes a Vercel deployment badge and the project is intended to be deployable to Vercel. The app also includes PWA metadata and static assets under `public/` for branding and mobile installation support.
+
+## Notes
+
+- The project includes a restaurant brand identity and gallery assets under `public/images/`.
+- The interface is designed around a no-oil, traditional South Indian food concept and organic visual branding.
+- Supabase connectivity is optional and the app is resilient when the database tables are unavailable.
+
+## Contribution
+
+Contributions are welcome. If you plan to extend the app, keep the project in line with the existing design language and restaurant experience.
+
+## Repository Status
+
+This project is currently a front-end restaurant application with design, menu, cart, reservation, and ordering workflows in place. It is suitable for further enhancement, branding refinement, and integration with live backend data.
+
