@@ -39,8 +39,8 @@ export function Footer() {
           {/* Column 1: Restaurant Brand */}
           <div className="space-y-4">
             <Link to="/" className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-2xl bg-padayal-primary text-white flex items-center justify-center shadow-md">
-                <Leaf className="w-6 h-6 fill-current text-cream-100" />
+              <div className="w-10 h-10 rounded-xl bg-white p-1 flex items-center justify-center shadow-md overflow-hidden">
+                <img src="/logo.png" alt="Padayal Logo" className="w-full h-full object-contain" />
               </div>
               <div>
                 <span className="font-pranic text-2xl font-bold text-white tracking-tight leading-none block">

@@ -99,13 +99,21 @@ export function AboutPage() {
             </div>
           </div>
 
-          <div className="lg:col-span-5">
-            <div className="aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-forest-900">
+          <div className="lg:col-span-5 flex flex-col items-center">
+            <div className="w-full max-w-sm rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-white p-6 flex flex-col items-center text-center space-y-4">
               <img
-                src="https://images.unsplash.com/photo-1610057099431-d73a1c9d2f2f?auto=format&fit=crop&w=800&q=80"
-                alt="Padayal Plantain Leaf Meal"
-                className="w-full h-full object-cover"
+                src="/logo.png"
+                alt="Padayal No Oil No Boil Logo"
+                className="w-48 h-auto object-contain"
               />
+              <div className="border-t border-padayal-bg pt-3 w-full">
+                <span className="font-pranic text-lg font-bold text-padayal-text block">
+                  அடுப்பில்லா எண்ணெயில்லா உணவகம்
+                </span>
+                <span className="text-xs text-padayal-muted block mt-1">
+                  Founded on authentic natural living principles in Coimbatore, Tamil Nadu
+                </span>
+              </div>
             </div>
           </div>
 

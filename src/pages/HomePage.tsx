@@ -322,8 +322,9 @@ export function HomePage() {
                 </div>
 
                 {/* Floating badge top right */}
-                <div className="absolute -top-4 -right-4 bg-padayal-cta text-white px-4 py-2 rounded-2xl shadow-xl font-bold text-xs flex items-center gap-1.5">
-                  <span>100% Unboiled Prana</span>
+                <div className="absolute -top-4 -right-4 bg-white p-1 rounded-2xl shadow-xl border border-padayal-bg flex items-center gap-2 pr-3">
+                  <img src="/logo.png" alt="Padayal Emblem" className="w-8 h-8 object-contain" />
+                  <span className="text-[11px] font-bold text-padayal-primary">100% Unboiled</span>
                 </div>
 
               </div>

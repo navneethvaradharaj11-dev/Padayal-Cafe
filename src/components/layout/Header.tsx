@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Leaf, ShoppingBag, Calendar, Phone, MapPin } from 'lucide-react';
+import { Menu, X, ShoppingBag, Calendar, Phone, MapPin } from 'lucide-react';
 import { useCart } from '../../context/CartContext';
 import { RESTAURANT_INFO } from '../../config/restaurant';
 
@@ -74,8 +74,8 @@ export function Header() {
           
           {/* Brand Logo & Slogan */}
           <Link to="/" className="flex items-center gap-3 group shrink-0" aria-label="Padayal Home">
-            <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-padayal-primary text-white flex items-center justify-center shadow-md shadow-padayal-primary/20 group-hover:scale-105 transition-transform duration-300">
-              <Leaf className="w-6 h-6 fill-current text-cream-100" />
+            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-white p-1 border border-padayal-bg shadow-sm flex items-center justify-center overflow-hidden group-hover:scale-105 transition-transform duration-300">
+              <img src="/logo.png" alt="Padayal Logo" className="w-full h-full object-contain" />
             </div>
             <div className="flex flex-col">
               <div className="flex items-baseline gap-1.5">
