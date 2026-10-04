@@ -1,340 +1,229 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, Leaf, Heart, Target, Eye, Users, Award } from 'lucide-react';
+import { Leaf, Heart, Target, Eye, Sparkles, CheckCircle2, MapPin } from 'lucide-react';
+import { RESTAURANT_INFO } from '../config/restaurant';
 
-const VALUES = [
-  {
-    icon: Heart,
-    title: 'Health First',
-    description: 'We prioritize your well-being in every dish we create, using cooking methods that preserve nutrients.',
-  },
+const CORE_VALUES = [
   {
     icon: Leaf,
-    title: 'Natural Ingredients',
-    description: 'Only the finest, freshest, and most natural ingredients make it to your plate.',
+    title: '100% Raw & Unboiled',
+    description: 'We honour the vital prana in natural produce by serving it uncooked and unboiled, preserving all vitamins and live enzymes intact.',
   },
   {
-    icon: Target,
-    title: 'No Compromise',
-    description: 'We never compromise on quality or health for convenience or cost.',
+    icon: Heart,
+    title: 'Zero Cooking Oils',
+    description: 'We use zero refined oils or trans-fats. Natural healthy fats are derived solely from fresh coconut, native seeds, and unheated pulses.',
+  },
+  {
+    icon: Sparkles,
+    title: 'Traditional Tamil Heritage',
+    description: 'Our preparations celebrate native South Indian wisdom — plantain leaf presentation, red aval, native greens, and earthen vessels.',
   },
 ];
 
-const TIMELINE = [
+const PHILOSOPHY_PILLARS = [
   {
-    year: '2015',
-    title: 'The Seed is Planted',
-    description: 'Our founder, Chef Murugan, began experimenting with oil-free cooking after his father\'s heart condition required a dietary change.',
+    step: '01',
+    title: 'Food as Natural Medicine (உணவே மருந்து)',
+    desc: 'Ancient Tamil Siddha and nature-cure traditions taught that natural, unheated food has innate healing intelligence. When food is not destroyed by high heat or rancid oils, it nourishes and rejuvenates every cell.',
   },
   {
-    year: '2017',
-    title: 'Recipe Development',
-    description: 'After two years of perfecting recipes, we developed over 50 dishes that taste delicious without a drop of oil.',
+    step: '02',
+    title: 'Sprouting & Bio-Availability',
+    desc: 'Sprouting pulses and grains multiplies their enzymatic activity, Vitamin C, and bio-available plant protein while breaking down anti-nutrients for easy, light digestion.',
   },
   {
-    year: '2019',
-    title: 'Padayal Opens',
-    description: 'We opened our doors in Chennai, introducing the world to the concept of No Oil No Boil cooking.',
+    step: '03',
+    title: 'Cold-Pressed Fresh Extracts',
+    desc: 'Pure tender coconut water, freshly scraped coconut milk, and cold-extracted native herbs replace processed sauces and animal fats with clean, cooling nutrition.',
   },
   {
-    year: '2021',
-    title: 'Recognition',
-    description: 'Padayal receives the "Healthiest Restaurant" award from the Tamil Nadu Health Association.',
-  },
-  {
-    year: '2024',
-    title: 'Growing Family',
-    description: 'Over 50,000 guests have experienced our unique dining, and the Padayal family continues to grow.',
+    step: '04',
+    title: 'Eco-Friendly Traditional Dining',
+    desc: 'We serve meals on freshly cut green plantain leaves, avoiding single-use plastics and honouring our cultural connection to mother nature.',
   },
 ];
 
 export function AboutPage() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen pb-16 bg-padayal-bg">
+      
       {/* Hero Section */}
-      <section className="relative py-24 bg-forest-800">
-        <div className="absolute inset-0 opacity-20">
-          <img
-            src="https://images.pexels.com/photos/260922/pexels-photo-260922.jpeg?auto=compress&cs=tinysrgb&w=1920"
-            alt=""
-            className="w-full h-full object-cover"
-          />
-        </div>
-        <div className="container-custom relative z-10 text-center">
-          <h1 className="heading-xl text-white mb-4">Our Story</h1>
-          <p className="text-xl text-cream-200 max-w-2xl mx-auto">
-            A journey of passion, health, and the revolutionary concept of
-            cooking without oil.
+      <section className="relative py-16 sm:py-24 bg-[#183620] text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-4">
+          <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-white/10 backdrop-blur-md text-cream-200 text-xs font-semibold">
+            <Leaf className="w-3.5 h-3.5 text-padayal-secondary" /> Padayal Coimbatore Story
+          </span>
+          <h1 className="font-pranic text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight">
+            The South Indian Natural Food Movement
+          </h1>
+          <p className="text-sm sm:text-lg text-cream-300 max-w-2xl mx-auto leading-relaxed">
+            Discover the philosophy behind "No Oil, No Boil" — authentic South Indian traditional food served fresh in its live, natural state.
           </p>
         </div>
       </section>
 
-      {/* Founder Story */}
-      <section className="section-padding">
-        <div className="container-custom">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="order-2 lg:order-1">
-              <span className="inline-block px-4 py-2 rounded-full bg-forest-100 text-forest-800 text-sm font-medium mb-4">
-                Our Founder
-              </span>
-              <h2 className="heading-lg text-earth-800 mb-6">
-                Chef Murugan Subramanian
-              </h2>
-              <p className="text-body-lg mb-4">
-                A culinary artist with over 25 years of experience, Chef
-                Murugan discovered the transformative power of oil-free cooking
-                when his father was diagnosed with severe heart disease in
-                2014.
-              </p>
-              <p className="text-body-lg mb-4">
-                "Doctors said my father needed to change his diet drastically.
-                As a chef, I took it as a challenge—could I create food that was
-                both healthy and delicious? After countless experiments, I
-                discovered that the secret wasn't in adding things, but in
-                taking away—removing oil and letting natural flavors shine."
-              </p>
-              <p className="text-body-lg mb-6">
-                Today, Chef Murugan's father is healthier than ever, and
-                Padayal has helped thousands of people discover that healthy
-                food can be the most delicious food of all.
-              </p>
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-lg bg-forest-100 flex items-center justify-center">
-                  <Award className="w-6 h-6 text-forest-700" />
-                </div>
-                <div>
-                  <p className="font-semibold text-earth-800">Award-Winning Chef</p>
-                  <p className="text-sm text-earth-500">Tamil Nadu Culinary Excellence Award</p>
-                </div>
-              </div>
-            </div>
+      {/* Movement & Origin */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          
+          <div className="lg:col-span-7 space-y-5">
+            <span className="text-xs font-bold text-padayal-primary uppercase tracking-wider">
+              Our Roots in Coimbatore
+            </span>
+            <h2 className="font-pranic text-3xl sm:text-4xl font-extrabold text-padayal-text leading-tight">
+              A Revolution in South Indian Dining
+            </h2>
+            <p className="text-sm sm:text-base text-padayal-muted leading-relaxed">
+              Padayal was born out of a profound realisation: modern cooking has become overly reliant on deep-frying, extreme boiling, and refined additives that strip away the healing essence of food.
+            </p>
+            <p className="text-sm sm:text-base text-padayal-muted leading-relaxed">
+              Inspired by the pioneering No Oil No Boil movement in Tamil Nadu, our kitchen in Coimbatore prepares complete traditional South Indian spreads — from spicy rasam to hearty meals and tiffin — entirely without turning on a fire or pouring a drop of cooking oil.
+            </p>
+            <p className="text-sm sm:text-base text-padayal-muted leading-relaxed">
+              Our guests do not just eat; they experience a noticeable surge in physical vitality, mental clarity, and comfortable digestion that only live enzymes can provide.
+            </p>
 
-            <div className="order-1 lg:order-2 relative">
-              <div className="aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl shadow-earth-900/20">
-                <img
-                  src="https://images.pexels.com/photos/1438636/pexels-photo-1438636.jpeg?auto=compress&cs=tinysrgb&w=800"
-                  alt="Chef Murugan"
-                  className="w-full h-full object-cover"
-                />
+            <div className="pt-2 flex items-center gap-4 text-xs font-bold text-padayal-text">
+              <div className="flex items-center gap-1.5">
+                <CheckCircle2 className="w-4 h-4 text-padayal-primary" />
+                <span>Zero Refined Sugar</span>
               </div>
-              <div className="absolute -bottom-6 -right-6 max-w-xs bg-forest-800 rounded-xl p-4 text-white shadow-xl">
-                <p className="text-3xl font-bold font-display">25+</p>
-                <p className="text-forest-200">Years of Culinary Excellence</p>
+              <div className="flex items-center gap-1.5">
+                <CheckCircle2 className="w-4 h-4 text-padayal-primary" />
+                <span>Zero Frying</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <CheckCircle2 className="w-4 h-4 text-padayal-primary" />
+                <span>100% Unboiled</span>
               </div>
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* Mission & Vision */}
-      <section className="section-padding bg-forest-50">
-        <div className="container-custom">
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="card p-8">
-              <div className="w-14 h-14 rounded-xl bg-forest-700 flex items-center justify-center mb-6">
-                <Target className="w-7 h-7 text-white" />
-              </div>
-              <h3 className="heading-md text-earth-800 mb-4">Our Mission</h3>
-              <p className="text-body-lg">
-                To revolutionize healthy eating by proving that nutritious food
-                can be delicious, satisfying, and accessible to everyone. We
-                believe that every meal should nourish both body and soul.
-              </p>
-            </div>
-
-            <div className="card p-8">
-              <div className="w-14 h-14 rounded-xl bg-earth-700 flex items-center justify-center mb-6">
-                <Eye className="w-7 h-7 text-white" />
-              </div>
-              <h3 className="heading-md text-earth-800 mb-4">Our Vision</h3>
-              <p className="text-body-lg">
-                A world where healthy eating is the norm, not the exception.
-                Where restaurants everywhere adopt cooking methods that
-                prioritize health without sacrificing taste. We aim to lead
-                this revolution.
-              </p>
+          <div className="lg:col-span-5">
+            <div className="aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-forest-900">
+              <img
+                src="https://images.unsplash.com/photo-1610057099431-d73a1c9d2f2f?auto=format&fit=crop&w=800&q=80"
+                alt="Padayal Plantain Leaf Meal"
+                className="w-full h-full object-cover"
+              />
             </div>
           </div>
+
         </div>
       </section>
 
       {/* Core Values */}
-      <section className="section-padding">
-        <div className="container-custom">
-          <div className="text-center mb-12">
-            <span className="inline-block px-4 py-2 rounded-full bg-forest-100 text-forest-800 text-sm font-medium mb-4">
-              Our Values
+      <section className="bg-padayal-surface py-14 sm:py-20 border-y border-padayal-bg">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+          
+          <div className="text-center max-w-2xl mx-auto space-y-2">
+            <span className="text-xs font-bold text-padayal-cta uppercase tracking-wider">
+              Guiding Principles
             </span>
-            <h2 className="heading-lg text-earth-800 mb-4">What We Stand For</h2>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            {VALUES.map((value, index) => (
-              <div
-                key={value.title}
-                className="card p-6 text-center animate-fade-in"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                <div className="w-14 h-14 rounded-xl bg-forest-100 flex items-center justify-center mx-auto mb-4">
-                  <value.icon className="w-7 h-7 text-forest-700" />
-                </div>
-                <h3 className="heading-sm text-earth-800 mb-3">{value.title}</h3>
-                <p className="text-body">{value.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Timeline */}
-      <section className="section-padding bg-cream-200">
-        <div className="container-custom">
-          <div className="text-center mb-12">
-            <span className="inline-block px-4 py-2 rounded-full bg-forest-100 text-forest-800 text-sm font-medium mb-4">
-              Our Journey
-            </span>
-            <h2 className="heading-lg text-earth-800 mb-4">The Padayal Story</h2>
-          </div>
-
-          <div className="max-w-3xl mx-auto">
-            <div className="relative">
-              <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-forest-200" />
-
-              {TIMELINE.map((item) => (
-                <div
-                  key={item.year}
-                  className="relative pl-20 pb-12 last:pb-0"
-                >
-                  <div className="absolute left-4 w-8 h-8 rounded-full bg-forest-700 flex items-center justify-center">
-                    <span className="text-white text-xs font-bold">
-                      {item.year.slice(2)}
-                    </span>
-                  </div>
-                  <div className="card-static p-6">
-                    <span className="text-forest-600 font-bold text-lg">
-                      {item.year}
-                    </span>
-                    <h3 className="font-semibold text-earth-800 mt-1 mb-2">
-                      {item.title}
-                    </h3>
-                    <p className="text-body text-sm">{item.description}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Team Section */}
-      <section className="section-padding">
-        <div className="container-custom">
-          <div className="text-center mb-12">
-            <span className="inline-block px-4 py-2 rounded-full bg-forest-100 text-forest-800 text-sm font-medium mb-4">
-              Our Team
-            </span>
-            <h2 className="heading-lg text-earth-800 mb-4">
-              The People Behind Padayal
+            <h2 className="font-pranic text-3xl sm:text-4xl font-extrabold text-padayal-text">
+              What Sets Padayal Apart
             </h2>
-            <p className="text-body max-w-2xl mx-auto">
-              Our passionate team of chefs, nutritionists, and service staff
-              work together to bring you the best healthy dining experience.
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {CORE_VALUES.map((val) => {
+              const Icon = val.icon;
+              return (
+                <div
+                  key={val.title}
+                  className="bg-padayal-bg rounded-2xl p-6 border border-padayal-bg space-y-3"
+                >
+                  <div className="w-12 h-12 rounded-xl bg-padayal-secondary-light text-padayal-primary flex items-center justify-center">
+                    <Icon className="w-6 h-6" />
+                  </div>
+                  <h3 className="font-pranic text-lg font-bold text-padayal-text">{val.title}</h3>
+                  <p className="text-xs sm:text-sm text-padayal-muted leading-relaxed">
+                    {val.description}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+
+        </div>
+      </section>
+
+      {/* The 4 Science Pillars of No Oil No Boil */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20 space-y-12">
+        <div className="text-center max-w-3xl mx-auto space-y-2">
+          <span className="text-xs font-bold text-padayal-primary uppercase tracking-wider">
+            Ancient Wisdom & Modern Biology
+          </span>
+          <h2 className="font-pranic text-3xl sm:text-4xl font-extrabold text-padayal-text">
+            The Science of Uncooked South Indian Food
+          </h2>
+          <p className="text-xs sm:text-sm text-padayal-muted leading-relaxed">
+            Why removing fire and oil transforms your dining experience from fatigue to vitality.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {PHILOSOPHY_PILLARS.map((pil) => (
+            <div
+              key={pil.step}
+              className="bg-padayal-surface rounded-2xl p-6 sm:p-8 shadow-organic border border-padayal-bg space-y-3"
+            >
+              <span className="font-mono text-xs font-extrabold text-padayal-cta tracking-wider">
+                PILLAR {pil.step}
+              </span>
+              <h3 className="font-pranic text-xl font-bold text-padayal-text">{pil.title}</h3>
+              <p className="text-xs sm:text-sm text-padayal-muted leading-relaxed">{pil.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Mission & Vision */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="bg-[#183620] text-white p-8 sm:p-10 rounded-3xl shadow-lg space-y-3">
+            <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center text-cream-200">
+              <Target className="w-6 h-6" />
+            </div>
+            <h3 className="font-pranic text-2xl font-bold text-white">Our Mission</h3>
+            <p className="text-xs sm:text-sm text-cream-200 leading-relaxed">
+              To make authentic, unheated South Indian food accessible, deeply delicious, and celebrated as an everyday healthy dining habit across Tamil Nadu and beyond.
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { name: 'Murugan S.', role: 'Executive Chef', image: 'https://images.pexels.com/photos/1438636/pexels-photo-1438636.jpeg?auto=compress&cs=tinysrgb&w=400' },
-              { name: 'Lakshmi K.', role: 'Head Nutritionist', image: 'https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=400' },
-              { name: 'Aravind P.', role: 'Sous Chef', image: 'https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=400' },
-              { name: 'Priya M.', role: 'Guest Relations', image: 'https://images.pexels.com/photos/1181695/pexels-photo-1181695.jpeg?auto=compress&cs=tinysrgb&w=400' },
-            ].map((person) => (
-              <div key={person.name} className="card overflow-hidden group">
-                <div className="aspect-square overflow-hidden">
-                  <img
-                    src={person.image}
-                    alt={person.name}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                </div>
-                <div className="p-4 text-center">
-                  <h3 className="font-semibold text-earth-800">{person.name}</h3>
-                  <p className="text-sm text-earth-500">{person.role}</p>
-                </div>
-              </div>
-            ))}
+          <div className="bg-[#965A38] text-white p-8 sm:p-10 rounded-3xl shadow-lg space-y-3">
+            <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center text-cream-200">
+              <Eye className="w-6 h-6" />
+            </div>
+            <h3 className="font-pranic text-2xl font-bold text-white">Our Vision</h3>
+            <p className="text-xs sm:text-sm text-cream-200 leading-relaxed">
+              A dining culture that respects the living intelligence of food — proving that you never have to sacrifice traditional South Indian taste to achieve radiant well-being.
+            </p>
           </div>
         </div>
       </section>
 
-      {/* Healthy Food Concept */}
-      <section className="section-padding bg-forest-800 text-white">
-        <div className="container-custom">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="heading-lg mb-6">The Healthy Food Concept</h2>
-              <p className="text-cream-200 text-lg mb-6">
-                Our "No Oil No Boil" philosophy is rooted in scientific
-                principles that have been known for centuries but often
-                overlooked in modern cooking.
-              </p>
-              <div className="space-y-4">
-                <div className="flex items-start gap-4">
-                  <div className="w-8 h-8 rounded-full bg-forest-600 flex items-center justify-center shrink-0 mt-1">
-                    <Leaf className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold mb-1">Steam Cooking</h4>
-                    <p className="text-cream-300 text-sm">
-                      Preserves up to 90% of nutrients compared to 50% in
-                      boiling or less in frying.
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <div className="w-8 h-8 rounded-full bg-forest-600 flex items-center justify-center shrink-0 mt-1">
-                    <Users className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold mb-1">Pressure Cooking</h4>
-                    <p className="text-cream-300 text-sm">
-                      Retains water-soluble vitamins while reducing cooking
-                      time and energy use.
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <div className="w-8 h-8 rounded-full bg-forest-600 flex items-center justify-center shrink-0 mt-1">
-                    <Heart className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold mb-1">Natural Roasting</h4>
-                    <p className="text-cream-300 text-sm">
-                      Enhances flavors through natural caramelization without
-                      added fats.
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <Link
-                to="/wellness"
-                className="btn-primary mt-8 inline-flex bg-white text-forest-800 hover:bg-cream-100"
-              >
-                Learn More in Wellness Hub
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </Link>
-            </div>
-            <div className="relative">
-              <div className="aspect-video rounded-2xl overflow-hidden">
-                <img
-                  src="https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=800"
-                  alt="Healthy cooking"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            </div>
+      {/* Visit Coimbatore CTA */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16">
+        <div className="bg-padayal-surface p-8 sm:p-12 rounded-3xl border border-padayal-bg text-center space-y-4 shadow-organic">
+          <MapPin className="w-10 h-10 text-padayal-primary mx-auto" />
+          <h2 className="font-pranic text-2xl sm:text-3xl font-bold text-padayal-text">
+            Experience Padayal at Coimbatore
+          </h2>
+          <p className="text-xs sm:text-sm text-padayal-muted max-w-xl mx-auto">
+            {RESTAURANT_INFO.location.fullAddress}
+          </p>
+          <div className="pt-2 flex flex-wrap justify-center gap-3">
+            <Link to="/menu" className="btn-primary text-xs sm:text-sm py-3 px-6">
+              View Our Menu
+            </Link>
+            <Link to="/reservation" className="btn-secondary text-xs sm:text-sm py-3 px-6">
+              Book a Table
+            </Link>
           </div>
         </div>
       </section>
+
     </div>
   );
 }

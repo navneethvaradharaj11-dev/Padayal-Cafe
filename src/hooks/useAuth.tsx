@@ -30,7 +30,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           setUser(initialSession?.user ?? null);
           setLoading(false);
         }
-      } catch (error) {
+      } catch {
         if (mounted) setLoading(false);
       }
     };

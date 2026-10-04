@@ -94,7 +94,7 @@ export function ReviewManagementPage() {
         </div>
         <select
           value={statusFilter}
-          onChange={(e) => setStatusFilter(e.target.value as any)}
+          onChange={(e) => setStatusFilter(e.target.value as 'all' | 'approved' | 'pending')}
           className="select-field w-auto"
         >
           <option value="all">All Reviews</option>

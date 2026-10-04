@@ -102,7 +102,7 @@ export function ContactManagementPage() {
         </div>
         <select
           value={statusFilter}
-          onChange={(e) => setStatusFilter(e.target.value as any)}
+          onChange={(e) => setStatusFilter(e.target.value as 'all' | 'unread' | 'read' | 'replied')}
           className="select-field w-auto"
         >
           <option value="all">All Status</option>

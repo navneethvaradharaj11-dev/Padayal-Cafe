@@ -14,7 +14,7 @@ export function AdminLoginPage() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const from = (location.state as any)?.from?.pathname || '/admin';
+  const from = (location.state as { from?: { pathname?: string } })?.from?.pathname || '/admin';
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -28,7 +28,7 @@ export function AdminLoginPage() {
       } else {
         navigate(from, { replace: true });
       }
-    } catch (err) {
+    } catch {
       setError('An unexpected error occurred. Please try again.');
     } finally {
       setLoading(false);

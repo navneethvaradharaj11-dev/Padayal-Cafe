@@ -5,7 +5,7 @@ export interface TableBooking {
   bookingRef: string; // e.g. #RES-9402
   guestName: string;
   guestPhone: string;
-  guestEmail: string;
+  guestEmail?: string;
   date: string;
   timeSlot: string;
   guestCount: number;

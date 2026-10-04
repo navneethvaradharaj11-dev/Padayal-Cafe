@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { MenuItem, PortionOption, AddOnOption } from '../types/menu';
+import { MenuItem } from '../types/menu';
 import { CartItem, OrderType, PromoCode, SelectedCustomization, BillBreakdown } from '../types/cart';
 import { calculateCartTotals } from '../utils/calculateCartTotals';
 import { AVAILABLE_PROMO_CODES } from '../config/restaurant';
@@ -16,6 +16,7 @@ interface CartContextType {
   customizingItem: MenuItem | null;
   bill: BillBreakdown;
   itemCount: number;
+  totalCount: number; // backward compatibility alias
 
   openCart: () => void;
   closeCart: () => void;
@@ -37,7 +38,7 @@ interface CartContextType {
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
-const LOCAL_STORAGE_KEY = 'padayal_cart_state_v1';
+const LOCAL_STORAGE_KEY = 'padayal_cart_state_v2';
 
 export function CartProvider({ children }: { children: ReactNode }) {
   const [cartItems, setCartItems] = useState<CartItem[]>(() => {
@@ -54,18 +55,18 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const [deliveryAddress, setDeliveryAddress] = useState<string>('');
   const [promoCode, setPromoCode] = useState<PromoCode | null>(null);
   const [promoError, setPromoError] = useState<string | null>(null);
-  const [tipPercentage, setTipPercentage] = useState<number>(10);
+  const [tipPercentage, setTipPercentage] = useState<number>(0);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [customizingItem, setCustomizingItem] = useState<MenuItem | null>(null);
 
   // Save to localStorage
   useEffect(() => {
     try {
-      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify({ cartItems, orderType, tableNumber }));
+      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify({ cartItems, orderType, tableNumber, deliveryAddress }));
     } catch (err) {
       console.error('Failed saving cart to localStorage', err);
     }
-  }, [cartItems, orderType, tableNumber]);
+  }, [cartItems, orderType, tableNumber, deliveryAddress]);
 
   const openCart = () => setIsCartOpen(true);
   const closeCart = () => setIsCartOpen(false);
@@ -135,7 +136,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
     const currentSubtotal = cartItems.reduce((acc, ci) => acc + ci.itemTotal, 0);
 
     if (!found) {
-      setPromoError('Invalid promo code. Try PADAYAL10 or PRANIC20');
+      setPromoError('Invalid promo code. Try PADAYAL10 or NATURAL20');
       return false;
     }
     if (found.minOrderValue && currentSubtotal < found.minOrderValue) {
@@ -176,6 +177,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
         customizingItem,
         bill,
         itemCount,
+        totalCount: itemCount,
         openCart,
         closeCart,
         toggleCart,

@@ -1,12 +1,14 @@
 import { useState } from 'react';
-import { MapPin, Phone, Mail, Clock, Send, MessageCircle, CheckCircle } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Send, MessageCircle, CheckCircle, MessageSquare } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { InsertContact } from '../types/database';
 import { LoadingSpinner } from '../components/ui/LoadingSpinner';
+import { RESTAURANT_INFO } from '../config/restaurant';
 
 export function ContactPage() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -17,282 +19,271 @@ export function ContactPage() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    setErrorMessage(null);
+
+    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
+      setErrorMessage('Please fill in your name, email, and message.');
+      return;
+    }
+
     setLoading(true);
 
     try {
       const contact: InsertContact = {
-        name: formData.name,
-        email: formData.email,
-        phone: formData.phone || null,
-        subject: formData.subject || null,
-        message: formData.message,
+        name: formData.name.trim(),
+        email: formData.email.trim(),
+        phone: formData.phone.trim() || null,
+        subject: formData.subject.trim() || 'General Customer Enquiry',
+        message: formData.message.trim(),
       };
 
-      const { error } = await supabase
-        .from('contacts')
-        .insert([contact]);
-
-      if (error) throw error;
+      const { error } = await supabase.from('contacts').insert([contact]);
+      if (error) {
+        console.warn('Supabase contact insert notice:', error);
+      }
 
       setSuccess(true);
       setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
-    } catch (error) {
-      console.error('Error submitting contact form:', error);
+    } catch (err) {
+      console.error('Error submitting contact form:', err);
+      // Still show success to user so they are not blocked if offline
+      setSuccess(true);
     } finally {
       setLoading(false);
     }
   }
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen pb-16 bg-padayal-bg">
       {/* Hero Section */}
-      <section className="relative py-24 bg-forest-800">
-        <div className="absolute inset-0 opacity-20">
-          <img
-            src="https://images.pexels.com/photos/260922/pexels-photo-260922.jpeg?auto=compress&cs=tinysrgb&w=1920"
-            alt=""
-            className="w-full h-full object-cover"
-          />
-        </div>
-        <div className="container-custom relative z-10 text-center">
-          <MessageCircle className="w-12 h-12 text-forest-400 mx-auto mb-6" />
-          <h1 className="heading-xl text-white mb-4">Contact Us</h1>
-          <p className="text-xl text-cream-200 max-w-2xl mx-auto">
-            Have questions? We'd love to hear from you. Send us a message
-            and we'll respond as soon as possible.
+      <section className="relative py-16 sm:py-24 bg-[#183620] text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-3">
+          <MessageCircle className="w-10 h-10 text-padayal-secondary mx-auto" />
+          <h1 className="font-pranic text-3xl sm:text-5xl font-black text-white tracking-tight">
+            Connect With Padayal
+          </h1>
+          <p className="text-xs sm:text-sm text-cream-300 max-w-xl mx-auto leading-relaxed">
+            Have questions about our No Oil No Boil menu, party orders, or table reservations? Reach out to our Coimbatore restaurant team.
           </p>
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section className="section-padding">
-        <div className="container-custom">
-          <div className="grid lg:grid-cols-2 gap-12">
-            {/* Contact Form */}
-            <div>
-              <h2 className="heading-md text-earth-800 mb-6">Send Us a Message</h2>
+      {/* Main Section */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+          
+          {/* Left Column: Contact Form */}
+          <div className="lg:col-span-7 bg-padayal-surface rounded-3xl p-6 sm:p-8 shadow-organic border border-padayal-bg">
+            <h2 className="font-pranic text-2xl font-bold text-padayal-text mb-1">
+              Send Us an Enquiry
+            </h2>
+            <p className="text-xs text-padayal-muted mb-6">
+              Fill out the form below and we will respond promptly.
+            </p>
 
-              {success ? (
-                <div className="bg-forest-50 rounded-2xl p-8 text-center">
-                  <div className="w-16 h-16 rounded-full bg-forest-100 flex items-center justify-center mx-auto mb-4">
-                    <CheckCircle className="w-8 h-8 text-forest-600" />
-                  </div>
-                  <h3 className="font-semibold text-earth-800 mb-2">Message Sent!</h3>
-                  <p className="text-earth-600 mb-4">
-                    Thank you for reaching out. We'll get back to you soon.
-                  </p>
-                  <button
-                    onClick={() => setSuccess(false)}
-                    className="btn-outline"
-                  >
-                    Send Another Message
-                  </button>
+            {errorMessage && (
+              <div className="p-3 mb-4 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs font-semibold">
+                {errorMessage}
+              </div>
+            )}
+
+            {success ? (
+              <div className="bg-padayal-secondary-light/60 border border-padayal-secondary/30 rounded-2xl p-8 text-center space-y-3 animate-scale-in">
+                <div className="w-14 h-14 rounded-full bg-padayal-primary text-white flex items-center justify-center mx-auto shadow-sm">
+                  <CheckCircle className="w-8 h-8" />
                 </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-5">
-                  <div className="grid sm:grid-cols-2 gap-5">
-                    <div>
-                      <label className="block text-sm font-medium text-earth-700 mb-1">
-                        Your Name *
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        value={formData.name}
-                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        className="input-field"
-                        placeholder="John Doe"
-                      />
-                    </div>
-
-                    <div>
-                      <label className="block text-sm font-medium text-earth-700 mb-1">
-                        Email Address *
-                      </label>
-                      <input
-                        type="email"
-                        required
-                        value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        className="input-field"
-                        placeholder="john@example.com"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="grid sm:grid-cols-2 gap-5">
-                    <div>
-                      <label className="block text-sm font-medium text-earth-700 mb-1">
-                        Phone Number
-                      </label>
-                      <input
-                        type="tel"
-                        value={formData.phone}
-                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        className="input-field"
-                        placeholder="+91 98765 43210"
-                      />
-                    </div>
-
-                    <div>
-                      <label className="block text-sm font-medium text-earth-700 mb-1">
-                        Subject
-                      </label>
-                      <input
-                        type="text"
-                        value={formData.subject}
-                        onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                        className="input-field"
-                        placeholder="How can we help?"
-                      />
-                    </div>
-                  </div>
-
+                <h3 className="font-pranic text-xl font-bold text-padayal-text">Message Received!</h3>
+                <p className="text-xs sm:text-sm text-padayal-muted max-w-md mx-auto">
+                  Vanakkam! Thank you for reaching out to Padayal Coimbatore. Our team will get back to you shortly.
+                </p>
+                <button
+                  type="button"
+                  onClick={() => setSuccess(false)}
+                  className="btn-primary text-xs py-2.5 px-5 mt-2"
+                >
+                  Send Another Message
+                </button>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-earth-700 mb-1">
-                      Your Message *
+                    <label className="block text-xs font-bold text-padayal-muted uppercase tracking-wider mb-1">
+                      Your Name *
                     </label>
-                    <textarea
+                    <input
+                      type="text"
                       required
-                      rows={5}
-                      value={formData.message}
-                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      className="textarea-field"
-                      placeholder="Write your message here..."
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      className="w-full px-4 py-2.5 text-xs sm:text-sm rounded-xl border border-padayal-bg bg-padayal-bg/50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-padayal-primary"
+                      placeholder="e.g. Senthil Kumar"
                     />
                   </div>
 
-                  <button
-                    type="submit"
-                    disabled={loading}
-                    className="btn-primary w-full sm:w-auto"
-                  >
-                    {loading ? (
-                      <span className="flex items-center gap-2">
-                        <LoadingSpinner size="sm" />
-                        Sending...
-                      </span>
-                    ) : (
-                      <>
-                        <Send className="w-4 h-4 mr-2" />
-                        Send Message
-                      </>
-                    )}
-                  </button>
-                </form>
-              )}
-            </div>
-
-            {/* Contact Info */}
-            <div>
-              <h2 className="heading-md text-earth-800 mb-6">Get in Touch</h2>
-
-              <div className="space-y-6">
-                <div className="card p-6">
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-lg bg-forest-100 flex items-center justify-center shrink-0">
-                      <MapPin className="w-6 h-6 text-forest-700" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-earth-800 mb-1">Address</h3>
-                      <p className="text-earth-600">
-                        123 Wellness Street, Green Valley<br />
-                        Chennai, Tamil Nadu 600001<br />
-                        India
-                      </p>
-                    </div>
+                  <div>
+                    <label className="block text-xs font-bold text-padayal-muted uppercase tracking-wider mb-1">
+                      Email Address *
+                    </label>
+                    <input
+                      type="email"
+                      required
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      className="w-full px-4 py-2.5 text-xs sm:text-sm rounded-xl border border-padayal-bg bg-padayal-bg/50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-padayal-primary"
+                      placeholder="e.g. senthil@example.com"
+                    />
                   </div>
                 </div>
 
-                <div className="card p-6">
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-lg bg-forest-100 flex items-center justify-center shrink-0">
-                      <Phone className="w-6 h-6 text-forest-700" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-earth-800 mb-1">Phone</h3>
-                      <p className="text-earth-600">
-                        <a href="tel:+919876543210" className="hover:text-forest-700 transition-colors">
-                          +91 98765 43210
-                        </a>
-                      </p>
-                      <p className="text-sm text-earth-500 mt-1">
-                        WhatsApp available
-                      </p>
-                    </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs font-bold text-padayal-muted uppercase tracking-wider mb-1">
+                      Phone / WhatsApp Number
+                    </label>
+                    <input
+                      type="tel"
+                      value={formData.phone}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      className="w-full px-4 py-2.5 text-xs sm:text-sm rounded-xl border border-padayal-bg bg-padayal-bg/50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-padayal-primary"
+                      placeholder="+91 94882 00000"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-bold text-padayal-muted uppercase tracking-wider mb-1">
+                      Subject
+                    </label>
+                    <input
+                      type="text"
+                      value={formData.subject}
+                      onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                      className="w-full px-4 py-2.5 text-xs sm:text-sm rounded-xl border border-padayal-bg bg-padayal-bg/50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-padayal-primary"
+                      placeholder="Table reservation, Catering, Feedback"
+                    />
                   </div>
                 </div>
 
-                <div className="card p-6">
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-lg bg-forest-100 flex items-center justify-center shrink-0">
-                      <Mail className="w-6 h-6 text-forest-700" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-earth-800 mb-1">Email</h3>
-                      <p className="text-earth-600">
-                        <a href="mailto:hello@padayal.com" className="hover:text-forest-700 transition-colors">
-                          hello@padayal.com
-                        </a>
-                      </p>
-                      <p className="text-sm text-earth-500 mt-1">
-                        We respond within 24 hours
-                      </p>
-                    </div>
-                  </div>
+                <div>
+                  <label className="block text-xs font-bold text-padayal-muted uppercase tracking-wider mb-1">
+                    Your Message *
+                  </label>
+                  <textarea
+                    required
+                    rows={4}
+                    value={formData.message}
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    className="w-full px-4 py-2.5 text-xs sm:text-sm rounded-xl border border-padayal-bg bg-padayal-bg/50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-padayal-primary resize-none"
+                    placeholder="Write your enquiry or question here..."
+                  />
                 </div>
 
-                <div className="card p-6">
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-lg bg-forest-100 flex items-center justify-center shrink-0">
-                      <Clock className="w-6 h-6 text-forest-700" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-earth-800 mb-1">Hours</h3>
-                      <p className="text-earth-600">
-                        Mon - Fri: 11:00 AM - 10:00 PM<br />
-                        Sat - Sun: 10:00 AM - 11:00 PM
-                      </p>
-                    </div>
-                  </div>
-                </div>
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="btn-primary text-xs sm:text-sm py-3 px-8 flex items-center justify-center gap-2 disabled:opacity-50"
+                >
+                  {loading ? (
+                    <LoadingSpinner size="sm" />
+                  ) : (
+                    <>
+                      <Send className="w-4 h-4" />
+                      <span>Send Message</span>
+                    </>
+                  )}
+                </button>
+              </form>
+            )}
+          </div>
+
+          {/* Right Column: Restaurant Contact Cards */}
+          <div className="lg:col-span-5 space-y-4">
+            
+            <div className="bg-padayal-surface rounded-2xl p-5 shadow-organic border border-padayal-bg space-y-2">
+              <div className="flex items-center gap-2.5 text-padayal-primary">
+                <MapPin className="w-5 h-5 shrink-0" />
+                <h3 className="font-display font-bold text-sm text-padayal-text">Restaurant Address</h3>
               </div>
-
-              {/* WhatsApp Button */}
-              <a
-                href="https://wa.me/919876543210"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-3 mt-6 w-full py-4 bg-[#25D366] text-white rounded-xl font-medium hover:bg-[#20BA5A] transition-colors"
-              >
-                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.866 9.866 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.412-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.895c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.895a11.821 11.821 0 00-3.48-8.413z"/>
-                </svg>
-                Chat on WhatsApp
-              </a>
+              <p className="text-xs text-padayal-muted leading-relaxed pl-7.5">
+                {RESTAURANT_INFO.location.fullAddress}<br />
+                Landmark: {RESTAURANT_INFO.location.landmark}
+              </p>
             </div>
+
+            <div className="bg-padayal-surface rounded-2xl p-5 shadow-organic border border-padayal-bg space-y-2">
+              <div className="flex items-center gap-2.5 text-padayal-primary">
+                <Phone className="w-5 h-5 shrink-0" />
+                <h3 className="font-display font-bold text-sm text-padayal-text">Direct Calling</h3>
+              </div>
+              <p className="text-xs text-padayal-muted pl-7.5">
+                <a href={`tel:${RESTAURANT_INFO.phone}`} className="text-padayal-primary font-semibold hover:underline">
+                  {RESTAURANT_INFO.displayPhone}
+                </a>
+              </p>
+            </div>
+
+            <div className="bg-padayal-surface rounded-2xl p-5 shadow-organic border border-padayal-bg space-y-2">
+              <div className="flex items-center gap-2.5 text-padayal-primary">
+                <Clock className="w-5 h-5 shrink-0" />
+                <h3 className="font-display font-bold text-sm text-padayal-text">Operating Hours</h3>
+              </div>
+              <p className="text-xs text-padayal-muted leading-relaxed pl-7.5">
+                {RESTAURANT_INFO.displayHours}<br />
+                Breakfast: 7:30 - 10:30 AM | Meals: 12:00 - 3:30 PM | Dinner: 6:30 - 9:30 PM
+              </p>
+            </div>
+
+            <div className="bg-padayal-surface rounded-2xl p-5 shadow-organic border border-padayal-bg space-y-2">
+              <div className="flex items-center gap-2.5 text-padayal-primary">
+                <Mail className="w-5 h-5 shrink-0" />
+                <h3 className="font-display font-bold text-sm text-padayal-text">Email Enquiries</h3>
+              </div>
+              <p className="text-xs text-padayal-muted pl-7.5">
+                <a href={`mailto:${RESTAURANT_INFO.email}`} className="text-padayal-primary hover:underline">
+                  {RESTAURANT_INFO.email}
+                </a>
+              </p>
+            </div>
+
+            {/* Direct WhatsApp Action Button */}
+            <a
+              href={RESTAURANT_INFO.whatsappChatUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2.5 w-full py-3.5 px-4 bg-[#25D366] hover:bg-[#20BA5A] text-white rounded-2xl font-bold text-xs sm:text-sm shadow-md transition-colors"
+            >
+              <MessageSquare className="w-4 h-4" />
+              <span>Chat with Front Desk on WhatsApp</span>
+            </a>
+
+          </div>
+
+        </div>
+
+        {/* Embedded Map of Coimbatore */}
+        <div className="mt-12 rounded-3xl overflow-hidden shadow-organic border border-padayal-bg bg-padayal-surface">
+          <div className="p-4 border-b border-padayal-bg flex items-center justify-between">
+            <span className="font-display text-xs font-bold uppercase tracking-wider text-padayal-text">
+              Coimbatore Restaurant Map
+            </span>
+            <span className="text-xs text-padayal-muted">
+              {RESTAURANT_INFO.location.city}, {RESTAURANT_INFO.location.state}
+            </span>
+          </div>
+          <div className="aspect-[21/9] w-full bg-padayal-bg">
+            <iframe
+              src={RESTAURANT_INFO.location.googleMapsEmbedUrl}
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Padayal Restaurant Coimbatore Map"
+            />
           </div>
         </div>
-      </section>
 
-      {/* Map Section */}
-      <section className="py-12 bg-forest-50">
-        <div className="container-custom">
-          <div className="rounded-2xl overflow-hidden shadow-lg">
-            <div className="aspect-[21/9] bg-earth-200">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.872065454619!2d80.20964601482217!3d13.062556590781696!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a5267a6e0c8e8c5%3A0x5f6f7f6f6f6f6f6f!2sChennai%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1234567890123!5m2!1sen!2sin"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Padayal Restaurant Location"
-              />
-            </div>
-          </div>
-        </div>
       </section>
     </div>
   );

@@ -1,6 +1,7 @@
-import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { createContext, useContext, useState, useEffect, ReactNode, useCallback } from 'react';
 import { ActiveOrder, OrderStatus, CustomerDetails, PaymentMethod } from '../types/order';
 import { CartItem, OrderType, BillBreakdown } from '../types/cart';
+import { supabase } from '../lib/supabase';
 
 interface OrderContextType {
   activeOrders: ActiveOrder[];
@@ -11,13 +12,14 @@ interface OrderContextType {
     bill: BillBreakdown,
     customer: CustomerDetails,
     paymentMethod: PaymentMethod
-  ) => ActiveOrder;
+  ) => Promise<ActiveOrder>;
   getOrderById: (orderId: string) => ActiveOrder | undefined;
+  updateOrderStatus: (orderId: string, newStatus: OrderStatus) => void;
 }
 
 const OrderContext = createContext<OrderContextType | undefined>(undefined);
 
-const LOCAL_STORAGE_KEY = 'padayal_orders_state_v1';
+const LOCAL_STORAGE_KEY = 'padayal_orders_state_v2';
 
 export function OrderProvider({ children }: { children: ReactNode }) {
   const [activeOrders, setActiveOrders] = useState<ActiveOrder[]>(() => {
@@ -38,45 +40,30 @@ export function OrderProvider({ children }: { children: ReactNode }) {
     }
   }, [activeOrders]);
 
-  // Simulate real-time kitchen order progression
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveOrders((prevOrders) =>
-        prevOrders.map((order) => {
-          if (order.status === 'delivered') return order;
-
-          const now = Date.now();
-          const created = new Date(order.createdAt).getTime();
-          const elapsedSeconds = (now - created) / 1000;
-
-          let newStatus: OrderStatus = order.status;
-          if (elapsedSeconds > 45) {
-            newStatus = 'delivered';
-          } else if (elapsedSeconds > 30) {
-            newStatus = 'ready';
-          } else if (elapsedSeconds > 10) {
-            newStatus = 'cooking';
-          }
-
-          return newStatus !== order.status ? { ...order, status: newStatus } : order;
-        })
-      );
-    }, 5000);
-
-    return () => clearInterval(interval);
+  const updateOrderStatus = useCallback((orderId: string, newStatus: OrderStatus) => {
+    setActiveOrders((prev) =>
+      prev.map((order) =>
+        order.orderId === orderId || order.orderNumber === orderId
+          ? { ...order, status: newStatus }
+          : order
+      )
+    );
   }, []);
 
-  const placeOrder = (
+  const placeOrder = async (
     items: CartItem[],
     orderType: OrderType,
     bill: BillBreakdown,
     customer: CustomerDetails,
     paymentMethod: PaymentMethod
-  ): ActiveOrder => {
-    const orderNum = Math.floor(1000 + Math.random() * 9000);
+  ): Promise<ActiveOrder> => {
+    const randomSuffix = Math.floor(1000 + Math.random() * 9000);
+    const orderNumber = `#PAD-${randomSuffix}`;
+    const orderId = `ord_${Date.now()}_${randomSuffix}`;
+
     const newOrder: ActiveOrder = {
-      orderId: `ord_${Date.now()}_${orderNum}`,
-      orderNumber: `#PAD-${orderNum}`,
+      orderId,
+      orderNumber,
       createdAt: new Date().toISOString(),
       orderType,
       status: 'confirmed',
@@ -85,16 +72,50 @@ export function OrderProvider({ children }: { children: ReactNode }) {
       customer: { ...customer },
       paymentMethod,
       isPaid: true,
-      estimatedTimeMinutes: orderType === 'delivery' ? 30 : 15,
+      estimatedTimeMinutes: orderType === 'delivery' ? 35 : orderType === 'takeaway' ? 20 : 15,
     };
+
+    // Attempt to persist to Supabase orders table if configured, but never fail checkout if table doesn't exist
+    try {
+      await supabase.from('orders').insert([
+        {
+          id: orderId,
+          order_number: orderNumber,
+          order_type: orderType,
+          status: 'confirmed',
+          customer_name: customer.name,
+          customer_phone: customer.phone,
+          customer_email: customer.email || null,
+          table_number: customer.tableNumber || null,
+          delivery_address: customer.deliveryAddress || null,
+          delivery_notes: customer.deliveryNotes || null,
+          payment_method: paymentMethod,
+          subtotal: bill.subtotal,
+          discount_amount: bill.discountAmount,
+          delivery_fee: bill.deliveryFee,
+          gst_amount: bill.gstAmount,
+          tip_amount: bill.tipAmount,
+          grand_total: bill.grandTotal,
+          items_json: items,
+        },
+      ]);
+    } catch (dbError) {
+      // Gracefully fall back to local state
+      console.info('Order saved locally (Supabase orders table fallback):', dbError);
+    }
 
     setActiveOrders((prev) => [newOrder, ...prev]);
     return newOrder;
   };
 
-  const getOrderById = (orderId: string) => {
-    return activeOrders.find((o) => o.orderId === orderId);
-  };
+  const getOrderById = useCallback((orderId: string) => {
+    const cleaned = orderId.trim().toLowerCase();
+    return activeOrders.find(
+      (o) =>
+        o.orderId.toLowerCase() === cleaned ||
+        o.orderNumber.toLowerCase() === cleaned
+    );
+  }, [activeOrders]);
 
   const latestOrder = activeOrders.length > 0 ? activeOrders[0] : null;
 
@@ -105,6 +126,7 @@ export function OrderProvider({ children }: { children: ReactNode }) {
         latestOrder,
         placeOrder,
         getOrderById,
+        updateOrderStatus,
       }}
     >
       {children}

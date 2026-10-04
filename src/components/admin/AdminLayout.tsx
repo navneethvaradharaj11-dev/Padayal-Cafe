@@ -13,11 +13,13 @@ import {
   Leaf,
   LogOut,
   ChevronRight,
+  ShoppingBag,
 } from 'lucide-react';
 import { useAuth } from '../../hooks/useAuth';
 
 const NAV_ITEMS = [
   { path: '/admin', label: 'Dashboard', icon: LayoutDashboard },
+  { path: '/admin/orders', label: 'Orders', icon: ShoppingBag },
   { path: '/admin/menu', label: 'Menu Items', icon: UtensilsCrossed },
   { path: '/admin/reservations', label: 'Reservations', icon: Calendar },
   { path: '/admin/reviews', label: 'Reviews', icon: MessageSquare },

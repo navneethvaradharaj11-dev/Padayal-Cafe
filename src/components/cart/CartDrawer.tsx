@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { X, Trash2, Plus, Minus, Tag, Utensils, ShoppingBag, Truck, CheckCircle2 } from 'lucide-react';
+import { X, Trash2, Plus, Minus, Tag, Utensils, ShoppingBag, MapPin } from 'lucide-react';
 import { useCart } from '../../context/CartContext';
 import { TipSelector } from './TipSelector';
 import { formatCurrency } from '../../utils/formatCurrency';
@@ -25,7 +25,6 @@ export function CartDrawer() {
     applyPromoCode,
     removePromoCode,
     bill,
-    clearCart,
   } = useCart();
 
   const [codeInput, setCodeInput] = useState('');
@@ -36,6 +35,7 @@ export function CartDrawer() {
     e.preventDefault();
     if (codeInput.trim()) {
       applyPromoCode(codeInput);
+      setCodeInput('');
     }
   };
 
@@ -45,24 +45,32 @@ export function CartDrawer() {
   };
 
   return (
-    <div className="fixed inset-0 z-50 overflow-hidden bg-padayal-text/60 backdrop-blur-sm animate-fade-in">
+    <div
+      className="fixed inset-0 z-50 overflow-hidden bg-padayal-text/60 backdrop-blur-sm animate-fade-in"
+      onClick={closeCart}
+    >
       <div 
-        className="absolute inset-y-0 right-0 max-w-full flex pl-10"
+        className="absolute inset-y-0 right-0 max-w-full flex"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="w-screen max-w-md bg-padayal-surface shadow-2xl flex flex-col justify-between">
+        <div className="w-screen max-w-md bg-padayal-surface shadow-2xl flex flex-col justify-between h-full">
           
           {/* Drawer Header */}
-          <div className="p-5 border-b border-padayal-bg flex items-center justify-between bg-padayal-bg/40">
-            <div className="flex items-center gap-2">
+          <div className="p-4 sm:p-5 border-b border-padayal-bg flex items-center justify-between bg-padayal-bg/40">
+            <div className="flex items-center gap-2.5">
               <ShoppingBag className="w-5 h-5 text-padayal-cta" />
-              <h2 className="font-pranic text-xl font-bold text-padayal-text">Your Organic Cart</h2>
+              <div>
+                <h2 className="font-pranic text-xl font-bold text-padayal-text">Your Order Cart</h2>
+                <span className="text-[11px] text-padayal-muted font-medium">
+                  {cartItems.length} {cartItems.length === 1 ? 'item' : 'items'} selected
+                </span>
+              </div>
             </div>
             <button
               type="button"
               onClick={closeCart}
-              className="p-2 rounded-full hover:bg-padayal-bg text-padayal-muted hover:text-padayal-text transition-colors"
-              aria-label="Close cart"
+              className="p-2 rounded-xl hover:bg-padayal-bg text-padayal-muted hover:text-padayal-text transition-colors"
+              aria-label="Close cart drawer"
             >
               <X className="w-5 h-5" />
             </button>
@@ -70,7 +78,10 @@ export function CartDrawer() {
 
           {/* Order Type Selector */}
           <div className="p-4 border-b border-padayal-bg bg-padayal-surface space-y-3">
-            <div className="grid grid-cols-3 gap-1 bg-padayal-bg p-1 rounded-xl">
+            <label className="block text-[11px] font-bold text-padayal-muted uppercase tracking-wider">
+              Order Type
+            </label>
+            <div className="grid grid-cols-3 gap-1.5 bg-padayal-bg p-1 rounded-xl">
               {(['dine-in', 'takeaway', 'delivery'] as OrderType[]).map((type) => {
                 const isSelected = orderType === type;
                 return (
@@ -92,14 +103,16 @@ export function CartDrawer() {
 
             {/* Contextual input based on order type */}
             {orderType === 'dine-in' && (
-              <div className="flex items-center gap-2 bg-padayal-secondary-light/60 p-2.5 rounded-xl border border-padayal-secondary/30 text-xs">
-                <Utensils className="w-4 h-4 text-padayal-primary shrink-0" />
-                <span className="font-semibold text-padayal-primary">Table Number:</span>
+              <div className="flex items-center justify-between gap-2 bg-padayal-secondary-light/70 p-2.5 rounded-xl border border-padayal-secondary/30 text-xs">
+                <div className="flex items-center gap-2 text-padayal-primary font-semibold">
+                  <Utensils className="w-4 h-4 shrink-0" />
+                  <span>Dine-In Table Number:</span>
+                </div>
                 <input
                   type="text"
                   value={tableNumber}
                   onChange={(e) => setTableNumber(e.target.value)}
-                  placeholder="e.g. 5"
+                  placeholder="Table #"
                   className="w-16 px-2 py-1 rounded bg-white text-center font-bold border border-padayal-primary/30 focus:outline-none focus:ring-1 focus:ring-padayal-primary"
                 />
               </div>
@@ -107,19 +120,23 @@ export function CartDrawer() {
 
             {orderType === 'delivery' && (
               <div className="space-y-1">
+                <div className="flex items-center gap-1.5 text-xs text-padayal-muted font-medium mb-1">
+                  <MapPin className="w-3.5 h-3.5 text-padayal-cta" />
+                  <span>Delivery Address (Coimbatore)</span>
+                </div>
                 <input
                   type="text"
                   value={deliveryAddress}
                   onChange={(e) => setDeliveryAddress(e.target.value)}
-                  placeholder="Enter full delivery address..."
-                  className="w-full px-3 py-2 text-xs rounded-xl border border-padayal-bg bg-padayal-bg/50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-padayal-primary"
+                  placeholder="Door No, Street name, Area in Coimbatore..."
+                  className="w-full px-3 py-2 text-xs rounded-xl border border-padayal-bg bg-padayal-bg/50 focus:bg-white focus:outline-none focus:ring-1 focus:ring-padayal-primary"
                 />
               </div>
             )}
           </div>
 
           {/* Items List */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-4">
+          <div className="flex-1 overflow-y-auto p-4 space-y-3">
             {cartItems.length === 0 ? (
               <div className="text-center py-16 space-y-3">
                 <div className="w-16 h-16 rounded-full bg-padayal-bg flex items-center justify-center mx-auto text-padayal-muted">
@@ -127,12 +144,12 @@ export function CartDrawer() {
                 </div>
                 <h3 className="font-pranic text-lg font-bold text-padayal-text">Your cart is empty</h3>
                 <p className="text-xs text-padayal-muted max-w-xs mx-auto">
-                  Explore our live enzyme dishes prepared without oil or fire.
+                  Explore our live South Indian natural meals, herbal soups, and cold-pressed elixirs.
                 </p>
                 <button
                   type="button"
                   onClick={closeCart}
-                  className="btn-secondary text-xs py-2 px-4"
+                  className="btn-primary text-xs py-2 px-5 inline-block"
                 >
                   Browse Menu
                 </button>
@@ -182,7 +199,8 @@ export function CartDrawer() {
                         <button
                           type="button"
                           onClick={() => updateQuantity(ci.cartItemId, ci.quantity - 1)}
-                          className="text-padayal-text hover:text-padayal-primary transition-colors"
+                          className="text-padayal-text hover:text-padayal-primary transition-colors p-0.5"
+                          aria-label="Decrease quantity"
                         >
                           <Minus className="w-3.5 h-3.5" />
                         </button>
@@ -190,7 +208,8 @@ export function CartDrawer() {
                         <button
                           type="button"
                           onClick={() => updateQuantity(ci.cartItemId, ci.quantity + 1)}
-                          className="text-padayal-text hover:text-padayal-primary transition-colors"
+                          className="text-padayal-text hover:text-padayal-primary transition-colors p-0.5"
+                          aria-label="Increase quantity"
                         >
                           <Plus className="w-3.5 h-3.5" />
                         </button>
@@ -230,14 +249,14 @@ export function CartDrawer() {
                   <form onSubmit={handleApplyCode} className="flex gap-2">
                     <input
                       type="text"
-                      placeholder="Promo code (e.g. PADAYAL10)"
+                      placeholder="Promo code (PADAYAL10)"
                       value={codeInput}
                       onChange={(e) => setCodeInput(e.target.value)}
                       className="flex-1 px-3 py-2 text-xs rounded-xl border border-padayal-bg bg-padayal-bg/50 uppercase font-semibold focus:outline-none focus:ring-1 focus:ring-padayal-primary"
                     />
                     <button
                       type="submit"
-                      className="px-3 py-2 bg-padayal-primary text-padayal-surface rounded-xl text-xs font-bold hover:bg-padayal-primary-hover transition-colors"
+                      className="px-3.5 py-2 bg-padayal-primary text-padayal-surface rounded-xl text-xs font-bold hover:bg-padayal-primary-hover transition-colors"
                     >
                       Apply
                     </button>

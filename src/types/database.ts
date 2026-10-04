@@ -89,6 +89,29 @@ export interface UserProfile {
   updated_at: string;
 }
 
+export interface OrderRecord {
+  id: string;
+  order_number: string;
+  order_type: 'dine-in' | 'takeaway' | 'delivery';
+  status: 'placed' | 'confirmed' | 'preparing' | 'ready' | 'completed' | 'cancelled';
+  customer_name: string;
+  customer_phone: string;
+  customer_email?: string | null;
+  table_number?: string | null;
+  delivery_address?: string | null;
+  delivery_notes?: string | null;
+  payment_method: string;
+  subtotal: number;
+  discount_amount: number;
+  delivery_fee: number;
+  gst_amount: number;
+  tip_amount: number;
+  grand_total: number;
+  items_json: unknown;
+  created_at: string;
+  updated_at?: string;
+}
+
 export type InsertMenuItem = Omit<MenuItem, 'id' | 'created_at' | 'updated_at'>;
 export type UpdateMenuItem = Partial<InsertMenuItem>;
 
@@ -107,11 +130,11 @@ export type InsertGalleryImage = Omit<GalleryImage, 'id' | 'created_at'>;
 export type UpdateGalleryImage = Partial<InsertGalleryImage>;
 
 export const CATEGORY_LABELS: Record<MenuCategory, string> = {
-  starters: 'Starters',
-  mains: 'Main Course',
-  soups: 'Soups',
-  salads: 'Salads',
-  desserts: 'Desserts',
-  beverages: 'Beverages',
-  specials: 'Chef\'s Specials',
+  mains: 'Natural Meals & Thali',
+  starters: 'Sprouts & Pachadi',
+  soups: 'Herbal Soups & Rasam',
+  salads: 'Traditional Salads',
+  desserts: 'Natural Sweets & Payasam',
+  beverages: 'Cold Press & Herbal Elixirs',
+  specials: 'Padayal Signature Specials',
 };

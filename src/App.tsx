@@ -7,6 +7,7 @@ import { AdminGuard } from './components/admin/AdminGuard';
 import { AdminLayout } from './components/admin/AdminLayout';
 import { ItemCustomizerModal } from './components/common/ItemCustomizerModal';
 import { CartDrawer } from './components/cart/CartDrawer';
+import { PWAInstallPrompt } from './components/common/PWAInstallPrompt';
 
 // Public Pages
 import { HomePage } from './pages/HomePage';
@@ -23,6 +24,7 @@ import { OrderStatusPage } from './pages/OrderStatusPage';
 // Admin Pages
 import { AdminLoginPage } from './pages/admin/AdminLoginPage';
 import { AdminDashboard } from './pages/admin/AdminDashboard';
+import { OrderManagementPage } from './pages/admin/OrderManagementPage';
 import { MenuManagementPage } from './pages/admin/MenuManagementPage';
 import { ReservationManagementPage } from './pages/admin/ReservationManagementPage';
 import { ReviewManagementPage } from './pages/admin/ReviewManagementPage';
@@ -63,6 +65,7 @@ function App() {
               }
             >
               <Route index element={<AdminDashboard />} />
+              <Route path="orders" element={<OrderManagementPage />} />
               <Route path="menu" element={<MenuManagementPage />} />
               <Route path="reservations" element={<ReservationManagementPage />} />
               <Route path="reviews" element={<ReviewManagementPage />} />
@@ -75,6 +78,7 @@ function App() {
           {/* Global Drawers & Modals */}
           <CartDrawer />
           <ItemCustomizerModal />
+          <PWAInstallPrompt />
         </OrderProvider>
       </CartProvider>
     </AuthProvider>

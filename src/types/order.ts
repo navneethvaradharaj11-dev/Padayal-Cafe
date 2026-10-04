@@ -1,8 +1,14 @@
 import { CartItem, OrderType, BillBreakdown } from './cart';
 
-export type OrderStatus = 'confirmed' | 'cooking' | 'ready' | 'delivered';
+export type OrderStatus =
+  | 'placed'
+  | 'confirmed'
+  | 'preparing'
+  | 'ready'
+  | 'completed'
+  | 'cancelled';
 
-export type PaymentMethod = 'upi' | 'apple_pay' | 'card' | 'cash';
+export type PaymentMethod = 'upi' | 'card' | 'cash';
 
 export interface CustomerDetails {
   name: string;
@@ -10,6 +16,8 @@ export interface CustomerDetails {
   email?: string;
   tableNumber?: string;
   deliveryAddress?: string;
+  landmark?: string;
+  deliveryNotes?: string;
 }
 
 export interface ActiveOrder {
