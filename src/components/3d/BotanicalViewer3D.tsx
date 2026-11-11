@@ -246,3 +246,4 @@ export function BotanicalViewer3D() {
     </div>
   );
 }
+

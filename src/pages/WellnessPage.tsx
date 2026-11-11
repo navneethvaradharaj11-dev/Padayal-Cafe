@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import placeholderImage from '../assets/placeholder.svg';
-import { BookOpen, ArrowRight, Calendar, User, Tag, X } from 'lucide-react';
+import { BookOpen, ArrowRight, Calendar, User, Tag, X, Sparkles } from 'lucide-react';
 import { Article } from '../types/database';
+import { TiltCard3D } from '../components/3d/TiltCard3D';
 
 const AUTHENTIC_ARTICLES: Article[] = [
   {
@@ -67,85 +68,95 @@ export function WellnessPage() {
     : articles.filter((a) => a.category === selectedCategory);
 
   return (
-    <div className="min-h-screen pb-16 bg-padayal-bg">
-      {/* Hero Section */}
-      <section className="relative py-16 sm:py-24 bg-[#183620] text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-3">
-          <BookOpen className="w-10 h-10 text-padayal-secondary mx-auto" />
-          <h1 className="font-editorial text-3xl sm:text-5xl font-black text-white tracking-tight">
-            Wellness Hub & Food Wisdom
+    <div className="min-h-screen pb-24 bg-[#FAF8F5] text-padayal-text">
+      
+      {/* Meadowlark Editorial Hero */}
+      <section className="relative pt-12 sm:pt-20 pb-16 px-4 sm:px-6 lg:px-8 border-b border-black/[0.04]">
+        <div className="max-w-4xl mx-auto text-center space-y-4">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white shadow-sm border border-black/[0.05] text-xs font-semibold text-padayal-primary">
+            <span className="text-padayal-cta">✦</span>
+            <span>FOOD AS MEDICINE • உணவே மருந்து</span>
+          </div>
+
+          <h1 className="font-editorial text-4xl sm:text-6xl lg:text-7xl font-normal tracking-tight text-padayal-text">
+            Wellness<span className="text-padayal-cta">.</span>
           </h1>
-          <p className="text-xs sm:text-sm text-cream-300 max-w-xl mx-auto leading-relaxed">
-            Discover the traditional principles of No Oil No Boil dining, natural ingredients, native herbs, and South Indian food philosophy.
+
+          <p className="font-editorial italic text-lg sm:text-2xl text-padayal-primary/90 font-normal">
+            living food wisdom & botanical guides
+          </p>
+
+          <p className="text-padayal-muted text-sm sm:text-base max-w-xl mx-auto leading-relaxed font-sans">
+            Discover the traditional principles of No Oil No Boil dining, living enzymes, native herbs, and natural wellness from our Coimbatore kitchen.
           </p>
         </div>
       </section>
 
-      {/* Category Filter */}
-      <section className="sticky top-16 sm:top-20 z-30 bg-padayal-surface/98 backdrop-blur-md border-b border-padayal-bg shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
-          <div className="flex items-center gap-2 overflow-x-auto no-scrollbar">
-            <Tag className="w-4 h-4 text-padayal-muted shrink-0" />
+      {/* Category Filter Pills (Meadowlark Style) */}
+      <section className="sticky top-16 sm:top-20 z-30 bg-[#FAF8F5]/95 backdrop-blur-md border-b border-black/[0.05] py-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center gap-2 overflow-x-auto no-scrollbar justify-start sm:justify-center">
             {categories.map((cat) => (
               <button
                 key={cat || 'all'}
                 type="button"
                 onClick={() => setSelectedCategory(cat as string)}
-                className={`px-3.5 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-colors ${
+                className={`px-4 py-2 rounded-full text-xs font-medium whitespace-nowrap transition-all ${
                   selectedCategory === cat
-                    ? 'bg-padayal-primary text-white shadow-sm'
-                    : 'bg-padayal-bg text-padayal-muted hover:text-padayal-text'
+                    ? 'bg-padayal-cta text-white shadow-sm'
+                    : 'bg-white text-padayal-text/75 hover:text-padayal-text border border-black/[0.04]'
                 }`}
               >
-                {cat === 'all' ? 'All Wisdom Articles' : cat}
+                {cat === 'all' ? 'All Wisdom Notes' : cat}
               </button>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Article Cards Grid */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      {/* Article Cards Grid with 3D Tilt */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredArticles.map((article) => (
-            <article
-              key={article.id}
-              onClick={() => setActiveArticle(article)}
-              className="bg-padayal-surface rounded-2xl overflow-hidden shadow-organic hover:shadow-organic-lg transition-all duration-300 border border-padayal-bg flex flex-col justify-between cursor-pointer group"
-            >
-              <div>
-                <div className="aspect-video overflow-hidden bg-forest-900 relative">
-                  <img
-                    src={article.image_url || placeholderImage}
-                    alt={article.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  {article.category && (
-                    <span className="absolute top-2.5 left-2.5 px-2.5 py-0.5 rounded-full bg-white/95 text-padayal-primary text-[10px] font-bold shadow-sm">
-                      {article.category}
-                    </span>
-                  )}
+            <TiltCard3D key={article.id} maxTilt={8} scale={1.03} className="h-full">
+              <article
+                onClick={() => setActiveArticle(article)}
+                className="bg-white/95 backdrop-blur-sm rounded-[2rem] overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-black/[0.04] flex flex-col justify-between cursor-pointer group p-4 h-full"
+              >
+                <div>
+                  <div className="aspect-[4/3] rounded-2xl overflow-hidden bg-[#FAF8F5] relative">
+                    <img
+                      src={article.image_url || placeholderImage}
+                      alt={article.title}
+                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    {article.category && (
+                      <span className="absolute top-2.5 left-2.5 px-3 py-1 rounded-full bg-white/95 text-padayal-primary text-[10px] font-bold shadow-sm">
+                        {article.category}
+                      </span>
+                    )}
+                  </div>
+
+                  <div className="pt-4 space-y-2">
+                    <h3 className="font-editorial text-lg font-normal text-padayal-text group-hover:text-padayal-primary transition-colors line-clamp-2 leading-snug">
+                      {article.title}
+                    </h3>
+                    <p className="text-xs text-padayal-muted line-clamp-3 leading-relaxed">
+                      {article.excerpt}
+                    </p>
+                  </div>
                 </div>
 
-                <div className="p-5 space-y-2.5">
-                  <h3 className="font-editorial text-lg font-bold text-padayal-text group-hover:text-padayal-primary transition-colors line-clamp-2 leading-snug">
-                    {article.title}
-                  </h3>
-                  <p className="text-xs text-padayal-muted line-clamp-3 leading-relaxed">
-                    {article.excerpt}
-                  </p>
+                <div className="pt-4 mt-4 border-t border-black/[0.05] flex items-center justify-between text-xs text-padayal-muted">
+                  <span className="flex items-center gap-1.5 font-medium">
+                    <User className="w-3.5 h-3.5 text-padayal-primary" /> {article.author}
+                  </span>
+                  <span className="font-medium text-padayal-cta inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                    Read Note <ArrowRight className="w-3 h-3" />
+                  </span>
                 </div>
-              </div>
-
-              <div className="p-5 pt-0 border-t border-padayal-bg/60 mt-3 flex items-center justify-between text-xs text-padayal-muted">
-                <span className="flex items-center gap-1.5 font-medium">
-                  <User className="w-3.5 h-3.5 text-padayal-primary" /> {article.author}
-                </span>
-                <span className="font-bold text-padayal-cta inline-flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
-                  Read Article <ArrowRight className="w-3 h-3" />
-                </span>
-              </div>
-            </article>
+              </article>
+            </TiltCard3D>
           ))}
         </div>
       </section>
@@ -153,30 +164,30 @@ export function WellnessPage() {
       {/* Article Reader Modal */}
       {activeArticle && (
         <div
-          className="fixed inset-0 z-50 bg-padayal-text/60 backdrop-blur-sm flex items-center justify-center p-4 animate-fade-in"
+          className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm flex items-center justify-center p-4 animate-fade-in"
           onClick={() => setActiveArticle(null)}
         >
           <div
-            className="bg-padayal-surface rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 relative shadow-2xl border border-padayal-bg animate-scale-in"
+            className="bg-white rounded-[2.5rem] max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-10 relative shadow-2xl border border-black/[0.06] animate-scale-in"
             onClick={(e) => e.stopPropagation()}
           >
             <button
               type="button"
               onClick={() => setActiveArticle(null)}
-              className="absolute top-4 right-4 p-2 text-padayal-muted hover:text-padayal-text rounded-full"
+              className="absolute top-5 right-5 p-2 text-padayal-muted hover:text-padayal-text rounded-full hover:bg-[#FAF8F5] transition-colors"
               aria-label="Close article"
             >
               <X className="w-5 h-5" />
             </button>
 
             <div className="space-y-4">
-              <span className="px-3 py-1 rounded-full bg-padayal-secondary-light text-padayal-primary text-xs font-bold">
+              <span className="px-3.5 py-1 rounded-full bg-[#F2F5EB] text-padayal-primary text-xs font-semibold">
                 {activeArticle.category}
               </span>
-              <h2 className="font-editorial text-2xl sm:text-3xl font-extrabold text-padayal-text leading-tight">
+              <h2 className="font-editorial text-2xl sm:text-3xl font-normal text-padayal-text leading-tight">
                 {activeArticle.title}
               </h2>
-              <div className="flex items-center gap-4 text-xs text-padayal-muted pb-4 border-b border-padayal-bg">
+              <div className="flex items-center gap-4 text-xs text-padayal-muted pb-4 border-b border-black/[0.05]">
                 <span className="flex items-center gap-1">
                   <User className="w-3.5 h-3.5 text-padayal-primary" /> {activeArticle.author}
                 </span>
@@ -186,23 +197,23 @@ export function WellnessPage() {
                 </span>
               </div>
 
-              <div className="aspect-video rounded-2xl overflow-hidden bg-forest-900 my-4">
+              <div className="aspect-[4/3] rounded-2xl overflow-hidden bg-[#FAF8F5] my-4 relative">
                 <img
                   src={activeArticle.image_url || placeholderImage}
                   alt={activeArticle.title}
-                  className="w-full h-full object-cover"
+                  className="absolute inset-0 w-full h-full object-cover"
                 />
               </div>
 
-              <div className="text-xs sm:text-sm text-padayal-text/80 leading-relaxed space-y-3 whitespace-pre-line font-sans">
+              <div className="text-sm text-padayal-text/80 leading-relaxed space-y-3 whitespace-pre-line font-sans">
                 {activeArticle.content}
               </div>
 
-              <div className="pt-6 border-t border-padayal-bg text-center">
+              <div className="pt-6 border-t border-black/[0.05] text-center">
                 <button
                   type="button"
                   onClick={() => setActiveArticle(null)}
-                  className="btn-primary text-xs py-2.5 px-6"
+                  className="px-6 py-2.5 rounded-full bg-padayal-cta text-white text-xs font-medium hover:bg-padayal-cta-hover transition-colors"
                 >
                   Close Article
                 </button>
