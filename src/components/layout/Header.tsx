@@ -38,31 +38,35 @@ export function Header() {
     <header
       className={`sticky top-0 left-0 right-0 z-40 transition-all duration-300 ${
         isScrolled
-          ? 'bg-padayal-surface/98 backdrop-blur-md shadow-md border-b border-padayal-bg/80'
-          : 'bg-padayal-surface border-b border-padayal-bg'
+          ? 'bg-[#FAF8F5]/95 backdrop-blur-md shadow-sm border-b border-black/[0.04]'
+          : 'bg-[#FAF8F5] border-b border-black/[0.04]'
       }`}
     >
-      {/* Top micro bar for contact & location on desktop */}
-      <div className="hidden lg:block bg-[#1B4329] text-cream-100 text-xs py-1.5 px-4 sm:px-6 lg:px-8 border-b border-forest-900">
+      {/* Top micro bar for location & philosophy */}
+      <div className="hidden lg:block bg-[#F2F5EB] text-padayal-text/80 text-xs py-1.5 px-4 sm:px-6 lg:px-8 border-b border-padayal-primary/10">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-6">
-            <span className="flex items-center gap-1.5 text-cream-200">
-              <MapPin className="w-3.5 h-3.5 text-padayal-secondary" />
+          <div className="flex items-center gap-5">
+            <span className="flex items-center gap-1.5 text-padayal-muted font-medium">
+              <MapPin className="w-3.5 h-3.5 text-padayal-primary" />
               <span>{RESTAURANT_INFO.location.area}, {RESTAURANT_INFO.location.city}</span>
             </span>
-            <span className="text-cream-400">|</span>
-            <span className="text-cream-200 font-medium">
-              🌿 {RESTAURANT_INFO.tagline}
+            <span className="text-black/20">•</span>
+            <span className="text-padayal-primary font-medium">
+              ✦ {RESTAURANT_INFO.tagline}
+            </span>
+            <span className="text-black/20">•</span>
+            <span className="text-padayal-muted font-medium">
+              எண்ணெய் இல்லா, அடுப்பில்லா உணவகம்
             </span>
           </div>
           <div className="flex items-center gap-5">
-            <span className="text-cream-300">{RESTAURANT_INFO.displayHours}</span>
+            <span className="text-padayal-muted">{RESTAURANT_INFO.displayHours}</span>
             <a
               href={`tel:${RESTAURANT_INFO.phone}`}
-              className="flex items-center gap-1 text-cream-100 hover:text-white font-semibold transition-colors"
+              className="flex items-center gap-1 text-padayal-primary hover:text-padayal-primary-hover font-semibold transition-colors"
             >
-              <Phone className="w-3 h-3 text-padayal-secondary" />
-              <span>Call Us</span>
+              <Phone className="w-3 h-3 text-padayal-cta" />
+              <span>{RESTAURANT_INFO.displayPhone}</span>
             </a>
           </div>
         </div>
@@ -72,41 +76,45 @@ export function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 sm:h-20">
           
-          {/* Brand Logo & Slogan */}
+          {/* Brand Logo & Slogan (Meadowlark editorial serif style) */}
           <Link to="/" className="flex items-center gap-3 group shrink-0" aria-label="Padayal Home">
-            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-white p-1 border border-padayal-bg shadow-sm flex items-center justify-center overflow-hidden group-hover:scale-105 transition-transform duration-300">
+            {/* 4-petal floral emblem or logo icon */}
+            <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-2xl bg-white p-1 border border-black/[0.06] shadow-sm flex items-center justify-center overflow-hidden group-hover:scale-105 transition-transform duration-300">
               <img src="/logo.png" alt="Padayal Logo" className="w-full h-full object-contain" />
             </div>
             <div className="flex flex-col">
-              <div className="flex items-baseline gap-1.5">
-                <span className="font-editorial text-2xl sm:text-3xl font-extrabold text-padayal-text tracking-tight leading-none">
-                  Padayal
+              <div className="flex items-baseline gap-1">
+                <span className="font-editorial text-2xl sm:text-3xl font-normal text-padayal-text tracking-tight leading-none">
+                  Padayal<span className="text-padayal-cta">.</span>
                 </span>
-                <span className="text-xs font-bold text-padayal-primary font-sans hidden sm:inline">
+                <span className="text-xs font-semibold text-padayal-primary font-sans hidden sm:inline ml-1">
                   படையல்
                 </span>
               </div>
-              <span className="text-[11px] font-bold text-padayal-cta tracking-wider uppercase leading-none mt-1">
-                No Oil No Boil Restaurant
+              <span className="text-[10px] sm:text-[11px] font-medium text-padayal-muted tracking-wider uppercase leading-none mt-1">
+                No Oil • No Boil • Living Food
               </span>
             </div>
           </Link>
 
-          {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-1 xl:gap-2">
+          {/* Desktop Navigation Links (Clean, spaced, unboxed text links like Meadowlark) */}
+          <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
             {NAV_LINKS.map((link) => {
               const isActive = location.pathname === link.path;
               return (
                 <Link
                   key={link.path}
                   to={link.path}
-                  className={`px-3 py-2 rounded-xl text-sm font-semibold transition-colors duration-200 ${
+                  className={`text-sm font-medium transition-colors duration-200 relative py-1 ${
                     isActive
-                      ? 'bg-padayal-secondary-light text-padayal-primary font-bold'
-                      : 'text-padayal-text/80 hover:text-padayal-primary hover:bg-padayal-bg'
+                      ? 'text-padayal-primary font-semibold'
+                      : 'text-padayal-text/75 hover:text-padayal-text'
                   }`}
                 >
                   {link.label}
+                  {isActive && (
+                    <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-padayal-cta rounded-full" />
+                  )}
                 </Link>
               );
             })}
@@ -114,25 +122,25 @@ export function Header() {
 
           {/* Right Action Buttons */}
           <div className="flex items-center gap-2.5 sm:gap-3">
-            {/* Desktop Table Booking CTA */}
+            {/* Desktop Table Booking CTA (Meadowlark rounded pill button) */}
             <Link
               to="/reservation"
-              className="hidden sm:inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-padayal-primary text-white text-xs sm:text-sm font-bold shadow-sm hover:bg-padayal-primary-hover active:scale-95 transition-all"
+              className="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-padayal-cta text-white text-xs sm:text-sm font-medium shadow-none hover:bg-padayal-cta-hover active:scale-95 transition-all"
             >
-              <Calendar className="w-4 h-4" />
+              <Calendar className="w-3.5 h-3.5" />
               <span>Book a Table</span>
             </Link>
 
-            {/* Cart Trigger */}
+            {/* Cart Trigger (Meadowlark rounded pill/circle) */}
             <button
               type="button"
               onClick={toggleCart}
-              className="relative p-2.5 rounded-xl bg-padayal-bg text-padayal-text hover:bg-padayal-secondary-light transition-colors border border-padayal-bg"
+              className="relative p-2.5 rounded-full bg-white text-padayal-text hover:bg-padayal-secondary-light transition-colors border border-black/[0.06] shadow-sm"
               aria-label={`View Cart (${itemCount} items)`}
             >
-              <ShoppingBag className="w-5 h-5 text-padayal-primary" />
+              <ShoppingBag className="w-4 h-4 text-padayal-primary" />
               {itemCount > 0 && (
-                <span className="absolute -top-1.5 -right-1.5 min-w-[20px] h-[20px] px-1 rounded-full bg-padayal-cta text-white text-[11px] font-extrabold flex items-center justify-center shadow-md animate-scale-in">
+                <span className="absolute -top-1 -right-1 min-w-[18px] h-[18px] px-1 rounded-full bg-padayal-cta text-white text-[10px] font-bold flex items-center justify-center shadow-sm">
                   {itemCount}
                 </span>
               )}
@@ -142,7 +150,7 @@ export function Header() {
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2.5 rounded-xl bg-padayal-bg text-padayal-text hover:bg-padayal-secondary-light transition-colors border border-padayal-bg"
+              className="lg:hidden p-2.5 rounded-full bg-white text-padayal-text hover:bg-padayal-secondary-light transition-colors border border-black/[0.06] shadow-sm"
               aria-label={mobileMenuOpen ? 'Close Navigation Menu' : 'Open Navigation Menu'}
               aria-expanded={mobileMenuOpen}
             >
@@ -158,7 +166,7 @@ export function Header() {
 
         {/* Mobile Dropdown Nav Menu */}
         {mobileMenuOpen && (
-          <div className="lg:hidden py-4 border-t border-padayal-bg mt-1 space-y-1 animate-slide-down">
+          <div className="lg:hidden py-4 border-t border-black/[0.05] mt-1 space-y-1 animate-slide-down bg-white rounded-2xl p-4 shadow-lg border border-black/[0.05]">
             <div className="px-3 pb-2 text-[11px] font-bold text-padayal-muted uppercase tracking-wider">
               {RESTAURANT_INFO.location.area}, {RESTAURANT_INFO.location.city}
             </div>
@@ -168,9 +176,9 @@ export function Header() {
                 <Link
                   key={link.path}
                   to={link.path}
-                  className={`block px-4 py-3 rounded-xl text-sm font-semibold transition-colors ${
+                  className={`block px-4 py-2.5 rounded-xl text-sm font-medium transition-colors ${
                     isActive
-                      ? 'bg-padayal-secondary-light text-padayal-primary font-bold'
+                      ? 'bg-padayal-secondary-light text-padayal-primary font-semibold'
                       : 'text-padayal-text hover:bg-padayal-bg'
                   }`}
                 >
@@ -178,10 +186,10 @@ export function Header() {
                 </Link>
               );
             })}
-            <div className="pt-3 px-2 flex flex-col gap-2">
+            <div className="pt-3 px-1 flex flex-col gap-2">
               <Link
                 to="/reservation"
-                className="btn-primary text-center py-3 text-sm font-bold w-full"
+                className="text-center py-3 text-sm font-medium w-full rounded-full bg-padayal-cta text-white hover:bg-padayal-cta-hover transition-colors"
               >
                 Book a Table
               </Link>
@@ -189,7 +197,7 @@ export function Header() {
                 href={RESTAURANT_INFO.whatsappChatUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-secondary text-center py-2.5 text-xs font-semibold w-full text-padayal-text"
+                className="text-center py-2.5 text-xs font-semibold w-full rounded-full border border-padayal-primary/30 text-padayal-primary hover:bg-padayal-secondary-light transition-colors"
               >
                 WhatsApp Us
               </a>

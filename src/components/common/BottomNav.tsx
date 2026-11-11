@@ -19,7 +19,7 @@ export function BottomNav() {
 
   return (
     <nav
-      className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-padayal-surface/98 backdrop-blur-lg border-t border-padayal-bg shadow-[0_-4px_20px_rgba(0,0,0,0.06)] px-2 pt-1.5 pb-[max(0.375rem,env(safe-area-inset-bottom))]"
+      className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-[#FAF8F5]/98 backdrop-blur-lg border-t border-black/[0.05] shadow-[0_-4px_20px_rgba(0,0,0,0.04)] px-2 pt-1.5 pb-[max(0.375rem,env(safe-area-inset-bottom))]"
       aria-label="Mobile Navigation"
     >
       <div className="flex items-center justify-around max-w-md mx-auto">
