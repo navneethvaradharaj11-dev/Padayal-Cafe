@@ -1,17 +1,24 @@
+import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Header } from './Header';
 import { Footer } from './Footer';
 import { BottomNav } from '../common/BottomNav';
-import { LiveBackground3D } from '../3d/LiveBackground3D';
+import { LiveWallpaperBackground } from '../3d/LiveWallpaperBackground';
 
 export function Layout() {
-  return (
-    <div className="min-h-screen bg-[#FAF8F5] relative flex flex-col font-sans text-padayal-text selection:bg-padayal-primary selection:text-white overflow-x-hidden">
-      {/* 3D Live Botanical WebGL Background (Waves, Floating Leaves, Pollen, Parallax) */}
-      <LiveBackground3D />
+  const [isZenMode, setIsZenMode] = useState(false);
 
-      {/* Foreground Content Stack */}
-      <div className="relative z-10 flex flex-col min-h-screen">
+  return (
+    <div className="min-h-screen relative flex flex-col font-sans text-padayal-text selection:bg-padayal-primary selection:text-white overflow-x-hidden">
+      {/* Authentic South Indian Botanical 3D Live Wallpaper (Banana leaves, Tulsi foliage, God-rays, Prana particles, Interactive wind) */}
+      <LiveWallpaperBackground onZenModeChange={setIsZenMode} />
+
+      {/* Foreground Content Stack with Zen Mode Smooth Dissolve */}
+      <div
+        className={`relative z-10 flex flex-col min-h-screen transition-opacity duration-700 ease-out ${
+          isZenMode ? 'opacity-10 pointer-events-none' : 'opacity-100'
+        }`}
+      >
         {/* Sticky Top Header */}
         <Header />
 

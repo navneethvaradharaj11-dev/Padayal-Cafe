@@ -68,7 +68,7 @@ export function WellnessPage() {
     : articles.filter((a) => a.category === selectedCategory);
 
   return (
-    <div className="min-h-screen pb-24 bg-[#FAF8F5] text-padayal-text">
+    <div className="min-h-screen pb-24 bg-transparent text-padayal-text">
       
       {/* Meadowlark Editorial Hero */}
       <section className="relative pt-12 sm:pt-20 pb-16 px-4 sm:px-6 lg:px-8 border-b border-black/[0.04]">

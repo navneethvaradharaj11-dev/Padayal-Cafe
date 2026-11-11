@@ -223,7 +223,7 @@ export function MenuPage() {
   }, [items, searchQuery, selectedCategory, selectedDietary]);
 
   return (
-    <div className="min-h-screen pb-24 bg-[#FAF8F5] text-padayal-text">
+    <div className="min-h-screen pb-24 bg-transparent text-padayal-text">
       
       {/* Meadowlark Editorial Header */}
       <section className="relative pt-12 sm:pt-20 pb-12 px-4 sm:px-6 lg:px-8 border-b border-black/[0.04] overflow-hidden">

@@ -317,7 +317,7 @@ export function HomePage() {
   };
 
   return (
-    <div className="bg-[#FAF8F5] text-padayal-text selection:bg-padayal-primary selection:text-white">
+    <div className="bg-transparent text-padayal-text selection:bg-padayal-primary selection:text-white">
 
       {/* 1. HERO SECTION: MEADOWLARK EDITORIAL SYSTEM (Image 1 Style) */}
       <section className="relative overflow-hidden pt-10 sm:pt-16 pb-16 sm:pb-24 px-4 sm:px-6 lg:px-8 border-b border-black/[0.04]">

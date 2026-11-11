@@ -55,8 +55,8 @@ export function Header() {
     <header
       className={`sticky top-0 left-0 right-0 z-40 transition-all duration-300 ${
         isScrolled
-          ? 'bg-[#FAF8F5]/98 backdrop-blur-md shadow-sm border-b border-black/[0.06]'
-          : 'bg-[#FAF8F5] border-b border-black/[0.05]'
+          ? 'bg-[#FAF8F5]/95 backdrop-blur-md shadow-sm border-b border-black/[0.06]'
+          : 'bg-[#FAF8F5]/85 backdrop-blur-md border-b border-black/[0.05]'
       }`}
     >
       {/* Top micro bar: Singanallur location & Hours */}
