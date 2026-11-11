@@ -382,22 +382,22 @@ export function HomePage() {
 
             </div>
 
-            {/* Right Column: Meadowlark Tall Rounded Botanical Photography Card */}
+            {/* Right Column: Rounded Botanical Photography Card — matches 1200×896 (4:3) images */}
             <div className="lg:col-span-5 relative flex justify-center">
-              <div className="relative w-full max-w-sm sm:max-w-md">
+              <div className="relative w-full max-w-md lg:max-w-none">
                 
-                {/* Tall rounded card with subtle curved corners like Meadowlark */}
-                <div className="aspect-[3/4] rounded-[2.5rem] sm:rounded-[3rem] overflow-hidden shadow-xl border-4 border-white bg-forest-900 relative group">
+                {/* Rounded card matching the natural 4:3 landscape ratio of food photos */}
+                <div className="aspect-[4/3] rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden shadow-xl border-4 border-white bg-forest-900 relative group">
                   <img
                     src="/images/food/raja-virundhu.jpg"
                     alt="Padayal Traditional Plantain Leaf Feast"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   />
                   {/* Subtle vignette */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60" />
 
-                  {/* Meadowlark bottom pill label */}
-                  <div className="absolute bottom-5 left-5 right-5">
+                  {/* Bottom pill label */}
+                  <div className="absolute bottom-4 left-4 right-4 sm:bottom-5 sm:left-5 sm:right-5">
                     <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/95 backdrop-blur-md shadow-md text-xs font-medium text-padayal-text">
                       <span className="w-2 h-2 rounded-full bg-padayal-primary animate-pulse" />
                       <span>East Singanallur, lunch spread</span>
@@ -518,13 +518,13 @@ export function HomePage() {
         {/* Two-column layout: Left image card + Right interactive card */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
           
-          {/* Left Column: Meadowlark tall rounded photo card */}
+          {/* Left Column: Rounded photo card — matches 4:3 landscape food images */}
           <div className="lg:col-span-5">
-            <div className="relative aspect-[3/4] rounded-[2.5rem] overflow-hidden shadow-md border-4 border-white bg-forest-900 group">
+            <div className="relative aspect-[4/3] rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden shadow-md border-4 border-white bg-forest-900 group">
               <img
                 src={selectedSpreadItem.image}
                 alt={selectedSpreadItem.name}
-                className="w-full h-full object-cover transition-all duration-500 group-hover:scale-105"
+                className="absolute inset-0 w-full h-full object-cover transition-all duration-500 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
               
@@ -753,7 +753,7 @@ export function HomePage() {
                     <img
                       src={dish.image_url || placeholderImage}
                       alt={dish.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                     <span className="absolute top-2.5 left-2.5 px-3 py-1 rounded-full bg-white/95 text-padayal-primary text-[10px] font-bold shadow-sm">
                       🌿 No Oil
@@ -800,7 +800,7 @@ export function HomePage() {
                 <img
                   src="/images/founder.png"
                   alt={RESTAURANT_INFO.founder.name}
-                  className="w-full h-full object-cover"
+                  className="absolute inset-0 w-full h-full object-cover"
                 />
               </div>
               <div className="mt-4">
