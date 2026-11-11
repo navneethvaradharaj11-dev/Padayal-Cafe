@@ -15,6 +15,8 @@ import {
   BookOpen,
   Search,
   Check,
+  Rotate3D,
+  Image as ImageIcon,
 } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { MenuItem, Review } from '../types/database';
@@ -22,6 +24,8 @@ import { MenuItemSkeleton } from '../components/ui/Skeleton';
 import { RESTAURANT_INFO } from '../config/restaurant';
 import { formatCurrency } from '../utils/formatCurrency';
 import { useCart } from '../context/CartContext';
+import { TiltCard3D } from '../components/3d/TiltCard3D';
+import { BotanicalViewer3D } from '../components/3d/BotanicalViewer3D';
 import placeholderImage from '../assets/placeholder.svg';
 
 const CONCEPT_PILLARS = [
@@ -261,6 +265,7 @@ export function HomePage() {
   const [selectedSpreadItem, setSelectedSpreadItem] = useState<KitchenSpreadItem>(KITCHEN_SPREAD[0]);
   const [newsletterEmail, setNewsletterEmail] = useState('');
   const [newsletterSubscribed, setNewsletterSubscribed] = useState(false);
+  const [hero3DMode, setHero3DMode] = useState(false);
   const { addItem } = useCart();
 
   useEffect(() => {
@@ -382,31 +387,69 @@ export function HomePage() {
 
             </div>
 
-            {/* Right Column: Rounded Botanical Photography Card — matches 1200×896 (4:3) images */}
+            {/* Right Column: 3D Interactive Card & Showcase with Tilt & Glare */}
             <div className="lg:col-span-5 relative flex justify-center">
               <div className="relative w-full max-w-md lg:max-w-none">
                 
-                {/* Rounded card matching the natural 4:3 landscape ratio of food photos */}
-                <div className="aspect-[4/3] rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden shadow-xl border-4 border-white bg-forest-900 relative group">
-                  <img
-                    src="/images/food/raja-virundhu.jpg"
-                    alt="Padayal Traditional Plantain Leaf Feast"
-                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  />
-                  {/* Subtle vignette */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60" />
-
-                  {/* Bottom pill label */}
-                  <div className="absolute bottom-4 left-4 right-4 sm:bottom-5 sm:left-5 sm:right-5">
-                    <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/95 backdrop-blur-md shadow-md text-xs font-medium text-padayal-text">
-                      <span className="w-2 h-2 rounded-full bg-padayal-primary animate-pulse" />
-                      <span>East Singanallur, lunch spread</span>
-                    </div>
+                {/* 2D/3D Mode Switcher Pill */}
+                <div className="flex items-center justify-end mb-3 gap-2">
+                  <div className="inline-flex items-center p-1 rounded-full bg-white/90 backdrop-blur-md shadow-sm border border-black/[0.06] text-xs">
+                    <button
+                      type="button"
+                      onClick={() => setHero3DMode(false)}
+                      className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold transition-all ${
+                        !hero3DMode
+                          ? 'bg-padayal-cta text-white shadow-sm'
+                          : 'text-padayal-muted hover:text-padayal-text'
+                      }`}
+                    >
+                      <ImageIcon className="w-3.5 h-3.5" />
+                      <span>Feast Photo</span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setHero3DMode(true)}
+                      className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold transition-all ${
+                        hero3DMode
+                          ? 'bg-padayal-primary text-white shadow-sm'
+                          : 'text-padayal-muted hover:text-padayal-text'
+                      }`}
+                    >
+                      <Rotate3D className="w-3.5 h-3.5" />
+                      <span>3D Prana Mandala</span>
+                    </button>
                   </div>
                 </div>
 
+                <TiltCard3D maxTilt={10} scale={1.02} glare={!hero3DMode}>
+                  {/* Rounded 3D card */}
+                  <div className="aspect-[4/3] rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden shadow-xl border-4 border-white bg-white relative group">
+                    {hero3DMode ? (
+                      <BotanicalViewer3D />
+                    ) : (
+                      <>
+                        <img
+                          src="/images/food/raja-virundhu.jpg"
+                          alt="Padayal Traditional Plantain Leaf Feast"
+                          className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                        />
+                        {/* Subtle vignette */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60" />
+
+                        {/* Bottom pill label */}
+                        <div className="absolute bottom-4 left-4 right-4 sm:bottom-5 sm:left-5 sm:right-5">
+                          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/95 backdrop-blur-md shadow-md text-xs font-medium text-padayal-text">
+                            <span className="w-2 h-2 rounded-full bg-padayal-primary animate-pulse" />
+                            <span>East Singanallur, lunch spread</span>
+                          </div>
+                        </div>
+                      </>
+                    )}
+                  </div>
+                </TiltCard3D>
+
                 {/* Micro floating badge on top right */}
-                <div className="absolute -top-3 -right-3 bg-white p-2 rounded-full shadow-md border border-black/[0.05] flex items-center justify-center">
+                <div className="absolute -top-1 -right-3 bg-white p-2 rounded-full shadow-md border border-black/[0.05] flex items-center justify-center z-20 pointer-events-none">
                   <span className="text-padayal-cta text-sm">✦</span>
                 </div>
 
@@ -457,38 +500,37 @@ export function HomePage() {
           </p>
         </div>
 
-        {/* 3 Floating White Cards with generous rounded corners */}
+        {/* 3 Floating 3D Cards with generous rounded corners and tilt */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
           {CONCEPT_PILLARS.map((pillar) => {
             const Icon = pillar.icon;
             return (
-              <div
-                key={pillar.title}
-                className="bg-white rounded-[2rem] p-8 shadow-sm hover:shadow-md border border-black/[0.04] transition-all duration-300 space-y-4 flex flex-col justify-between"
-              >
-                <div>
-                  {/* Tinted rounded square icon container */}
-                  <div className="w-12 h-12 rounded-2xl bg-[#F2F5EB] text-padayal-primary flex items-center justify-center mb-6">
-                    <Icon className="w-5 h-5" />
+              <TiltCard3D key={pillar.title} maxTilt={9} scale={1.03} className="h-full">
+                <div className="bg-white/95 backdrop-blur-sm rounded-[2rem] p-8 shadow-sm hover:shadow-xl border border-black/[0.04] transition-all duration-300 space-y-4 flex flex-col justify-between h-full">
+                  <div>
+                    {/* Tinted rounded square icon container */}
+                    <div className="w-12 h-12 rounded-2xl bg-[#F2F5EB] text-padayal-primary flex items-center justify-center mb-6">
+                      <Icon className="w-5 h-5" />
+                    </div>
+                    
+                    {/* Editorial Serif Card Title */}
+                    <h3 className="font-editorial text-xl sm:text-2xl font-normal text-padayal-text tracking-tight">
+                      {pillar.title}
+                    </h3>
+                    
+                    {/* Card Description */}
+                    <p className="text-padayal-muted text-xs sm:text-sm leading-relaxed mt-2">
+                      {pillar.description}
+                    </p>
                   </div>
-                  
-                  {/* Editorial Serif Card Title */}
-                  <h3 className="font-editorial text-xl sm:text-2xl font-normal text-padayal-text tracking-tight">
-                    {pillar.title}
-                  </h3>
-                  
-                  {/* Card Description */}
-                  <p className="text-padayal-muted text-xs sm:text-sm leading-relaxed mt-2">
-                    {pillar.description}
-                  </p>
-                </div>
 
-                <div className="pt-4 border-t border-black/[0.04]">
-                  <span className="text-[11px] font-semibold text-padayal-primary uppercase tracking-wider">
-                    {pillar.subtitle}
-                  </span>
+                  <div className="pt-4 border-t border-black/[0.04]">
+                    <span className="text-[11px] font-semibold text-padayal-primary uppercase tracking-wider">
+                      {pillar.subtitle}
+                    </span>
+                  </div>
                 </div>
-              </div>
+              </TiltCard3D>
             );
           })}
         </div>
@@ -518,26 +560,28 @@ export function HomePage() {
         {/* Two-column layout: Left image card + Right interactive card */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
           
-          {/* Left Column: Rounded photo card — matches 4:3 landscape food images */}
+          {/* Left Column: Rounded 3D photo card — matches 4:3 landscape food images */}
           <div className="lg:col-span-5">
-            <div className="relative aspect-[4/3] rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden shadow-md border-4 border-white bg-forest-900 group">
-              <img
-                src={selectedSpreadItem.image}
-                alt={selectedSpreadItem.name}
-                className="absolute inset-0 w-full h-full object-cover transition-all duration-500 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-              
-              <div className="absolute bottom-5 left-5 right-5 space-y-2">
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/95 backdrop-blur-md shadow-sm text-xs font-medium text-padayal-text">
-                  <span className="w-2 h-2 rounded-full bg-padayal-primary" />
-                  <span>{selectedSpreadItem.tag}</span>
+            <TiltCard3D maxTilt={7} scale={1.02}>
+              <div className="relative aspect-[4/3] rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden shadow-md border-4 border-white bg-forest-900 group">
+                <img
+                  src={selectedSpreadItem.image}
+                  alt={selectedSpreadItem.name}
+                  className="absolute inset-0 w-full h-full object-cover transition-all duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                
+                <div className="absolute bottom-5 left-5 right-5 space-y-2">
+                  <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/95 backdrop-blur-md shadow-sm text-xs font-medium text-padayal-text">
+                    <span className="w-2 h-2 rounded-full bg-padayal-primary" />
+                    <span>{selectedSpreadItem.tag}</span>
+                  </div>
+                  <p className="text-white font-editorial text-lg font-bold drop-shadow-sm">
+                    {selectedSpreadItem.name}
+                  </p>
                 </div>
-                <p className="text-white font-editorial text-lg font-bold drop-shadow-sm">
-                  {selectedSpreadItem.name}
-                </p>
               </div>
-            </div>
+            </TiltCard3D>
           </div>
 
           {/* Right Column: Meadowlark white card with tabs and checklist */}
@@ -744,116 +788,117 @@ export function HomePage() {
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {featuredDishes.map((dish) => (
-              <div
-                key={dish.id}
-                className="bg-white rounded-[2rem] overflow-hidden border border-black/[0.04] shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between group p-4"
-              >
-                <div>
-                  <div className="aspect-[4/3] rounded-2xl overflow-hidden bg-[#FAF8F5] relative">
-                    <img
-                      src={dish.image_url || placeholderImage}
-                      alt={dish.name}
-                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <span className="absolute top-2.5 left-2.5 px-3 py-1 rounded-full bg-white/95 text-padayal-primary text-[10px] font-bold shadow-sm">
-                      🌿 No Oil
+              <TiltCard3D key={dish.id} maxTilt={8} scale={1.03} className="h-full">
+                <div className="bg-white/95 backdrop-blur-sm rounded-[2rem] overflow-hidden border border-black/[0.04] shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group p-4 h-full">
+                  <div>
+                    <div className="aspect-[4/3] rounded-2xl overflow-hidden bg-[#FAF8F5] relative">
+                      <img
+                        src={dish.image_url || placeholderImage}
+                        alt={dish.name}
+                        className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                      <span className="absolute top-2.5 left-2.5 px-3 py-1 rounded-full bg-white/95 text-padayal-primary text-[10px] font-bold shadow-sm">
+                        🌿 No Oil
+                      </span>
+                    </div>
+
+                    <div className="pt-4 space-y-2">
+                      <h3 className="font-editorial text-base sm:text-lg font-normal text-padayal-text line-clamp-1 group-hover:text-padayal-primary transition-colors">
+                        {dish.name}
+                      </h3>
+                      <p className="text-xs text-padayal-muted line-clamp-2 leading-relaxed">
+                        {dish.description}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="pt-4 mt-4 border-t border-black/[0.05] flex items-center justify-between">
+                    <span className="font-editorial text-base font-bold text-padayal-text">
+                      {formatCurrency(dish.price)}
                     </span>
-                  </div>
-
-                  <div className="pt-4 space-y-2">
-                    <h3 className="font-editorial text-base sm:text-lg font-normal text-padayal-text line-clamp-1 group-hover:text-padayal-primary transition-colors">
-                      {dish.name}
-                    </h3>
-                    <p className="text-xs text-padayal-muted line-clamp-2 leading-relaxed">
-                      {dish.description}
-                    </p>
+                    <button
+                      type="button"
+                      onClick={() => addItem(dish)}
+                      className="px-4 py-2 rounded-full bg-padayal-cta text-white text-xs font-medium hover:bg-padayal-cta-hover transition-colors shadow-none"
+                    >
+                      Add to plate
+                    </button>
                   </div>
                 </div>
-
-                <div className="pt-4 mt-4 border-t border-black/[0.05] flex items-center justify-between">
-                  <span className="font-editorial text-base font-bold text-padayal-text">
-                    {formatCurrency(dish.price)}
-                  </span>
-                  <button
-                    type="button"
-                    onClick={() => addItem(dish)}
-                    className="px-4 py-2 rounded-full bg-padayal-cta text-white text-xs font-medium hover:bg-padayal-cta-hover transition-colors shadow-none"
-                  >
-                    Add to plate
-                  </button>
-                </div>
-              </div>
+              </TiltCard3D>
             ))}
           </div>
         )}
 
       </section>
 
-      {/* 6. FOUNDER & PHILOSOPHY (Meadowlark Card Format) */}
+      {/* 6. FOUNDER & PHILOSOPHY (Meadowlark 3D Card Format) */}
       <section className="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <div className="bg-white rounded-[2.5rem] p-8 sm:p-12 lg:p-16 border border-black/[0.04] shadow-sm">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-            
-            {/* Left: Founder portrait */}
-            <div className="lg:col-span-5 flex flex-col items-center text-center">
-              <div className="w-48 sm:w-60 aspect-square rounded-[2rem] overflow-hidden shadow-lg border-4 border-[#FAF8F5] relative">
-                <img
-                  src="/images/founder.png"
-                  alt={RESTAURANT_INFO.founder.name}
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
-              </div>
-              <div className="mt-4">
-                <h4 className="font-editorial text-2xl font-normal text-padayal-text">
-                  {RESTAURANT_INFO.founder.name}
-                </h4>
-                <p className="text-xs text-padayal-primary font-medium mt-0.5">
-                  {RESTAURANT_INFO.founder.tamilName} • {RESTAURANT_INFO.founder.title}
-                </p>
-              </div>
-            </div>
-
-            {/* Right: Editorial Narrative */}
-            <div className="lg:col-span-7 space-y-5">
-              <span className="text-[11px] font-bold text-padayal-cta uppercase tracking-widest">
-                ✦ THE STORY BEHIND PADAYAL
-              </span>
+        <TiltCard3D maxTilt={4} scale={1.01}>
+          <div className="bg-white/95 backdrop-blur-sm rounded-[2.5rem] p-8 sm:p-12 lg:p-16 border border-black/[0.04] shadow-sm hover:shadow-xl transition-shadow duration-300">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
               
-              <h3 className="font-editorial text-3xl sm:text-4xl lg:text-5xl font-normal text-padayal-text tracking-tight leading-tight">
-                "More than food. A quiet way of living."
-              </h3>
-
-              <p className="text-sm sm:text-base text-padayal-muted leading-relaxed font-sans">
-                {RESTAURANT_INFO.founder.bio}
-              </p>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-                <div className="p-4 rounded-2xl bg-[#FAF8F5] border border-black/[0.04] space-y-1">
-                  <span className="text-xs font-bold text-padayal-primary block">Mentorship</span>
-                  <p className="text-xs text-padayal-muted">{RESTAURANT_INFO.founder.inspiration}</p>
+              {/* Left: Founder portrait */}
+              <div className="lg:col-span-5 flex flex-col items-center text-center">
+                <div className="w-48 sm:w-60 aspect-square rounded-[2rem] overflow-hidden shadow-lg border-4 border-[#FAF8F5] relative">
+                  <img
+                    src="/images/founder.png"
+                    alt={RESTAURANT_INFO.founder.name}
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
                 </div>
-                <div className="p-4 rounded-2xl bg-[#FAF8F5] border border-black/[0.04] space-y-1">
-                  <span className="text-xs font-bold text-padayal-primary block">Culinary Innovation</span>
-                  <p className="text-xs text-padayal-muted">{RESTAURANT_INFO.founder.recipesCount}</p>
+                <div className="mt-4">
+                  <h4 className="font-editorial text-2xl font-normal text-padayal-text">
+                    {RESTAURANT_INFO.founder.name}
+                  </h4>
+                  <p className="text-xs text-padayal-primary font-medium mt-0.5">
+                    {RESTAURANT_INFO.founder.tamilName} • {RESTAURANT_INFO.founder.title}
+                  </p>
                 </div>
               </div>
 
-              <div className="pt-2">
-                <Link
-                  to="/about"
-                  className="px-6 py-3 rounded-full bg-padayal-cta text-white text-xs sm:text-sm font-medium hover:bg-padayal-cta-hover transition-colors inline-flex items-center gap-2"
-                >
-                  <span>Read our complete philosophy</span>
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
+              {/* Right: Editorial Narrative */}
+              <div className="lg:col-span-7 space-y-5">
+                <span className="text-[11px] font-bold text-padayal-cta uppercase tracking-widest">
+                  ✦ THE STORY BEHIND PADAYAL
+                </span>
+                
+                <h3 className="font-editorial text-3xl sm:text-4xl lg:text-5xl font-normal text-padayal-text tracking-tight leading-tight">
+                  "More than food. A quiet way of living."
+                </h3>
+
+                <p className="text-sm sm:text-base text-padayal-muted leading-relaxed font-sans">
+                  {RESTAURANT_INFO.founder.bio}
+                </p>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                  <div className="p-4 rounded-2xl bg-[#FAF8F5] border border-black/[0.04] space-y-1">
+                    <span className="text-xs font-bold text-padayal-primary block">Mentorship</span>
+                    <p className="text-xs text-padayal-muted">{RESTAURANT_INFO.founder.inspiration}</p>
+                  </div>
+                  <div className="p-4 rounded-2xl bg-[#FAF8F5] border border-black/[0.04] space-y-1">
+                    <span className="text-xs font-bold text-padayal-primary block">Culinary Innovation</span>
+                    <p className="text-xs text-padayal-muted">{RESTAURANT_INFO.founder.recipesCount}</p>
+                  </div>
+                </div>
+
+                <div className="pt-2">
+                  <Link
+                    to="/about"
+                    className="px-6 py-3 rounded-full bg-padayal-cta text-white text-xs sm:text-sm font-medium hover:bg-padayal-cta-hover transition-colors inline-flex items-center gap-2"
+                  >
+                    <span>Read our complete philosophy</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
               </div>
+
             </div>
-
           </div>
-        </div>
+        </TiltCard3D>
       </section>
 
-      {/* 7. GUEST REFLECTIONS (Meadowlark Review Cards) */}
+      {/* 7. GUEST REFLECTIONS (Meadowlark 3D Review Cards) */}
       <section className="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-10">
         <div className="text-center max-w-2xl mx-auto space-y-2">
           <h2 className="font-editorial text-3xl sm:text-4xl font-normal text-padayal-text tracking-tight">
@@ -866,31 +911,30 @@ export function HomePage() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {reviews.map((rev) => (
-            <div
-              key={rev.id}
-              className="bg-white rounded-[2rem] p-7 shadow-sm border border-black/[0.04] space-y-4 flex flex-col justify-between"
-            >
-              <div className="space-y-3">
-                <div className="flex items-center gap-1 text-amber-500 text-xs">
-                  {[...Array(5)].map((_, i) => (
-                    <span key={i}>★</span>
-                  ))}
+            <TiltCard3D key={rev.id} maxTilt={7} scale={1.02} className="h-full">
+              <div className="bg-white/95 backdrop-blur-sm rounded-[2rem] p-7 shadow-sm hover:shadow-xl border border-black/[0.04] space-y-4 flex flex-col justify-between h-full transition-all duration-300">
+                <div className="space-y-3">
+                  <div className="flex items-center gap-1 text-amber-500 text-xs">
+                    {[...Array(5)].map((_, i) => (
+                      <span key={i}>★</span>
+                    ))}
+                  </div>
+                  <p className="font-editorial italic text-sm text-padayal-text/80 leading-relaxed">
+                    "{rev.comment}"
+                  </p>
                 </div>
-                <p className="font-editorial italic text-sm text-padayal-text/80 leading-relaxed">
-                  "{rev.comment}"
-                </p>
-              </div>
 
-              <div className="pt-4 border-t border-black/[0.05] flex items-center justify-between text-xs">
-                <div>
-                  <p className="font-semibold text-padayal-text">{rev.name}</p>
-                  <span className="text-[11px] text-padayal-muted">Coimbatore</span>
+                <div className="pt-4 border-t border-black/[0.05] flex items-center justify-between text-xs">
+                  <div>
+                    <p className="font-semibold text-padayal-text">{rev.name}</p>
+                    <span className="text-[11px] text-padayal-muted">Coimbatore</span>
+                  </div>
+                  <span className="text-[10px] text-padayal-muted">
+                    {new Date(rev.created_at).toLocaleDateString()}
+                  </span>
                 </div>
-                <span className="text-[10px] text-padayal-muted">
-                  {new Date(rev.created_at).toLocaleDateString()}
-                </span>
               </div>
-            </div>
+            </TiltCard3D>
           ))}
         </div>
       </section>
